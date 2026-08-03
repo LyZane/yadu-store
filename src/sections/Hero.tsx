@@ -1,4 +1,5 @@
 import { ShieldCheck, Waves, GaugeCircle, Wind } from 'lucide-react'
+import { scrollToId } from '@/lib/scroll'
 
 const techs = [
   { icon: Wind, title: '无雾冷蒸发', desc: '无水雾无白粉，母婴易敏人群安心用' },
@@ -26,12 +27,20 @@ export default function Hero() {
           <div className="mt-8 flex flex-wrap gap-3">
             <a
               href="#products"
+              onClick={(e) => {
+                e.preventDefault()
+                scrollToId('products')
+              }}
               className="rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-7 py-3 text-sm font-semibold text-white shadow-md transition hover:opacity-90"
             >
               选购加湿器
             </a>
             <a
               href="#tech"
+              onClick={(e) => {
+                e.preventDefault()
+                scrollToId('tech')
+              }}
               className="rounded-full border border-slate-300 bg-white px-7 py-3 text-sm font-semibold text-slate-700 transition hover:border-cyan-400 hover:text-cyan-600"
             >
               了解核心技术

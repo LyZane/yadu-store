@@ -1,4 +1,5 @@
 import { products, seriesGuides, seriesThemes } from '@/data/products'
+import { scrollToId } from '@/lib/scroll'
 import ProductCard from './ProductCard'
 import SeriesGuideBlock from './SeriesGuide'
 import SeriesTable from './SeriesTable'
@@ -52,6 +53,10 @@ export default function ProductSection() {
               <a
                 key={q.href}
                 href={q.href}
+                onClick={(e) => {
+                  e.preventDefault()
+                  scrollToId(q.href.slice(1))
+                }}
                 className={`group flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:shadow-md ${theme?.quickHover ?? ''}`}
               >
                 <span className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${theme?.quickIcon ?? ''}`}>
