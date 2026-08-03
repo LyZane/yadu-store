@@ -32,7 +32,7 @@ export const products: Product[] = [
     tmallTitle: '亚都无雾加湿器家用静音卧室大容量孕妇婴儿冷蒸发式除菌空气净化',
     model: 'SC800-YXS120C',
     category: '无雾加湿器',
-    image: '/images/120C.jpg',
+    image: 'images/120C.jpg',
     tagline: '无雾加湿器 舒享健康 净润全屋',
     highlights: [
       '1000ml/h 澎湃加湿量，80-100㎡ 大空间一台就够',
@@ -64,7 +64,7 @@ export const products: Product[] = [
     tmallTitle: '亚都无雾加湿器家用静音卧室孕妇婴儿大容量冷蒸发式除菌智能恒湿',
     model: 'SZ800-YXS80C',
     category: '无雾加湿器',
-    image: '/images/80C.jpg',
+    image: 'images/80C.jpg',
     tagline: '七大核心升级 解锁净润新体验',
     highlights: [
       '1000ml/h 大加湿量（检测报告实测 1050ml/h）',
@@ -96,7 +96,7 @@ export const products: Product[] = [
     tmallTitle: '亚都无雾加湿器家用静音卧室孕妇婴儿小型冷蒸发式除菌母婴空调房',
     model: 'SZ400-YXS50C',
     category: '无雾加湿器',
-    image: '/images/50C白.jpg',
+    image: 'images/50C白.jpg',
     tagline: '无雾抗菌 母婴加湿',
     highlights: [
       '冷蒸发无雾加湿，无水雾无粉尘，呵护敏感人群',
@@ -127,7 +127,7 @@ export const products: Product[] = [
     tmallTitle: '亚都加湿器家用静音卧室大雾量冷暖雾孕妇婴儿除菌恒湿大容量客厅',
     model: 'SC550-YXS130E',
     category: '超声波落地款',
-    image: '/images/130E.jpg',
+    image: 'images/130E.jpg',
     tagline: '创新冷暖雾加湿 冬暖夏凉 水润加倍',
     highlights: [
       '600ml/h 澎湃巨雾量，覆盖全屋（检测报告实测）',
@@ -159,7 +159,7 @@ export const products: Product[] = [
     tmallTitle: '亚都加湿器家用静音大雾量大容量落地式别墅客厅除菌净化孕妇婴儿',
     model: 'SC500-QL180',
     category: '超声波落地款',
-    image: '/images/180.jpg',
+    image: 'images/180.jpg',
     tagline: '别墅级大雾量 全屋加湿',
     highlights: [
       '700ml/h 大雾量，双核驱动一台顶两台',
@@ -190,7 +190,7 @@ export const products: Product[] = [
     tmallTitle: '亚都加湿器家用静音卧室大雾量孕妇婴儿除菌净化恒湿大容量落地式',
     model: 'SC400-YXS130D',
     category: '超声波落地款',
-    image: '/images/130D.jpg',
+    image: 'images/130D.jpg',
     tagline: '过滤+除菌+净化 呼吸 0 风险',
     highlights: [
       '麦饭石过滤 + 负离子净化 + UV-C 光解除菌三重抑菌',
@@ -221,7 +221,7 @@ export const products: Product[] = [
     tmallTitle: '亚都加湿器家用静音卧室大雾量大容量孕妇婴儿除菌恒湿客厅空调房',
     model: 'SC400-YXS130C',
     category: '超声波落地款',
-    image: '/images/130C.jpg',
+    image: 'images/130C.jpg',
     tagline: '高效健康加湿 洁净水润呵护',
     highlights: [
       'UV-C 光解除菌技术，除菌率 99.9%',
@@ -252,7 +252,7 @@ export const products: Product[] = [
     tmallTitle: '亚都加湿器家用静音卧室大雾量落地式大容量除菌恒湿孕妇婴儿客厅',
     model: '090P 智能杀菌款 / 触控款',
     category: '超声波落地款',
-    image: '/images/090P.jpg',
+    image: 'images/090P.jpg',
     tagline: '9L 活水净润 智能恒湿',
     highlights: [
       'UV-C 紫外线杀菌，除菌率高达 99.9%',
@@ -284,7 +284,7 @@ export const products: Product[] = [
     tmallTitle: '亚都加湿器家用静音卧室小型大雾量除菌净化孕妇婴儿桌面上加水',
     model: '050 智能除菌净化款',
     category: '超声波桌面款',
-    image: '/images/050.jpg',
+    image: 'images/050.jpg',
     tagline: '大雾量加湿 除菌净化合一',
     highlights: [
       'UVC 杀菌 + 麦饭石水净化，母婴安心用',
@@ -315,7 +315,7 @@ export const products: Product[] = [
     tmallTitle: '亚都加湿器家用静音卧室小型香薰七彩氛围灯大雾量孕妇婴儿桌面',
     model: 'SC300-YXS04A',
     category: '超声波桌面款',
-    image: '/images/04A.jpg',
+    image: 'images/04A.jpg',
     tagline: '光随雾动 加湿全屋',
     highlights: [
       '升级大雾量 400ml/h，99.9% 银离子抗菌水箱',
@@ -346,7 +346,7 @@ export const products: Product[] = [
     tmallTitle: '亚都加湿器家用静音卧室小型大雾量智能恒湿孕妇婴儿桌面上加水',
     model: 'SC300-YXS35C',
     category: '超声波桌面款',
-    image: '/images/35C.jpg',
+    image: 'images/35C.jpg',
     tagline: '告别干燥 沁润四季',
     highlights: [
       '300ml/h 大雾量，高效快速缓解干燥',
@@ -377,7 +377,7 @@ export const products: Product[] = [
     tmallTitle: '亚都无雾加湿器滤网滤芯适配50C原装正品可水洗替换耗材配件',
     model: '适配 SZ400-YXS50C',
     category: '滤网配件',
-    image: '/images/50C滤网.jpg',
+    image: 'images/50C滤网.jpg',
     tagline: '吸附水垢 净化水质',
     highlights: [
       '亚都原装滤网，适配 SZ400-YXS50C',
@@ -405,7 +405,7 @@ export const products: Product[] = [
     tmallTitle: '亚都无雾加湿器滤网滤芯适配80C原装正品可水洗替换耗材配件',
     model: '适配 SZ800-YXS80C',
     category: '滤网配件',
-    image: '/images/80C滤网.jpg',
+    image: 'images/80C滤网.jpg',
     tagline: '吸附水垢 净化水质',
     highlights: [
       '亚都原装滤网，适配 SZ800-YXS80C',

@@ -53,7 +53,7 @@ export default function Hero() {
         <div className="relative">
           <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-tr from-cyan-200/50 to-blue-200/40 blur-2xl" />
           <img
-            src="/images/120C.jpg"
+            src="images/120C.jpg"
             alt="亚都无雾加湿器旗舰款"
             className="relative w-full rounded-[2rem] border border-white bg-white object-contain shadow-2xl"
           />
