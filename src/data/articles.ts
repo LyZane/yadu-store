@@ -117,20 +117,20 @@ export const articles: Article[] = [
     title: '营销简报：卖点 × 人群 × 话术 × 商品图文案',
     summary: '核心策略定位、五类人群沟通话术，以及三层卖点结构的主图 / 详情页文案。',
     date: '2026-07',
-    tag: '营销简报',
+    tag: '市场调研',
   },
   {
     slug: 'decision-model-research',
     title: '加湿器产品决策模型研究',
     summary: '消费者五步决策路径、决策因素权重与人群差异，含可交互的权重切换图表。',
     date: '2026-07',
-    tag: '决策研究',
+    tag: '市场调研',
   },
   {
     slug: 'consumer-decision-report',
     title: '加湿器消费决策模型调研报告',
     summary: '决策因素排序、五类人群画像与无雾品类趋势，营销简报的策略依据。',
     date: '2026-07',
-    tag: '调研报告',
+    tag: '市场调研',
   },
 ]
