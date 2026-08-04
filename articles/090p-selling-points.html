@@ -254,6 +254,50 @@
   .doc-source { margin-top: 36px; font-size: 12.5px; color: #64748b; }
   .doc-source p { margin: 4px 0; font-size: 12.5px; color: #64748b; }
 
+  /* 天猫主图设计：逐张方案卡 */
+  .shot {
+    margin-bottom: 18px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #ffffff;
+    overflow: hidden;
+  }
+  .shot-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 15px 22px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #f8fafc;
+  }
+  .shot-no { color: #0891b2; font-size: 15px; font-weight: 800; white-space: nowrap; }
+  .shot-head h3 { margin: 0; color: #0f172a; font-size: 15.5px; }
+  .shot dl {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr);
+    row-gap: 12px;
+    margin: 0;
+    padding: 18px 22px 20px;
+  }
+  .shot dt { color: #0e7490; font-size: 13px; font-weight: 750; }
+  .shot dd { margin: 0; color: #475569; font-size: 13.5px; }
+  .shot dd.prompt {
+    padding: 12px 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: #f8fafc;
+  }
+  .shot code {
+    padding: 1px 6px;
+    border-radius: 4px;
+    background: #f1f5f9;
+    color: #334155;
+    font-size: 12.5px;
+  }
+
+  /* 详情页设计：分屏表内的屏次编号 */
+  .screen-no { color: #0891b2; font-weight: 800; white-space: nowrap; }
+
   /* 响应式 */
   @media (max-width: 820px) {
     .metrics { grid-template-columns: repeat(2, 1fr); }
@@ -275,6 +319,8 @@
     .message { border-right: 0; border-bottom: 1px solid #e2e8f0; }
     .message:last-child { border-bottom: 0; }
     .risk-panel { padding: 24px 20px; }
+    .shot dl { grid-template-columns: 1fr; row-gap: 4px; }
+    .shot dd { margin-bottom: 8px; }
   }
 </style>
 </head>
@@ -499,6 +545,167 @@
       <div class="spec"><small>产品净重</small><strong>2.2kg</strong></div>
       <div class="spec"><small>产品尺寸</small><strong>216×216×699mm</strong></div>
     </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">07 / 天猫主图设计</div>
+      <div>
+        <h2>5 张主图的排序与逐张方案</h2>
+        <p class="section-intro">顺序沿用第一节的卖点优先级：首图定调后，依次回答“有没有效果、雾干不干净、加水麻不麻烦、用起来省不省心”。每张图都要求词图一致——画面里出现的元素必须与大字文案互相印证；AI 提示词按「主体＋场景＋光线＋构图＋风格＋文案区留白」结构撰写，产品本体以透明图为准合成。</p>
+      </div>
+    </div>
+
+    <article class="shot">
+      <div class="shot-head"><span class="shot-no">主图 1</span><h3>首图定调：水先净，润才安心</h3></div>
+      <dl>
+        <dt>核心内容</dt>
+        <dd>一句话占领认知：昵称「亚都净润塔」＋主张「水先净，润才安心」，配四个决策角标——9L大水箱 / UV-C除菌 / 350mL/h加湿量 / 智能恒湿。用户三秒内判断产品档位与差异，不堆砌其余卖点。</dd>
+        <dt>画面构成</dt>
+        <dd>环境融合：白色塔身立于现代客厅一角（木地板、米灰墙面、落地窗），高位出雾向上散开；卖点提炼：画面左上放大字主张，底部四枚参数角标；视觉冲击：雾柱被侧光打亮，与塔身蓝色水位视窗形成视觉焦点，产品高度约占画面 2/3。</dd>
+        <dt>AI 提示词</dt>
+        <dd class="prompt">主体：白色塔式落地加湿器（顶部黑色数显屏显示55%RH，正面细长蓝色水位视窗，机身上有Yadu标识，造型以产品透明图 090p智能款.png 为准）；场景：现代简约客厅，浅木色地板，米色布艺沙发一角，落地玻璃窗透进自然光；光线：柔和侧逆光，顶部喷出的细腻白色水雾被光线打亮；构图：产品置于画面右侧三分线、直立全身入镜，左侧与上方留出约40%干净留白用于排版文案；风格：电商主图级写实摄影，高级灰蓝色调，画质锐利；文案区留白：左上方区域无任何家具杂物遮挡。</dd>
+        <dt>参考素材</dt>
+        <dd><code>090P/dump/首图-20260721.png</code>、<code>090P/dump/京东首图-方形.png</code>、<code>090P/白底图-前视.psd</code>；产品合成用透明图 <code>产品透明图/090p智能款.png</code>。</dd>
+      </dl>
+    </article>
+
+    <article class="shot">
+      <div class="shot-head"><span class="shot-no">主图 2</span><h3>加湿效率：350mL/h 高位匀润</h3></div>
+      <dl>
+        <dt>核心内容</dt>
+        <dd>回答“有没有效果”：350mL/h 额定加湿量＋约70cm高位出雾＋三档雾量。大字建议「350mL/h 大加湿量——不只看得见雾，更让湿度散得开」，右上角标「大加湿量」。</dd>
+        <dt>画面构成</dt>
+        <dd>环境融合：产品在挑高空间或大面积客厅中，雾柱自顶部升起并向四周扩散，远端沙发、窗帘微微融入薄雾示意“散得开”；卖点提炼：大字与右上标签；视觉冲击：雾柱是画面唯一的动态元素，与静止的塔身形成对比。</dd>
+        <dt>AI 提示词</dt>
+        <dd class="prompt">主体：白色塔式加湿器顶部喷出浓密而细腻的白色雾柱，雾柱向上约半米后自然散开；场景：深色木格栅背景墙的现代客厅，暖色落地灯一盏，空间纵深感强；光线：暖调环境光，雾柱顶部有高光，背景压暗突出雾气；构图：产品居中偏下，雾柱垂直贯穿画面中轴，上部1/3为纯色暗背景用于文案；风格：电商场景渲染质感，冷暖对比；文案区留白：画面上方深色均匀区域，适合白色大字。</dd>
+        <dt>参考素材</dt>
+        <dd><code>090P/dump/主图-2026-07-21/350ml.png</code>（构图可直接复用，但图上标注“399ml/h”与统一口径冲突，复用时必须改为 350mL/h）、<code>090P/dump/主图-2026-07-21/三档可调.png</code>。</dd>
+      </dl>
+    </article>
+
+    <article class="shot">
+      <div class="shot-head"><span class="shot-no">主图 3</span><h3>水路除菌：过滤、循环、UV-C 三段处理</h3></div>
+      <dl>
+        <dt>核心内容</dt>
+        <dd>回答“雾干不干净”：麦饭石初滤＋活水循环＋UV-C除菌，除菌率99.9%（报告编号 JD20230142，必须随图标注检测对象与条件）。大字建议「UV-C高效除菌——水先净，雾才净」。</dd>
+        <dt>画面构成</dt>
+        <dd>环境融合：深蓝纯背景，突出科技感；卖点提炼：水箱半透明剖面，紫色UV光束击穿细菌粒子，右侧配检测报告缩略图增强可信度；视觉冲击：紫色光束与蓝色水体的高饱和对比。注意净化限定在加湿水路，画面不出现整屋空气净化、PM2.5等暗示。</dd>
+        <dt>AI 提示词</dt>
+        <dd class="prompt">主体：塔式加湿器水箱的半透明剖面，箱内蓝色水体中一道紫色UV光束自上而下贯穿，光束周围有被击散的深色细菌颗粒；场景：深蓝色纯色科技背景；光线：UV光束为唯一强光源，水体透光泛蓝；构图：产品剖面居左占画面一半，右半留空用于大字与检测报告贴图；风格：3D渲染、显微镜级细节、科技蓝紫色调；文案区留白：右侧与顶部为均匀深蓝区域。</dd>
+        <dt>参考素材</dt>
+        <dd><code>090P/dump/主图-2026-07-21/UV-C.png</code>（含检测报告排版参考）、<code>090P/dump/主图-2026-07-21/活水.png</code>、<code>090P/dump/主图-2026-07-21/除菌.png</code>。</dd>
+      </dl>
+    </article>
+
+    <article class="shot">
+      <div class="shot-head"><span class="shot-no">主图 4</span><h3>9L 长续航与上加水：一箱水，润过昼夜</h3></div>
+      <dl>
+        <dt>核心内容</dt>
+        <dd>回答“麻不麻烦”：9L大水箱＋理论连续加湿约26小时＋揭盖上加水不弯腰。大字建议「9升充沛容量——一箱水，润过昼夜」，小字标注“可连续加湿约26小时（理论值）”。</dd>
+        <dt>画面构成</dt>
+        <dd>环境融合：浅灰纯色背景，金属质感立体“9L”大字与产品并列；卖点提炼：水箱透视效果呈现满水蓝柱，右上角小窗展示顶部揭盖注水的手部动作；视觉冲击：水体高度与“9L”字体的尺度对比，直观传达容量。</dd>
+        <dt>AI 提示词</dt>
+        <dd class="prompt">主体：白色塔式加湿器水箱部位做透明化处理，内部9升蓝色水体充盈、带细密气泡；旁边矗立银灰色金属立体字“9L”；场景：浅灰渐变纯色摄影棚背景；光线：顶部柔光箱照明，水体通透反光；构图：产品与立体字左右并排列于画面下半部，上半部约40%留白用于文案；风格：电商3C渲染风，干净、通透；文案区留白：顶部均匀浅灰区域。右上角另生成小图：俯视角度，一只手正往打开的顶部加水口注水。</dd>
+        <dt>参考素材</dt>
+        <dd><code>090P/dump/主图-2026-07-21/9L.png</code>、<code>090P/dump/主图-2026-07-21/上加水.png</code>。</dd>
+      </dl>
+    </article>
+
+    <article class="shot">
+      <div class="shot-head"><span class="shot-no">主图 5</span><h3>智能恒湿与睡眠：湿度有数，安静有度</h3></div>
+      <dl>
+        <dt>核心内容</dt>
+        <dd>回答“省不省心”：一键智能恒湿＋湿度数显＋40%–70%人体舒适湿度区间；叠加 ≤38dB 低噪与睡眠熄屏，锁定卧室场景。大字建议「一键智能恒湿——湿度有数，舒适有度」。</dd>
+        <dt>画面构成</dt>
+        <dd>环境融合：两种方向择一——A）雨林绿植背景＋机身屏幕55%RH数显特写，下方叠湿度舒适区柱状图；B）夜间卧室，床头柜暖灯、安睡人物虚化在后，产品屏显清晰在前，右下标注 ≤38dB(A)。卖点提炼与视觉冲击都落在“数显屏”这一独占元素上。</dd>
+        <dt>AI 提示词</dt>
+        <dd class="prompt">主体：塔式加湿器顶部黑色数显屏特写，屏上白色数码字显示“55 %RH”；场景A：虚化的热带雨林绿植背景，自然散景光斑（或场景B：深夜卧室，暖黄床头灯，床上有人安睡并做浅景深虚化）；光线：柔和环境光，数显屏为画面最亮元素；构图：产品居下1/2并略偏左，上方绿植/暗部留白约40%；风格：写实摄影，静谧高级感；文案区留白：画面上方均匀虚化区域。角标区预留：右下角放置“≤38dB(A)”小字说明。</dd>
+        <dt>参考素材</dt>
+        <dd><code>090P/dump/主图-2026-07-21/一键智能恒湿.png</code>、<code>090P/dump/主图-2026-07-21/智能恒湿.png</code>、<code>090P/dump/主图-2026-07-21/静音.png</code>；触摸款画面换用 <code>产品透明图/090p触摸款.png</code> 合成。</dd>
+      </dl>
+    </article>
+
+    <div class="copy-note"><strong>词图一致性校验：</strong>主图大字写“除菌”，画面就必须出现UV光束/报告；写“9L”，画面必须出现满水水箱或立体字；写“恒湿”，画面必须出现数显读数。禁止画面是客厅场景、大字却写“静音无扰”这类互不相干的组合。</div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">08 / 详情页设计</div>
+      <div>
+        <h2>按屏拆分的详情页思路</h2>
+        <p class="section-intro">沿用「首屏海报 → 痛点 → 核心卖点×N → 参数 → 对比 → 保障」的转化顺序，卖点屏顺序与第一节优先级一致。每屏给出核心内容与提示词要点；产品本体一律用透明图合成，参数口径以第六节的统一基础参数为准。</p>
+      </div>
+    </div>
+
+    <table>
+      <colgroup><col style="width:9%"><col style="width:16%"><col style="width:42%"><col style="width:33%"></colgroup>
+      <thead><tr><th>屏次</th><th>内容模块</th><th>核心内容</th><th>画面与提示词要点</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="screen-no">01</td>
+          <td>首屏海报</td>
+          <td>「亚都净润塔——水先净，润才安心」＋ 350mL/h / 99.9%除菌率 / 9L / 智能恒湿 四参数条。三秒内讲清档位与差异。</td>
+          <td>竖版海报：塔式产品立于客厅大场景，高位雾柱向上；顶部留大字区。提示词要点：主体按 090p智能款.png 合成＋暖调客厅＋侧逆光亮雾＋上1/3留白。参考 <code>dump/京东详情/详情页TIF_01.png</code>。</td>
+        </tr>
+        <tr>
+          <td class="screen-no">02</td>
+          <td>痛点唤醒</td>
+          <td>「除菌不干净，等于细菌传播源头」：水箱久放发霉、小容量频繁加水、无除菌雾气带菌三大顾虑，逐条对应本品解法。</td>
+          <td>深色背景对比排版，左侧本品、右侧“传统加湿器”痛点图示。提示词要点：暗灰科技感背景＋对称分栏构图＋警示红仅用于痛点侧。参考 <code>dump/京东详情/详情页TIF_03.png</code>。</td>
+        </tr>
+        <tr>
+          <td class="screen-no">03</td>
+          <td>卖点一：水路三段净化</td>
+          <td>麦饭石初滤 → 活水循环 → UV-C除菌，99.9%除菌率绑定报告编号 JD20230142 与检测条件。明确“净化的是加湿水路，不是整屋空气”。</td>
+          <td>水箱剖面＋三段流程箭头图。提示词要点：半透明水箱剖面＋蓝紫UV光束＋流程图示区右侧留白。参考 <code>dump/主图-2026-07-21/UV-C.png</code>、<code>活水.png</code>。</td>
+        </tr>
+        <tr>
+          <td class="screen-no">04</td>
+          <td>卖点二：加湿效率</td>
+          <td>350mL/h 额定加湿量、约70cm高位出雾、睡眠/均衡/强湿三档。表述重点是“湿度散得开”，不是“雾有多大”。</td>
+          <td>整屋场景＋雾柱扩散示意，三档雾量对比小图一排。提示词要点：高位雾柱＋空间纵深感＋顶部文案留白。参考 <code>dump/主图-2026-07-21/350ml.png</code>（字须改为350mL/h）、<code>三档可调.png</code>。</td>
+        </tr>
+        <tr>
+          <td class="screen-no">05</td>
+          <td>卖点三：9L续航＋上加水</td>
+          <td>9L水箱理论续航约26小时；揭盖加水不弯腰、大口径可伸手清洗。26小时须标注“理论值，随档位与环境变化”。</td>
+          <td>满水透视水箱＋立体“9L”，配顶部注水、手伸入水箱清洗两张操作小图。提示词要点：通透水体＋摄影棚柔光＋操作图真实手部动作。参考 <code>dump/主图-2026-07-21/9L.png</code>、<code>上加水.png</code>。</td>
+        </tr>
+        <tr>
+          <td class="screen-no">06</td>
+          <td>卖点四：智能恒湿</td>
+          <td>一键智能恒湿、湿度数显、40%–70%人体舒适湿度区间。素材中另有固定55%与40%–75%两种口径，上线前必须按第六节统一。</td>
+          <td>屏幕数显特写＋湿度舒适区柱状图。提示词要点：屏显“55 %RH”为最亮元素＋绿植虚化背景＋图表区另起白底。参考 <code>dump/主图-2026-07-21/一键智能恒湿.png</code>、<code>智能恒湿.png</code>。</td>
+        </tr>
+        <tr>
+          <td class="screen-no">07</td>
+          <td>卖点五：睡眠与安全</td>
+          <td>≤38dB低噪、睡眠模式一键熄屏、缺水提醒与自动停机、主机提起防漏水专利（ZL202022130660.5）。禁用“零噪音”“无声”。</td>
+          <td>夜间卧室场景，安睡人物虚化、产品屏显熄灭或微亮。提示词要点：暖黄床头灯＋浅景深＋右下≤38dB(A)角标。参考 <code>dump/主图-2026-07-21/静音.png</code>、<code>dump/京东详情/详情页TIF_02.png</code>（功能图标排版）。</td>
+        </tr>
+        <tr>
+          <td class="screen-no">08</td>
+          <td>规格参数</td>
+          <td>完整参数表：SC280-QL090P / 26W / 9L / 350mL/h / 3档 / ≤38dB / 2.2kg / 216×216×699mm，与第六节统一参数一字不差。</td>
+          <td>白底参数表＋产品三视图（正/侧/俯）标注尺寸线。提示词要点：白底棚拍三视图＋灰色标注线；白底素材用 <code>dump/白底图-前视.png</code> 与透明图合成。</td>
+        </tr>
+        <tr>
+          <td class="screen-no">09</td>
+          <td>版本与对比</td>
+          <td>智能款与触摸款差异一屏讲清（数显恒湿 vs 基础触控），另做本品 vs 传统/无雾加湿器的对比表，呼应第二屏痛点。</td>
+          <td>双机并排版：左智能款、右触摸款，各自下方列差异点。提示词要点：纯白或浅灰背景＋双机对称构图＋中间细分隔线。合成用 <code>产品透明图/090p智能款.png</code> 与 <code>090p触摸款.png</code>。参考 <code>dump/主图-2026-07-21/对比.png</code>。</td>
+        </tr>
+        <tr>
+          <td class="screen-no">10</td>
+          <td>保障与收尾</td>
+          <td>检测报告（JD20230142）、防漏水专利号、售后政策；页尾再次回到主张「水先净，润才安心」收束全篇。</td>
+          <td>报告与专利证书实拍贴图＋浅底保障条。提示词要点：证书平铺俯拍＋浅米灰背景＋印章细节清晰。参考 <code>dump/主图-2026-07-21/UV-C.png</code> 中的报告排版。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="copy-note"><strong>合规提醒：</strong>现有详情页素材中的「无危害」「母婴适用」属于医疗化/绝对化表述，新详情页不沿用；“除菌率99.9%”必须绑定报告编号与检测条件；“26小时”标注为理论值。</div>
   </section>
 
   <div class="doc-source">

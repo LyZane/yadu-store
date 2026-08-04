@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>180 产品卖点与销售建议 · 亚都 YADU</title>
+<link rel="stylesheet" href="article.css">
+<style>
+  /* ===== 本文档专属样式（颜色沿用站点 slate/cyan 色系） ===== */
+
+  /* 核心判断（琥珀语义色） */
+  .verdict {
+    padding: 18px 20px;
+    margin-bottom: 32px;
+    border-left: 4px solid #b45309;
+    border-radius: 0 10px 10px 0;
+    background: #fffbeb;
+    color: #92400e;
+    font-size: 14.5px;
+    font-weight: 650;
+  }
+
+  /* 核心参数条 */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin-bottom: 8px;
+    background: #e2e8f0;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .metric { padding: 24px 22px; background: #ffffff; }
+  .metric strong {
+    display: block;
+    margin-bottom: 4px;
+    color: #0e7490;
+    font-size: 26px;
+    line-height: 1.2;
+  }
+  .metric span { font-size: 13px; color: #64748b; }
+
+  /* 章节头：左侧编号 + 右侧标题 */
+  .section-head {
+    display: grid;
+    grid-template-columns: 270px minmax(0, 1fr);
+    gap: 42px;
+    margin-bottom: 30px;
+    align-items: start;
+  }
+  .section-kicker {
+    padding-top: 8px;
+    color: #0e7490;
+    font-size: 13.5px;
+    font-weight: 750;
+    letter-spacing: 1px;
+  }
+  .section-head h2 { margin-top: 0; }
+  .section-intro { color: #64748b; }
+
+  /* 卖点优先级表（表格基础样式来自 article.css） */
+  .rank { color: #0891b2; font-size: 22px; font-weight: 800; }
+  .point-title {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 15.5px;
+    font-weight: 750;
+    color: #0f172a;
+  }
+  .evidence { color: #64748b; font-size: 13.5px; }
+  .consumer-value { color: #475569; }
+
+  /* 版本对照表：版本列头高亮 */
+  .variant-table th.ver { background: #ecfeff; color: #0e7490; }
+  .variant-table td.same { color: #64748b; }
+
+  /* 文案主视觉区（产品昵称 + 主张） */
+  .copy-lockup {
+    display: grid;
+    grid-template-columns: minmax(250px, .8fr) minmax(0, 1.2fr);
+    gap: 42px;
+    align-items: center;
+    margin-bottom: 34px;
+    padding: 30px 0;
+    border-top: 2px solid #0f172a;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .copy-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #0e7490;
+    font-size: 13px;
+    font-weight: 750;
+  }
+  .copy-name { display: block; font-size: 34px; line-height: 1.2; }
+  .copy-model { display: block; margin-top: 7px; color: #64748b; font-size: 14px; }
+  .copy-claim {
+    margin-bottom: 7px;
+    font-size: 27px;
+    font-weight: 780;
+    line-height: 1.3;
+    color: #0f172a;
+  }
+  .copy-support { margin-bottom: 0; color: #64748b; }
+
+  /* 文案矩阵表内的概念名与文案行 */
+  .copy-concept { color: #0e7490; font-weight: 780; white-space: nowrap; }
+  .copy-line {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 15px;
+    font-weight: 720;
+    color: #0f172a;
+  }
+  .copy-proof { color: #64748b; font-size: 13.5px; }
+
+  /* 建议减少使用的文案警示 */
+  .copy-note {
+    margin-top: 22px;
+    padding: 16px 18px;
+    border-left: 4px solid #b91c1c;
+    border-radius: 0 10px 10px 0;
+    background: #fef2f2;
+    color: #7f1d1d;
+    font-size: 13.5px;
+  }
+
+  /* 销售打法：自动编号网格 */
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 36px;
+    counter-reset: strategy;
+  }
+  .strategy {
+    position: relative;
+    padding: 22px 0 22px 56px;
+    border-bottom: 1px solid #e2e8f0;
+    counter-increment: strategy;
+  }
+  .strategy::before {
+    content: counter(strategy, decimal-leading-zero);
+    position: absolute;
+    top: 22px;
+    left: 0;
+    color: #0891b2;
+    font-size: 19px;
+    font-weight: 800;
+  }
+  .strategy h3 { margin: 0 0 5px; font-size: 16px; color: #0f172a; }
+  .strategy p { margin-bottom: 0; color: #64748b; font-size: 13.5px; }
+
+  /* 主图设计卡片 */
+  .shot {
+    margin-bottom: 22px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #ffffff;
+    overflow: hidden;
+  }
+  .shot-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 22px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #f8fafc;
+  }
+  .shot-no {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #06b6d4, #2563eb);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 800;
+  }
+  .shot-head h3 { margin: 0; font-size: 16px; color: #0f172a; }
+  .shot-body { padding: 18px 22px 20px; }
+  .shot-body h4 { margin: 14px 0 6px; font-size: 13.5px; color: #0e7490; }
+  .shot-body h4:first-child { margin-top: 0; }
+  .shot-body p { margin: 6px 0; font-size: 13.5px; }
+  .prompt {
+    margin: 6px 0;
+    padding: 14px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: #f8fafc;
+    color: #475569;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .shot-ref { color: #0e7490; font-size: 13px; }
+  .shot-ref code {
+    padding: 1px 6px;
+    border-radius: 6px;
+    background: #ecfeff;
+    font-size: 12.5px;
+  }
+
+  /* 详情页分屏列表 */
+  .screens { counter-reset: screen; }
+  .screen {
+    position: relative;
+    padding: 18px 0 18px 62px;
+    border-bottom: 1px solid #e2e8f0;
+    counter-increment: screen;
+  }
+  .screen::before {
+    content: "屏 " counter(screen, decimal-leading-zero);
+    position: absolute;
+    top: 20px;
+    left: 0;
+    color: #0891b2;
+    font-size: 14px;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+  .screen h3 { margin: 0 0 4px; font-size: 15.5px; color: #0f172a; }
+  .screen p { margin: 4px 0; font-size: 13.5px; color: #64748b; }
+  .screen .cue { color: #475569; }
+  .screen .cue b { color: #0e7490; }
+
+  /* 统一基础参数 */
+  .specs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin-top: 34px;
+    background: #e2e8f0;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .spec { padding: 18px 20px; background: #f8fafc; }
+  .spec small { display: block; margin-bottom: 6px; color: #64748b; font-size: 12.5px; }
+  .spec strong { font-size: 16.5px; }
+
+  /* 文末来源说明 */
+  .doc-source { margin-top: 36px; font-size: 12.5px; color: #64748b; }
+  .doc-source p { margin: 4px 0; font-size: 12.5px; color: #64748b; }
+
+  /* 响应式 */
+  @media (max-width: 820px) {
+    .metrics { grid-template-columns: repeat(2, 1fr); }
+    .section-head { grid-template-columns: 1fr; gap: 4px; }
+    .section-kicker { padding-top: 0; }
+    .copy-lockup, .strategy-grid { grid-template-columns: 1fr; }
+    .specs { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .metric { padding: 20px 16px; }
+    .metric strong { font-size: 22px; }
+    .copy-name { font-size: 28px; }
+    .copy-claim { font-size: 22px; }
+    .specs { grid-template-columns: 1fr; }
+    .screen { padding-left: 52px; }
+  }
+</style>
+</head>
+<body>
+<header class="site-bar">
+  <a class="brand" href="../index.html">
+    <span class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7s6.5 7 6.5 11.3a6.5 6.5 0 1 1-13 0C5.5 9.7 12 2.7 12 2.7z"/></svg></span>
+    <span><span class="name">亚都 YADU</span><br><span class="slogan">健康加湿 · 净润生活</span></span>
+  </a>
+  <a class="back" href="../index.html#/articles">← 返回文章列表</a>
+</header>
+<main class="article">
+
+  <div class="hero">
+    <span class="tag">产品卖点与销售建议</span>
+    <h1>180 产品卖点与销售建议</h1>
+    <p>SC500-QL180 落地式超声波除菌加湿器：20L 超大水箱、700ml/h 双核大雾量，面向别墅与大面积全屋场景的高端走量款。</p>
+    <div class="meta">亚都 YADU · 文章中心 ｜ 版本：20L（700ml/h）/ 18L（600ml/h） ｜ 资料依据：2023.5.25 更新版主图与详情页、产品矩阵（2026-08 同步）</div>
+  </div>
+
+  <div class="verdict">核心判断：180 的竞争力是“双核大雾量 × 20L 大水箱 × 水路除菌 × 防漏可移动”的大空间整体方案，而不是某个单点参数。销售表达先讲“一台顶两台”的加湿效率，再回答干不干净、麻不麻烦。</div>
+
+  <div class="metrics" aria-label="核心参数">
+    <div class="metric"><strong>700mL/h</strong><span>最大加湿量（双核）</span></div>
+    <div class="metric"><strong>20L</strong><span>超大水箱容量</span></div>
+    <div class="metric"><strong>约28小时</strong><span>最大档理论续航</span></div>
+    <div class="metric"><strong>55W</strong><span>额定功率</span></div>
+  </div>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">01 / 版本与属性对照</div>
+      <div>
+        <h2>一个型号，两个容量版本</h2>
+        <p class="section-intro">180 统一型号 SC500-QL180，在售为 20L 与 18L 两个容量版本，外观、操控与功能体系一致，差异集中在水箱、加湿量与雾化规格。客服与详情页必须先确认版本再报价。</p>
+      </div>
+    </div>
+
+    <table class="variant-table">
+      <colgroup><col style="width:16%"><col style="width:42%"><col style="width:42%"></colgroup>
+      <thead><tr><th>属性</th><th class="ver">20L 白色（主力在售）</th><th class="ver">18L 白色（600ml/h 版）</th></tr></thead>
+      <tbody>
+        <tr><td>产品型号</td><td>SC500-QL180</td><td class="same">SC500-QL180（同型号）</td></tr>
+        <tr><td>水箱容量</td><td><strong>20L</strong></td><td>18L</td></tr>
+        <tr><td>加湿量</td><td><strong>700ml/h（双核驱动）</strong></td><td>600ml/h</td></tr>
+        <tr><td>最大档理论续航</td><td>约 28 小时（20L ÷ 700ml/h）</td><td>约 30 小时（18L ÷ 600ml/h）</td></tr>
+        <tr><td>适用场景</td><td>别墅 / 大平层 / 大面积全屋；兼商用保湿</td><td>大客厅、商用小场景</td></tr>
+        <tr><td>水路除菌</td><td>麦饭石滤芯 + UV-C 光解除菌 + 活水循环</td><td class="same">同左（套版素材一致）</td></tr>
+        <tr><td>操控方式</td><td>上置触控 LED 屏 + 红外遥控</td><td class="same">同左</td></tr>
+        <tr><td>智能恒湿</td><td>智能变频恒湿 + 湿度数显</td><td class="same">同左</td></tr>
+        <tr><td>定时</td><td>1–14 小时</td><td class="same">同左</td></tr>
+        <tr><td>雾量档位</td><td>三档雾量调节</td><td class="same">同左</td></tr>
+        <tr><td>噪音</td><td>柔声（矩阵口径）；详情页称 LIN 降噪</td><td class="same">同左</td></tr>
+        <tr><td>额定功率</td><td>55W（220V~/50Hz）</td><td class="same">同左（以说明书为准）</td></tr>
+        <tr><td>结构</td><td>上置主机 + 下置水箱，主机提起防漏专利 ZL202022130660.5，万向脚轮</td><td class="same">同左</td></tr>
+        <tr><td>价格带（天猫）</td><td>¥580–599（青桔店 ¥580.02 / 旗舰店 ¥599）</td><td>矩阵未登记在售价格，上架前需确认</td></tr>
+      </tbody>
+    </table>
+    <p class="section-intro" style="font-size:13px;">补充：详情页注明因产品更替，<strong>潜水泵版与抽水泵版随机发货</strong>（180详情页_21.jpg），两版水路结构不同、外观与标称参数一致，客服话术需统一为“以到货实物为准”。</p>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">02 / 核心卖点</div>
+      <div>
+        <h2>按购买决策重要度排序</h2>
+        <p class="section-intro">排序依据是购买影响力，而不是素材中出现的先后顺序。先回答“有没有效果、雾干不干净、用起来麻不麻烦”，再补充体验功能。</p>
+      </div>
+    </div>
+
+    <table class="selling-points">
+      <colgroup><col style="width:8%"><col style="width:37%"><col style="width:55%"></colgroup>
+      <thead><tr><th>顺序</th><th>卖点与证据</th><th>消费者价值</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="rank">01</td>
+          <td><span class="point-title">双核大雾量，一台顶两台</span><span class="evidence">700ml/h 最大加湿量，双雾化芯高频雾化；详情页称“双核雾化芯，双倍雾量，一台顶两台”（商品主图7.jpg）。</span></td>
+          <td class="consumer-value">先解决“加湿慢、开了跟没开一样”的核心顾虑。别墅、大平层、大客厅用户买的是覆盖能力，双核是最直观的效率证据。</td>
+        </tr>
+        <tr>
+          <td class="rank">02</td>
+          <td><span class="point-title">水路三段净化体系</span><span class="evidence">麦饭石滤芯初滤 → 抽至顶部水槽 UV-C 照射杀菌 → 活水循环再雾化（商品主图4.jpg / 主图9.jpg）。</span></td>
+          <td class="consumer-value">回应超声波加湿器最敏感的“水箱久放、雾气是否干净”问题。20L 存水更多，水路卫生比普通机型更必须讲清楚。</td>
+        </tr>
+        <tr>
+          <td class="rank">03</td>
+          <td><span class="point-title">20L 超大水箱与上加水</span><span class="evidence">20L 海量储水，最大档理论续航约 28 小时；便捷上加水，可直加自来水（商品主图2.jpg）。</span></td>
+          <td class="consumer-value">大面积场景最怕“半天一箱水”。一次补水覆盖全天，且不用搬机弯腰，直接从顶部加水。</td>
+        </tr>
+        <tr>
+          <td class="rank">04</td>
+          <td><span class="point-title">防漏专利与可移动性</span><span class="evidence">主机提起防漏实用新型专利 ZL202022130660.5，上置主机 + 下置水箱、抽水结构不漏水；万向脚轮满水可移动（商品主图5.jpg / 主图1.jpg）。</span></td>
+          <td class="consumer-value">大水箱机型特有的两个顾虑——“搬动会不会漏水”“满水挪不动”——用专利号和脚轮直接化解，这是 180 区别于杂牌大容量机的信任状。</td>
+        </tr>
+        <tr>
+          <td class="rank">05</td>
+          <td><span class="point-title">高位远送出雾系统</span><span class="evidence">741mm 高挑机身 + 360° 旋转出雾口 + 标配加长导雾管，高强力风动装置提高出雾高度（商品主图1.jpg / 主图3.jpg）。</span></td>
+          <td class="consumer-value">雾送得高、散得开，避免“只湿机器周围、打湿地板”。大面积均匀加湿的关键证据。</td>
+        </tr>
+        <tr>
+          <td class="rank">06</td>
+          <td><span class="point-title">智能变频恒湿</span><span class="evidence">湿度数显 + 智能变频恒湿，自动调节输出（商品主图2.jpg，矩阵标注 ✅）。</span></td>
+          <td class="consumer-value">避免大雾量机型一直喷雾造成过湿返潮，设定后不用人管，适合长时间开着的家庭与商铺。</td>
+        </tr>
+        <tr>
+          <td class="rank">07</td>
+          <td><span class="point-title">轻音睡眠与安全保护</span><span class="evidence">矩阵口径“柔声”，详情页称 LIN 降噪轻音不扰；睡眠模式、缺水断电保护、1–14h 定时。</span></td>
+          <td class="consumer-value">满足卧室与夜间商铺使用，降低缺水干烧风险。注意：无具体分贝值，表述限“低噪/柔声”，不可称“静音无声”。</td>
+        </tr>
+        <tr>
+          <td class="rank">08</td>
+          <td><span class="point-title">低功率与水质宽容</span><span class="evidence">额定功率 55W；可直加自来水；EMC 国际检测合格（GB 4343.1-2018、GB17625.1-2012）。</span></td>
+          <td class="consumer-value">全天开机电费压力小（55W 连续 24 小时理论约 1.32 度电），自来水可用降低使用门槛。</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">03 / 产品文案</div>
+      <div>
+        <h2>用一个名字占领产品认知</h2>
+        <p class="section-intro">参照竞品“加湿小方块”的命名逻辑（品类 + 外形记忆点），将 180 的圆柱塔形与“双核驱动”差异合并成可记忆的昵称。文案统一采用“概念名 + 消费利益 + 参数证据”，不依赖空洞程度词。</p>
+      </div>
+    </div>
+
+    <div class="copy-lockup">
+      <div>
+        <span class="copy-label">推荐产品昵称</span>
+        <strong class="copy-name">亚都双擎润塔</strong>
+        <span class="copy-model">SC500-QL180 · 20L</span>
+      </div>
+      <div>
+        <div class="copy-claim">一塔双核，润透全屋</div>
+        <p class="copy-support">20L 海量长润｜700ml/h 双擎大雾量｜UV-C 水路除菌</p>
+      </div>
+    </div>
+
+    <table class="copy-matrix">
+      <colgroup><col style="width:18%"><col style="width:23%"><col style="width:59%"></colgroup>
+      <thead><tr><th>产品卖点</th><th>概念名</th><th>主文案与证据</th></tr></thead>
+      <tbody>
+        <tr><td>双核大雾量</td><td class="copy-concept">双擎速润</td><td><span class="copy-line">两颗雾化芯一起转，一台顶两台</span><span class="copy-proof">700ml/h 最大加湿量，双核雾化芯高频雾化，雾量双倍于单核机型。</span></td></tr>
+        <tr><td>水路净化</td><td class="copy-concept">活水净润</td><td><span class="copy-line">水先过三关，雾才出塔顶</span><span class="copy-proof">麦饭石初滤、UV-C 光解除菌、活水循环，雾化前完成三段水路处理。</span></td></tr>
+        <tr><td>20L 大水箱</td><td class="copy-concept">海量长润</td><td><span class="copy-line">一箱 20L，润足一整天</span><span class="copy-proof">最大档理论续航约 28 小时，从早开到晚不用中途加水。</span></td></tr>
+        <tr><td>防漏结构</td><td class="copy-concept">稳润防漏</td><td><span class="copy-line">提起主机，滴水不漏</span><span class="copy-proof">主机提起防漏专利 ZL202022130660.5，上置主机、下置水箱、抽水结构不漏水。</span></td></tr>
+        <tr><td>高位出雾</td><td class="copy-concept">高远匀润</td><td><span class="copy-line">雾送得高，落得匀，不打湿地板</span><span class="copy-proof">741mm 高挑塔身、360° 旋转出雾口、加长导雾管让雾更聚拢喷得更高远。</span></td></tr>
+        <tr><td>智能恒湿</td><td class="copy-concept">恒润有度</td><td><span class="copy-line">湿度有数，润泽有度</span><span class="copy-proof">大屏湿度数显，智能变频恒湿，到达设定湿度自动调低输出。</span></td></tr>
+        <tr><td>万向脚轮</td><td class="copy-concept">随行移润</td><td><span class="copy-line">满水 20L，也能一只手推着走</span><span class="copy-proof">底部万向脚轮，客厅、卧室、商铺之间轻松换位。</span></td></tr>
+        <tr><td>睡眠体验</td><td class="copy-concept">轻音夜润</td><td><span class="copy-line">润着，也安静着</span><span class="copy-proof">柔声运行（LIN 降噪），睡眠模式 + 1–14h 定时 + 缺水断电保护。</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="copy-note"><strong>建议减少使用：</strong>“超大雾量、巨雾澎湃、母婴级、健康黑科技”。“超大雾量”无差异且已被滥用；“母婴级”缺少标准依据，可改为“母婴人群推荐”并配套水路除菌证据；99.9% 类除菌表述需绑定检测报告再上线。</div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">04 / 销售建议</div>
+      <div>
+        <h2>人群 × 渠道 × 节奏</h2>
+        <p class="section-intro">推荐定位：“适合别墅、大平层与大面积客厅的双核大雾量除菌加湿器”，卡位 090P / 130 系列（¥259–499）之上的高端走量款。</p>
+      </div>
+    </div>
+    <div class="strategy-grid">
+      <article class="strategy"><h3>人群一：别墅 / 大平层家庭</h3><p>核心话术“小机器带不动大空间”。用 700ml/h 双核 + 741mm 高位出雾对比普通桌面款，强调一台覆盖全屋，省得每个房间放一台。</p></article>
+      <article class="strategy"><h3>人群二：暖气 / 空调房重度用户</h3><p>主打 20L 长续航 + 智能恒湿：“全天开着不加水、不返潮”。北方供暖季重点投放，强调整夜、全天连续使用场景。</p></article>
+      <article class="strategy"><h3>人群三：母婴与用水卫生敏感家庭</h3><p>讲水路三段净化路径（麦饭石→UV-C→活水循环），配合防漏专利与缺水断电，落点是“水干净、机安全”，不做医疗化承诺。</p></article>
+      <article class="strategy"><h3>人群四：商用保湿场景</h3><p>官方主图已覆盖花卉店、果蔬超市、火锅店、风幕柜（商品主图6.jpg）。面向小微商户做团购与企业采购，话术“食材花草保鲜，一台管一店”。</p></article>
+      <article class="strategy"><h3>渠道侧重：天猫 + 直播</h3><p>天猫主图锚定 ¥580–599 价格带，用“一台顶两台”建立性价比；直播演示双核雾量对比、提起主机不漏水、万向轮满水推行三个可视化动作。</p></article>
+      <article class="strategy"><h3>促销节奏</h3><p>9–10 月蓄水（收藏加购 + 预约），双 11 / 双 12 主推“别墅级大雾量”并赠加长导雾管；1 月深冬做“暖气房干燥”场景返场。沿用主图“价保 30 天、买贵退差”承诺降低决策门槛。</p></article>
+      <article class="strategy"><h3>连带销售</h3><p>麦饭石滤芯（耗材复购）、加长导雾管（配件 / 赠品）、除垢剂与纯净水建议（硬水地区）；向卧室场景连带 050 / 090P 小容量款，“客厅 180 + 卧室 090P”组合销售。</p></article>
+      <article class="strategy"><h3>口径红线</h3><p>噪音只说“柔声 / 低噪”（无分贝标称值）；续航标注“理论值”；潜水泵 / 抽水泵随机发货需提前告知；18L 版价格与参数上架前需单独确认。</p></article>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">05 / 天猫主图（5 张）设计</div>
+      <div>
+        <h2>五张主图，讲一个完整故事</h2>
+        <p class="section-intro">顺序按决策路径：先建立品类认知与核心参数 → 再给卫生与结构证据 → 最后落到场景与信任。每张提示词按“主体 + 场景 + 光线 + 构图 + 风格 + 文案区留白”结构撰写，画面元素与大字文案互相印证。</p>
+      </div>
+    </div>
+
+    <article class="shot">
+      <div class="shot-head"><span class="shot-no">1</span><h3>首图：品类定调 + 核心参数</h3></div>
+      <div class="shot-body">
+        <h4>核心内容</h4>
+        <p>产品 45° 正面全身像，顶部喷出高大雾柱；左侧大字“20L 超大水箱 / 700ml/h 双核大雾量”，角标“UV-C 除菌”“万向轮移动”。三秒内让用户判断：这是大空间用的高端落地款。</p>
+        <h4>画面构成</h4>
+        <p>环境融合：挑高别墅客厅虚化背景，暗示适用空间；卖点提炼：数字 20L 与 700ml/h 做超大字号色块；视觉冲击：雾柱高度占画面 1/3，与机身等高形成“双塔”构图。</p>
+        <h4>AI 生图提示词</h4>
+        <p class="prompt">主体：白色圆柱形落地加湿器（741mm 高挑塔身、顶部深棕色透明盖、正面上方黑色 LED 触控屏、正面中部竖条水位窗、底部白色环形底座），顶部喷出浓密白色雾柱。场景：现代挑高别墅客厅，浅灰沙发与落地窗虚化在后。光线：明亮柔和的日间自然光，左侧顺光，机身有细腻高光。构图：产品位于画面右 2/3 处全身直立，雾柱向上延伸，左侧 1/3 留白作为文案区。风格：电商产品摄影，高质感写实，色调清冷干净（白 + 浅蓝灰）。文案区留白：画面左侧大面积纯色虚化区域，供放置“20L 超大水箱 700ml/h 双核大雾量”白色大字。</p>
+        <h4>参照素材</h4>
+        <p class="shot-ref"><code>2023.5.25更新/主图/商品主图1.jpg</code>（首图版式与卖点角标）、<code>商品主图10.jpg</code>（大字版式）</p>
+      </div>
+    </article>
+
+    <article class="shot">
+      <div class="shot-head"><span class="shot-no">2</span><h3>卖点清单图：一屏看懂全部功能</h3></div>
+      <div class="shot-body">
+        <h4>核心内容</h4>
+        <p>“智能除菌款”标签 + 15 项功能勾选清单（700ml/h、20L、上加水、三档雾量、抽水不漏水、缺水断电、湿度数显、睡眠模式、智能变频恒湿、红外遥控、1–14h 定时、可直加自来水、UV-C 除菌、母婴人群推荐、麦饭石水净化），右侧产品全身带尺寸标注 741mm × 255mm。</p>
+        <h4>画面构成</h4>
+        <p>环境融合：纯白信息图背景，无场景干扰；卖点提炼：金色圆角勾选框逐项排列，制造“配置拉满”的堆料感；视觉冲击：右侧产品等高尺寸线，直观传达“塔式大机身”。</p>
+        <h4>AI 生图提示词</h4>
+        <p class="prompt">主体：白色圆柱形落地加湿器正面全身像（深棕透明顶盖、黑色 LED 屏、竖条水位窗、YADU 标识）。场景：纯白色无影棚背景。光线：均匀柔和的棚拍布光，底部浅灰投影。构图：产品竖直居中偏右，机身右侧引出高度尺寸标注线（741mm）、底部引出宽度标注线（255mm），左侧竖排留白。风格：简洁的电商信息图，白底、金色点缀、横平竖直。文案区留白：画面左半部分纯白留白，供放置金色勾选功能清单与“智能除菌款”标签。</p>
+        <h4>参照素材</h4>
+        <p class="shot-ref"><code>2023.5.25更新/主图/商品主图2.jpg</code>（清单版式与尺寸标注）</p>
+      </div>
+    </article>
+
+    <article class="shot">
+      <div class="shot-head"><span class="shot-no">3</span><h3>双核透视图：一台顶两台的证据</h3></div>
+      <div class="shot-body">
+        <h4>核心内容</h4>
+        <p>机身透明化透视，底部两个发光雾化芯清晰可见，雾柱从顶部高耸喷出；大字“双核强劲雾化，一台顶两台”，小字“700ml/h 双倍雾量”。</p>
+        <h4>画面构成</h4>
+        <p>环境融合：深蓝黑科技背景，聚焦内部结构；卖点提炼：两个雾化芯用蓝紫色光环高亮，数量“2”本身就是证据；视觉冲击：X 光透视质感 + 顶部真实白雾，形成“内芯驱动外雾”的因果画面。</p>
+        <h4>AI 生图提示词</h4>
+        <p class="prompt">主体：圆柱形落地加湿器的半透明剖视渲染，外壳透明可见内部结构，底部两个并排的圆形超声波雾化芯发出蓝紫色光芒，光线沿中央导雾通道向上汇聚，顶部喷出浓密白雾。场景：深蓝色渐变科技背景，带细微光粒子。光线：暗环境光，雾化芯自发光为主光源，青蓝到紫红的霓虹光效。构图：产品居中竖直大图，内部结构占画面 2/3，顶部雾柱延伸，左上角留白。风格：3D 产品渲染 + 科技感 X 光透视，精密、冷峻。文案区留白：左上角深色留白区，供放置“双核强劲雾化 一台顶两台”白色大字与“700ml/h”青色高亮数字。</p>
+        <h4>参照素材</h4>
+        <p class="shot-ref"><code>2023.5.25更新/主图/商品主图7.jpg</code>（双核透视与文案）、<code>商品主图1.jpg</code> 左下角双核小图</p>
+      </div>
+    </article>
+
+    <article class="shot">
+      <div class="shot-head"><span class="shot-no">4</span><h3>水路除菌图：雾干不干净的总回答</h3></div>
+      <div class="shot-body">
+        <h4>核心内容</h4>
+        <p>三段水路流程图解：①麦饭石先过滤 → ②UV-C 再杀菌 → ③双核雾化送出，配大字“水先过三关，雾才出塔顶”。侧边呼应“主机提起防漏专利 ZL202022130660.5”。</p>
+        <h4>画面构成</h4>
+        <p>环境融合：深色背景衬托半透明蓝色水路；卖点提炼：水流路径用发光箭头串联三个圆形放大细节（滤芯、UV 灯、雾化芯）；视觉冲击：紫外线紫蓝光柱贯穿机身，水流与光流同向向上。</p>
+        <h4>AI 生图提示词</h4>
+        <p class="prompt">主体：落地加湿器竖直剖面渲染，透明蓝色水箱内可见水流路径：底部麦饭石滤芯圆盘、中部一根发出紫蓝色光芒的 UV-C 杀菌灯柱、顶部雾化出口喷出白雾，三个位置用发光圆环标记序号 1、2、3。场景：深灰蓝色纯色背景。光线：UV 灯紫蓝光为主光源穿透水体，水中带细密气泡与光折射。构图：产品位于画面右侧竖直大图，左侧竖向排列三个圆形局部放大框（滤芯、UV 灯、雾化芯），箭头自下而上串联，左上留白。风格：3D 技术解析渲染图，干净精密，蓝紫色调。文案区留白：左上区域深色留白，供放置“水先过三关 雾才出塔顶”白色大字。</p>
+        <h4>参照素材</h4>
+        <p class="shot-ref"><code>2023.5.25更新/主图/商品主图4.jpg</code>（三段流程版式）、<code>商品主图9.jpg</code>（UV-C 灯柱特写）、<code>商品主图5.jpg</code>（防漏专利信息）</p>
+      </div>
+    </article>
+
+    <article class="shot">
+      <div class="shot-head"><span class="shot-no">5</span><h3>全屋场景图：别墅级覆盖的终局画面</h3></div>
+      <div class="shot-body">
+        <h4>核心内容</h4>
+        <p>大客厅实景，机器立于沙发旁，雾气随气流弧线扩散至整个房间（含空调下方高位循环）；大字“别墅级大雾量，大面积全屋加湿”，角标“万向轮 随心移动”。</p>
+        <h4>画面构成</h4>
+        <p>环境融合：真实大户型客厅（落地窗、长沙发、挂画），机器与家居比例自然；卖点提炼：半透明气流弧线从出雾口延伸至房间四角，把“全屋”具象化；视觉冲击：广角镜头纳入整个空间，强调覆盖范围而非机器本身。</p>
+        <h4>AI 生图提示词</h4>
+        <p class="prompt">主体：白色圆柱形落地加湿器立于客厅沙发旁，顶部出雾口喷出细腻白雾，雾气化作数条半透明的淡蓝色气流弧线，向上越过空调并扩散至房间各个角落。场景：宽敞的现代风格大客厅，深蓝色墙面、布艺长沙发、落地窗与木地板，空间纵深感强。光线：明亮的午后自然光从落地窗进入，雾气在光中微微发亮。构图：广角镜头，产品位于左下 1/3 处，气流弧线引导视线扫过整个房间，顶部中央留白。风格：电商场景合成海报，写实摄影 + 气流特效，清爽蓝白色调。文案区留白：画面顶部中央深色墙面留白，供放置“别墅级大雾量 大面积全屋加湿”白色大字。</p>
+        <h4>参照素材</h4>
+        <p class="shot-ref"><code>2023.5.25更新/主图/商品主图8.jpg</code>（全屋气流场景）、<code>商品主图1.jpg</code>（万向轮角标）</p>
+      </div>
+    </article>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">06 / 详情页设计思路</div>
+      <div>
+        <h2>按决策顺序拆屏</h2>
+        <p class="section-intro">首屏定调 → 痛点唤起 → 核心卖点逐一给证据 → 参数 → 对比 → 保障。每屏附提示词要点（沿用“主体 + 场景 + 光线 + 构图 + 风格 + 文案区留白”结构）。</p>
+      </div>
+    </div>
+
+    <div class="screens">
+      <div class="screen">
+        <h3>首屏海报：别墅级大雾量 除菌净化加湿器</h3>
+        <p>核心内容：产品全身 + 高大雾柱 + 客厅场景，副标“700ML/H 大雾量｜UV-C 除菌｜智能变频恒湿”。参照 180详情页_01.jpg。</p>
+        <p class="cue">提示词要点：<b>主体</b>白色圆柱塔式加湿器全身像、顶部浓密雾柱；<b>场景</b>深蓝墙面客厅、沙发与挂画；<b>光线</b>柔和侧光、雾柱透亮；<b>构图</b>竖屏产品居中偏右，左侧竖排文案区；<b>风格</b>电商首屏海报、写实；<b>留白</b>左上 1/3 放主标题。</p>
+      </div>
+      <div class="screen">
+        <h3>痛点屏：大空间的四个加湿难题</h3>
+        <p>核心内容：四宫格痛点——“雾量小带不动大客厅”“水箱久放怕滋生细菌”“一天加好几次水”“搬动漏水打湿地板”，每格配一句反问。为后文卖点一一埋伏笔。</p>
+        <p class="cue">提示词要点：<b>主体</b>四个生活化痛点小场景（小雾量机器 vs 大客厅、久置水箱、手拎水壶、地板水渍）；<b>场景</b>真实家居环境；<b>光线</b>偏灰暗对比后文的明亮；<b>构图</b>2×2 网格；<b>风格</b>写实轻戏剧化；<b>留白</b>每格下方放一句痛点文案。</p>
+      </div>
+      <div class="screen">
+        <h3>卖点一：双核大雾量 700ml/h（对应痛点一）</h3>
+        <p>核心内容：双雾化芯透视渲染 + “一台顶两台”对比示意（一台 180 对比两台普通机型）。参照商品主图7.jpg。</p>
+        <p class="cue">提示词要点：<b>主体</b>透明剖视机身、两个蓝紫发光雾化芯；<b>场景</b>深蓝科技背景；<b>光线</b>雾化芯自发光；<b>构图</b>左侧剖视图、右侧“1 vs 2”对比小图；<b>风格</b>3D X 光渲染；<b>留白</b>顶部放大字标题。</p>
+      </div>
+      <div class="screen">
+        <h3>卖点二：水路三段净化（对应痛点二）</h3>
+        <p>核心内容：麦饭石过滤 → UV-C 杀菌 → 活水循环雾化，三步流程图解 + UV 灯柱特写。参照商品主图4.jpg / 主图9.jpg。</p>
+        <p class="cue">提示词要点：<b>主体</b>剖面水路、滤芯、紫蓝 UV 光柱、序号圆环；<b>场景</b>深灰蓝纯色；<b>光线</b>UV 自发光穿透水体；<b>构图</b>水流自下而上、箭头串联三个放大框；<b>风格</b>技术解析渲染；<b>留白</b>左侧步骤文案区。</p>
+      </div>
+      <div class="screen">
+        <h3>卖点三：20L 大水箱 + 上加水（对应痛点三）</h3>
+        <p>核心内容：20L 容量具象化（对比 40 瓶 500ml 矿泉水）+ 顶部揭盖加水动作实拍 + “最大档理论约 28 小时”。</p>
+        <p class="cue">提示词要点：<b>主体</b>开盖加水手部动作、水箱剖面水位线；<b>场景</b>明亮厨房或客厅一角；<b>光线</b>高亮通透；<b>构图</b>左图（加水动作）右图（容量对比阵列）；<b>风格</b>写实摄影；<b>留白</b>底部放“约28小时理论续航”数据条（标注理论值）。</p>
+      </div>
+      <div class="screen">
+        <h3>卖点四：防漏专利 + 万向轮（对应痛点四）</h3>
+        <p>核心内容：上置主机 / 下置水箱拆解图 + 专利号 ZL202022130660.5 + 满水推行动图感画面。参照商品主图5.jpg。</p>
+        <p class="cue">提示词要点：<b>主体</b>主机与水箱上下分离悬浮拆解、底部万向轮特写；<b>场景</b>浅灰无影背景；<b>光线</b>均匀棚拍光；<b>构图</b>左侧爆炸图、右侧推行场景小图；<b>风格</b>产品结构渲染；<b>留白</b>中部放专利号金色徽章。</p>
+      </div>
+      <div class="screen">
+        <h3>卖点五：高位远送出雾系统</h3>
+        <p>核心内容：741mm 塔身 + 360° 旋转出雾口 + 加长导雾管，雾气高远不打湿地板的对比画面。参照商品主图3.jpg。</p>
+        <p class="cue">提示词要点：<b>主体</b>带加长导雾管的整机、雾柱高度示意线；<b>场景</b>浅蓝纯色背景；<b>光线</b>清透；<b>构图</b>产品竖直居中、雾柱冲天，地面干燥特写小图；<b>风格</b>产品摄影 + 示意线；<b>留白</b>顶部标题区。</p>
+      </div>
+      <div class="screen">
+        <h3>卖点六：智能恒湿与操控</h3>
+        <p>核心内容：LED 屏湿度数显特写 + 红外遥控 + 三档雾量 + 1–14h 定时 + 睡眠模式，一屏讲完“怎么用最省心”。</p>
+        <p class="cue">提示词要点：<b>主体</b>LED 屏数字特写、手持遥控器对着机器；<b>场景</b>夜晚卧室暖光环境；<b>光线</b>屏幕冷光与环境暖光对比；<b>构图</b>大屏特写为主、功能图标环绕；<b>风格</b>写实 + UI 图标叠加；<b>留白</b>环绕图标旁放短文案。</p>
+      </div>
+      <div class="screen">
+        <h3>多场景屏：家用商用都镇得住</h3>
+        <p>核心内容：六宫格场景——客厅、卧室、办公室、花卉店、果蔬超市、火锅店 / 风幕柜，强调“保湿保鲜”商用价值。参照商品主图6.jpg。</p>
+        <p class="cue">提示词要点：<b>主体</b>同一产品在六种场景中的融入画面；<b>场景</b>各场景真实还原；<b>光线</b>统一明亮基调；<b>构图</b>3×2 网格，每格底部深色条放场景名；<b>风格</b>写实场景摄影；<b>留白</b>顶部一句总起文案。</p>
+      </div>
+      <div class="screen">
+        <h3>参数屏：一表收齐</h3>
+        <p>核心内容：产品名称、型号 SC500-QL180、颜色白色、加湿量 max 700ML/H、电压 220V~/50Hz、功率 55W、尺寸 741×255mm、水箱 20L。参照 180详情页_20.jpg。</p>
+        <p class="cue">提示词要点：无需生图，沿用现有白底双机位（带 / 不带导雾管）产品图 + 参数表版式即可；注意补充 20L / 18L 版本差异标注。</p>
+      </div>
+      <div class="screen">
+        <h3>对比屏：180 怎么选、和谁比</h3>
+        <p>核心内容：20L vs 18L 版本对照（水箱 / 加湿量 / 理论续航）+ 同系列定位（130C 适合 30–50㎡ 客厅、090P 适合卧室、180 适合别墅全屋），引导按空间选机。</p>
+        <p class="cue">提示词要点：<b>主体</b>三款机型并排等比例渲染；<b>场景</b>白底无影；<b>构图</b>横向对比表 + 机型图；<b>风格</b>信息图表；<b>留白</b>每列下方放适用面积标签。</p>
+      </div>
+      <div class="screen">
+        <h3>保障屏：认证与服务收尾</h3>
+        <p>核心内容：EMC 国际检测合格（GB 4343.1-2018 / GB17625.1-2012）、防漏专利号、价保 30 天买贵退差、多仓速发当日 / 次日达、潜水泵与抽水泵版本随机发货说明。参照 180详情页_22.jpg。</p>
+        <p class="cue">提示词要点：<b>主体</b>认证标志与盾牌图标；<b>场景</b>浅色信任感背景；<b>构图</b>左认证右服务承诺列表；<b>风格</b>简洁信息图；<b>留白</b>底部放售后政策小字。</p>
+      </div>
+    </div>
+
+    <div class="specs" aria-label="180 统一基础参数">
+      <div class="spec"><small>产品型号</small><strong>SC500-QL180</strong></div>
+      <div class="spec"><small>额定功率</small><strong>55W</strong></div>
+      <div class="spec"><small>水箱容量</small><strong>20L / 18L</strong></div>
+      <div class="spec"><small>最大加湿量</small><strong>700mL/h</strong></div>
+      <div class="spec"><small>雾化核心</small><strong>双核驱动</strong></div>
+      <div class="spec"><small>定时</small><strong>1–14h</strong></div>
+      <div class="spec"><small>额定电压</small><strong>220V~/50Hz</strong></div>
+      <div class="spec"><small>产品尺寸</small><strong>高约741×宽255mm</strong></div>
+    </div>
+  </section>
+
+  <div class="doc-source">
+    <p>分析对象：/Users/zane/亚都/亚都产品资料/180（2023.5.25更新 主图/详情、18升空气加湿套版2）、src/data/products.ts、src/data/matrix.ts</p>
+    <p>依据现有产品物料整理；最终销售口径应以量产说明书、检测报告及平台合规要求为准。</p>
+  </div>
+
+</main>
+<footer class="site-footer">亚都 YADU · 文章中心</footer>
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>电商主图与详情页视觉设计方法论 · 亚都 YADU</title>
+<link rel="stylesheet" href="article.css">
+<style>
+  /* ===== 本文档专属样式（沿用站点 slate/cyan 色系与语义色） ===== */
+
+  /* 章节头：左侧编号 + 右侧标题（与 090p 范例一致的两栏结构） */
+  .section-head {
+    display: grid;
+    grid-template-columns: 270px minmax(0, 1fr);
+    gap: 42px;
+    margin-bottom: 30px;
+    align-items: start;
+  }
+  .section-kicker {
+    padding-top: 8px;
+    color: #0e7490;
+    font-size: 13.5px;
+    font-weight: 750;
+    letter-spacing: 1px;
+  }
+  .section-head h2 { margin-top: 0; }
+  .section-intro { color: #64748b; }
+
+  /* 五张主图叙事结构表内的图序与任务 */
+  .frame-no { color: #0891b2; font-size: 20px; font-weight: 800; white-space: nowrap; }
+  .frame-task { display: block; margin-bottom: 4px; font-size: 15px; font-weight: 750; color: #0f172a; }
+  .frame-note { color: #64748b; font-size: 13.5px; }
+
+  /* 三原则卡片 */
+  .principle-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+  .principle {
+    padding: 24px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #ffffff;
+  }
+  .principle .p-tag {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 2px 10px;
+    border-radius: 6px;
+    background: #ecfeff;
+    color: #0e7490;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .principle h3 { margin: 0 0 8px; font-size: 16.5px; color: #0f172a; }
+  .principle p { margin-bottom: 0; color: #64748b; font-size: 13.5px; }
+
+  /* 提示词六段结构条 */
+  .prompt-formula {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
+    margin: 18px 0 8px;
+    background: #e2e8f0;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .pf { padding: 16px 14px; background: #f8fafc; }
+  .pf strong { display: block; margin-bottom: 4px; color: #0e7490; font-size: 14.5px; }
+  .pf span { font-size: 12.5px; color: #64748b; line-height: 1.6; display: block; }
+
+  /* 正反对照提示词示例 */
+  .prompt-case {
+    margin-bottom: 22px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #ffffff;
+  }
+  .prompt-case .case-head {
+    padding: 14px 20px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #f8fafc;
+    font-size: 14.5px;
+    font-weight: 750;
+    color: #0f172a;
+  }
+  .prompt-case .case-head span { color: #64748b; font-weight: 400; font-size: 13px; }
+  .case-row { display: grid; grid-template-columns: 1fr 1fr; }
+  .case-cell { padding: 18px 20px; }
+  .case-cell.bad { border-right: 1px solid #e2e8f0; background: #fef2f2; }
+  .case-cell.good { background: #f0fdf4; }
+  .case-label {
+    display: inline-block;
+    margin-bottom: 8px;
+    font-size: 12px;
+    font-weight: 750;
+  }
+  .case-cell.bad .case-label { color: #b91c1c; }
+  .case-cell.good .case-label { color: #15803d; }
+  .case-cell blockquote {
+    margin: 0;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.75);
+    font-size: 13px;
+    line-height: 1.8;
+    color: #334155;
+  }
+  .case-cell .case-why { margin: 10px 0 0; font-size: 12.5px; color: #64748b; }
+
+  /* 详情页分屏节奏表内屏号 */
+  .screen-no { color: #0891b2; font-weight: 800; white-space: nowrap; }
+
+  /* 误区清单（语义红浅底面板） */
+  .pitfall-panel {
+    padding: 30px;
+    border: 1px solid #fecaca;
+    border-radius: 12px;
+    background: #fef2f2;
+  }
+  .pitfall-panel h3 { margin: 0 0 16px; color: #b91c1c; }
+  .pitfall-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 30px;
+    margin: 0;
+    padding-left: 22px;
+    color: #7f1d1d;
+  }
+  .pitfall-list li { padding-left: 3px; margin-bottom: 0; font-size: 13.5px; }
+  .pitfall-list b { color: #7f1d1d; }
+
+  /* 文末来源说明 */
+  .doc-source { margin-top: 36px; font-size: 12.5px; color: #64748b; }
+  .doc-source p { margin: 4px 0; font-size: 12.5px; color: #64748b; }
+
+  /* 响应式 */
+  @media (max-width: 820px) {
+    .section-head { grid-template-columns: 1fr; gap: 4px; }
+    .section-kicker { padding-top: 0; }
+    .principle-grid { grid-template-columns: 1fr; }
+    .prompt-formula { grid-template-columns: repeat(3, 1fr); }
+    .case-row { grid-template-columns: 1fr; }
+    .case-cell.bad { border-right: 0; border-bottom: 1px solid #e2e8f0; }
+    .pitfall-list { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .prompt-formula { grid-template-columns: repeat(2, 1fr); }
+    .pitfall-panel { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+<header class="site-bar">
+  <a class="brand" href="../index.html">
+    <span class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7s6.5 7 6.5 11.3a6.5 6.5 0 1 1-13 0C5.5 9.7 12 2.7 12 2.7z"/></svg></span>
+    <span><span class="name">亚都 YADU</span><br><span class="slogan">健康加湿 · 净润生活</span></span>
+  </a>
+  <a class="back" href="../index.html#/articles">← 返回文章列表</a>
+</header>
+<main class="article">
+
+  <div class="hero">
+    <span class="tag">YADU · 视觉方法论</span>
+    <h1>电商主图与详情页视觉设计方法论</h1>
+    <p>以天猫平台为主战场，拆解主图点击率逻辑、五张主图叙事结构、词图一致性原则与 AI 生图提示词写法，附详情页分屏叙事框架与常见误区清单。</p>
+    <div class="meta">亚都 YADU · 文章中心 ｜ 方法论文章 · 适用全部型号 ｜ 资料整理日期：2026-08</div>
+  </div>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">01 / 主图的特殊性</div>
+      <div>
+        <h2>搜索与推荐流里，以点击率论英雄</h2>
+        <p class="section-intro">主图不是产品画册的第一页，而是流量入口处的「拦截广告」。它的考核指标只有一个：在拇指划过屏幕的零点几秒内，让目标用户停下来点进去。</p>
+      </div>
+    </div>
+    <p>主图与详情页的分工必须先看清楚：在搜索结果页、推荐信息流、店铺分类页里，用户看到的只有第一张主图、标题和价格。平台经验规则是「第一张解决点击率，后四张是详情页的缩影」——大部分买家看完五张主图就已形成购买判断，越来越少的人会进入详情页（参考：知乎专栏《淘宝主图只有2张了吗》、卖家网《淘宝主图有什么用》）。这意味着主图承担的是「广告 + 微详情」的双重职能：首图负责从一排竞品中抢下点击，后四张负责在划动中完成一次快速说服。</p>
+    <p>由此得到五张主图的叙事结构——每张图只承担一个任务，合起来是一条完整的「吸引→说服→信任→促成」信息链（参考：淘宝百科《5张图设计技巧让点击率翻倍》）：</p>
+    <table>
+      <colgroup><col style="width:12%"><col style="width:30%"><col style="width:58%"></colgroup>
+      <thead><tr><th>图序</th><th>任务</th><th>内容与检查要点</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="frame-no">图 1</td>
+          <td><span class="frame-task">首帧拦截</span><span class="frame-note">抢点击</span></td>
+          <td>产品主体 + 一句最强卖点大字，0.5 秒内让人知道「这是什么、对我有什么用」。与搜索关键词强相关，与左右竞品形成差异化；忌纯白底无字、忌信息超过三个点。</td>
+        </tr>
+        <tr>
+          <td class="frame-no">图 2</td>
+          <td><span class="frame-task">核心卖点</span><span class="frame-note">讲价值</span></td>
+          <td>把首图的承诺展开成可感知的功能利益，最好用对比或量化表达（如「普通水箱 vs 三重水路处理」）。前三张集中放核心卖点，是行业通行做法（参考：美图设计室《天猫电商主图设计技巧》）。</td>
+        </tr>
+        <tr>
+          <td class="frame-no">图 3</td>
+          <td><span class="frame-task">场景人群</span><span class="frame-note">给代入</span></td>
+          <td>卧室、客厅、婴儿房等真实使用场景，画面里出现哪种人群就吸引哪种人群（参考：创意加油站《提高主图点击率的6个方法》）。帮助买家想象「拥有之后」的画面。</td>
+        </tr>
+        <tr>
+          <td class="frame-no">图 4</td>
+          <td><span class="frame-task">细节证据</span><span class="frame-note">建信任</span></td>
+          <td>结构特写、材质细节、检测报告、售后承诺（运费险、7 天无理由）。回答「凭什么相信你」，新店与非知名品牌尤其需要。</td>
+        </tr>
+        <tr>
+          <td class="frame-no">图 5</td>
+          <td><span class="frame-task">促销保障</span><span class="frame-note">促成单</span></td>
+          <td>限时优惠、赠品、价格锚点，制造决策理由。注意：天猫首页内容入口（有好货等）自动抓取白底图，部分类目要求第五张为白底图，需按类目规则调整（参考：知乎《淘宝主图只有2张了吗》）。</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">02 / 三原则</div>
+      <div>
+        <h2>环境融合 + 卖点提炼 + 视觉冲击</h2>
+        <p class="section-intro">任何一张主图或详情屏，下笔前先过这三关。三者缺一，图就会沦为「好看但不卖货」的装饰品。</p>
+      </div>
+    </div>
+    <div class="principle-grid">
+      <article class="principle">
+        <span class="p-tag">原则一</span>
+        <h3>环境融合</h3>
+        <p>产品必须放进目标用户的真实生活场景，而不是悬浮在抽象背景里。加湿器的战场是卧室床头柜、客厅角落、婴儿房——场景负责回答「这和我有什么关系」。站酷《电商主图该如何优化》将其总结为「场景代入感」与「主图满足你的消费群体」：背景风格要与目标人群偏好匹配。环境同时是比例尺，让用户直观感知产品大小。</p>
+      </article>
+      <article class="principle">
+        <span class="p-tag">原则二</span>
+        <h3>卖点提炼</h3>
+        <p>一张图只讲一个卖点，且必须提炼到「可被画面直接证明」的程度。「9L 大水箱」不如「一箱水，润过昼夜」配深夜卧室画面；「除菌」不如把过滤、循环、UV-C 的水路结构画出来。卖点文案的排序按消费者决策重要度：先回答有没有效果、干不干净、麻不麻烦，再讲体验功能（与本站《090P 产品卖点与销售建议》的优先级逻辑一致）。</p>
+      </article>
+      <article class="principle">
+        <span class="p-tag">原则三</span>
+        <h3>视觉冲击</h3>
+        <p>在信息流里，视觉冲击 = 差异化 × 聚焦。产品与背景要有明暗或冷暖对比，大字文案与画面要强对比配色，主色不超过三种以保持品牌辨识度（参考：淘宝百科主图文）。「产品一定要突出并有质感、文案一定要简洁清晰」是高点击主图的共性（参考：站酷 ZCOOL 主图优化文）。冲击不是堆特效，而是让视线落点唯一。</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">03 / 词图一致性</div>
+      <div>
+        <h2>画面元素必须与文案大字互相印证</h2>
+        <p class="section-intro">词图一致性是电商视觉最容易被忽视、却最直接影响可信度的一条纪律：图里出现的每一个元素，都应该能在大字文案里找到出处，反之亦然。</p>
+      </div>
+    </div>
+    <p>「图文两张皮」的典型病例：大字写「静夜安睡 轻润相伴」，画面却是阳光强烈的白天客厅；大字写「大水箱 长续航」，画面里却是一个看不出容量的特写；大字写「母婴适用」，画面里却没有母婴人群也没有任何除菌、洁净的证据。用户或许说不出哪里不对，但潜意识里信息没有闭环，点击和转化都会打折。淘宝的运营经验同样指出：「主图风格要贴合关键词」「图文关键词一致能提高搜索匹配命中率」（参考：站酷 ZCOOL 主图优化文、淘宝百科主图文）。</p>
+    <p>执行层面的检查方法很简单——<strong>双向核对</strong>：拿着文案去图里找证据（「润过昼夜」→ 画面里必须有夜晚、卧室、长时间运行的暗示，如床头灯、睡眠中的人），再拿着画面去文案里找落点（画面里出现了遥控器，文案或角标就应该呼应「遥控」或「双控」）。任何一边对不上的元素，要么删画面，要么改文案。AI 生图时代这条纪律更重要：模型会自由发挥添加元素，出图后必须逐元素清点，把文案无法背书的装饰物在提示词阶段就排除掉。</p>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">04 / AI 生图提示词</div>
+      <div>
+        <h2>六段式结构：主体 + 场景 + 光线 + 构图 + 风格 + 文案留白</h2>
+        <p class="section-intro">提示词写得含糊，AI 只能瞎猜；结构化、具体，出图才稳。行业通行的做法是按要素「结构化填空」而非堆砌形容词（参考：腾讯云开发者社区《怎么写电商主图的 AI 提示词才出图准》、知乎专栏《做电商主图，AI 提示词应该怎么写才出图准》）。</p>
+      </div>
+    </div>
+    <p>在通行的五要素（主体、场景、光线、构图、风格）之上，电商图必须再加第六段——<strong>文案区留白</strong>：明确告诉模型画面哪一侧、多大面积保持干净低细节，供后期叠加大字文案。否则 AI 会把画面填满，后期只能把字压在杂乱背景上。</p>
+    <div class="prompt-formula">
+      <div class="pf"><strong>主体</strong><span>产品是什么、材质、颜色、关键特征，越具体越不跑偏</span></div>
+      <div class="pf"><strong>场景</strong><span>放在什么环境：卧室床头、客厅角落、大理石台面</span></div>
+      <div class="pf"><strong>光线</strong><span>柔和晨光、暖黄夜灯、冷调科技感边缘光</span></div>
+      <div class="pf"><strong>构图</strong><span>45° 侧拍、俯拍、特写、居中、景深与留白位置</span></div>
+      <div class="pf"><strong>风格</strong><span>商业摄影质感、清新通透、高级感、色调与画质</span></div>
+      <div class="pf"><strong>文案留白</strong><span>指定留白区域与洁净度，为后期大字文案预留空间</span></div>
+    </div>
+    <p>三条实操技巧（参考：腾讯云开发者社区同文）：<strong>能传参考图就别纯文字</strong>——产品真实形态用文字很难描述准，上传产品原图让 AI「保产品、换场景」最稳；<strong>从简到繁迭代</strong>——先出基础版再逐步加控制词；<strong>善用负向描述</strong>——明确「无文字、无水印、无杂物」，把模型自由发挥的空间收掉。下面给三组正反对照（以加湿器为例）：</p>
+
+    <div class="prompt-case">
+      <div class="case-head">示例一：首图（拦截场景）<span>目标：卧室场景下的「长续航」利益点</span></div>
+      <div class="case-row">
+        <div class="case-cell bad">
+          <span class="case-label">✕ 反面写法</span>
+          <blockquote>一个加湿器在卧室里，高级好看，超高清，电商主图。</blockquote>
+          <p class="case-why">全是主观形容词，没有场景细节、光线、构图和留白指令。模型只能随机发挥，出图不可控，更无法保证词图一致。</p>
+        </div>
+        <div class="case-cell good">
+          <span class="case-label">✓ 正面写法</span>
+          <blockquote>主体：白色塔式超声波加湿器，顶部出雾口飘出细腻薄雾；场景：深夜卧室床头柜上，旁边有台灯和一杯水，背景虚化；光线：暖黄色床头灯光，氛围安静；构图：产品位于画面右侧三分之一处，45 度侧拍，浅景深；风格：商业产品摄影质感，色调温暖通透，高细节；文案留白：画面左侧约 40% 区域保持深色干净背景，无杂物，供后期叠加文案。</blockquote>
+          <p class="case-why">六段齐全，「深夜卧室 + 暖光」直接为「一箱水，润过昼夜」这类续航文案提供画面证据，留白区保证大字可读。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="prompt-case">
+      <div class="case-head">示例二：细节证据图（信任场景）<span>目标：把「水路除菌」画成可见证据</span></div>
+      <div class="case-row">
+        <div class="case-cell bad">
+          <span class="case-label">✕ 反面写法</span>
+          <blockquote>加湿器内部结构特写，科技感，蓝光。</blockquote>
+          <p class="case-why">「科技感、蓝光」是风格词不是内容词，模型不知道要画过滤、循环、UV-C 哪一段，出图与卖点文案对不上，沦为图文两张皮。</p>
+        </div>
+        <div class="case-cell good">
+          <span class="case-label">✓ 正面写法</span>
+          <blockquote>主体：加湿器水箱内部水路剖面特写，可见麦饭石过滤仓、循环水流路径与 UV-C 紫外线灯珠发出的淡紫色光；场景：纯色深灰背景，产品外壳半透明展示内部结构；光线：冷调科技感边缘光勾勒轮廓，UV-C 灯珠处微微发光；构图：微距特写，水路呈纵向动线，视觉焦点在除菌模块；风格：精密工业渲染质感，干净利落；文案留白：画面顶部约 30% 区域纯色低细节，供标注「过滤→循环→UV-C」三段流程字。</blockquote>
+          <p class="case-why">画面元素（过滤仓、循环水路、UV-C 灯珠）与文案「三段处理」一一对应，互相印证；顶部留白为流程标注预留位置。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="prompt-case">
+      <div class="case-head">示例三：场景人群图（代入场景）<span>目标：母婴人群的安全感</span></div>
+      <div class="case-row">
+        <div class="case-cell bad">
+          <span class="case-label">✕ 反面写法</span>
+          <blockquote>温馨家庭场景，妈妈和宝宝，有加湿器，日系风格。</blockquote>
+          <p class="case-why">产品沦为背景板，没有指定产品与人群的视觉关系，也没有给「除菌」「恒湿」等文案预留证据位，图美但不卖货。</p>
+        </div>
+        <div class="case-cell good">
+          <span class="case-label">✓ 正面写法</span>
+          <blockquote>主体：白色桌面款加湿器置于婴儿房矮柜上，出雾轻柔；场景：明亮婴儿房，背景虚化处理，可见婴儿床轮廓与浅绿色墙面，无具体人物正脸；光线：上午柔和自然光从侧窗进入；构图：产品为视觉主角位于画面中轴偏下，母婴元素仅作环境暗示；风格：清新通透的生活方式摄影，低饱和暖色调，浅景深；文案留白：画面上部约 35% 为干净浅色墙面，供叠加「水先净，润才安心」类文案；负向要求：无文字、无水印、无杂物。</blockquote>
+          <p class="case-why">人群以「环境暗示」方式出现（规避肖像合规风险），画面氛围与「净」的文案方向一致，留白与负向词把不可控因素提前排除。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">05 / 详情页分屏叙事</div>
+      <div>
+        <h2>一屏一个卖点，按决策顺序推进</h2>
+        <p class="section-intro">详情页是主图说服链条的展开版。核心纪律是「一屏只聚焦一个强卖点」，并按消费者的决策顺序而非功能清单顺序排列（参考：知乎专栏《淘宝详情页的逻辑分析》、店托易《高转化详情页六大核心技巧》）。</p>
+      </div>
+    </div>
+    <table>
+      <colgroup><col style="width:10%"><col style="width:26%"><col style="width:64%"></colgroup>
+      <thead><tr><th>屏序</th><th>任务</th><th>核心内容与提示词要点</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="screen-no">首屏</td>
+          <td>海报承接 + 利益总述</td>
+          <td>「首屏三秒定生死」：承接主图引入的兴趣，一句话主张 + 一组核心参数图标（如 9L / 350mL/h / UV-C / ≤38dB），避免冗长品牌故事。提示词要点：竖版大场景海报，产品与主张文案区并重。</td>
+        </tr>
+        <tr>
+          <td class="screen-no">第 2 屏</td>
+          <td>痛点共鸣</td>
+          <td>干燥起皮、晨起喉咙干、空调房不适——用「使用前」场景唤起需求，可用前后对比。提示词要点：人物状态与环境细节具体化，痛点要能被画面直接看见。</td>
+        </tr>
+        <tr>
+          <td class="screen-no">第 3–N 屏</td>
+          <td>核心卖点逐屏展开</td>
+          <td>按决策重要度排序：加湿效率 → 水路卫生 → 续航 → 恒湿 → 静音 → 便利操作。每屏一个卖点，结构为「概念名 + 场景画面 + 参数证据」。提示词要点：复用主图的六段式，场景随卖点切换（卧室→剖面→客厅→夜间），风格与色调保持整套统一。</td>
+        </tr>
+        <tr>
+          <td class="screen-no">参数屏</td>
+          <td>规格总表</td>
+          <td>尺寸、容量、功率、噪音等硬参数集中呈现，供理性核对。口径必须与主图、SKU 详情完全一致。</td>
+        </tr>
+        <tr>
+          <td class="screen-no">对比屏</td>
+          <td>版本/竞品对照</td>
+          <td>同型号不同版本（机械/触摸/WiFi）横向对照表，帮用户快速选型，减少客服咨询。</td>
+        </tr>
+        <tr>
+          <td class="screen-no">末屏</td>
+          <td>保障收口</td>
+          <td>品牌资质、检测报告编号、质保与退换承诺，消除最后顾虑，呼应第四张主图的信任证据。</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>整套详情页与五张主图应是同一套视觉语言：相同的色调、字体层级与概念名。用户在主图里看到的承诺（「水先净，润才安心」），必须在详情页对应屏里看到展开的证据链，否则前面建立的信任会在这里断掉。</p>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">06 / 常见误区</div>
+      <div>
+        <h2>上线前逐项排查的误区清单</h2>
+        <p class="section-intro">以下问题在素材审核中反复出现，每一条都直接损失点击率或转化率。</p>
+      </div>
+    </div>
+    <div class="pitfall-panel">
+      <h3>主图与详情页高频误区</h3>
+      <ul class="pitfall-list">
+        <li><b>空洞程度词：</b>「超大雾量」「巨雾澎湃」无差异、无证据，换成可量化表达（350mL/h、高位出雾、三档可调）。</li>
+        <li><b>图文两张皮：</b>文案写夜晚安睡，画面是白天客厅；写大水箱，画面看不出容量。上线前做双向核对。</li>
+        <li><b>一图多点：</b>单张主图信息超过三个点，用户什么也记不住。一张图只讲一个卖点。</li>
+        <li><b>五图同质化：</b>五张都是同一角度产品照，没有分工。按「拦截→卖点→场景→证据→促销」重新分配任务。</li>
+        <li><b>无留白硬压字：</b>AI 出图不留文案区，大字压在复杂背景上不可读。提示词阶段就指定留白位置。</li>
+        <li><b>参数口径打架：</b>主图、详情页、SKU 之间加湿量、恒湿范围等数字不一致，直接引发投诉。</li>
+        <li><b>绝对化与医疗化：</b>「零噪音」「母婴级」「防过敏」缺标准依据，用「≤38dB 低噪运行」等有出处的表述替代。</li>
+        <li><b>忽视白底图规则：</b>未按类目要求准备白底图，丢失有好货等内容入口的系统抓取流量。</li>
+        <li><b>只凭感觉不定数据：</b>不做 A/B 测试、不看生意参谋点击率，主图迭代没有依据。</li>
+        <li><b>风格各自为政：</b>主图、详情页、店铺视觉色调字体不统一，品牌辨识度被稀释。主色控制在三种以内。</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="doc-source">
+    <p>参考来源（文内已注明）：淘宝百科《淘宝主图怎么改？5张图设计技巧让点击率翻倍》；美图设计室《天猫电商主图设计技巧分享》；站酷 ZCOOL《电商主图该如何优化》；腾讯云开发者社区《怎么写电商主图的 AI 提示词才出图准》；知乎专栏《做电商主图，AI 提示词应该怎么写才出图准》《淘宝主图只有2张了吗》《淘宝详情页的逻辑分析》；店托易《淘宝详情页制作教程及制作技巧》；创意加油站《提高主图点击率的6个方法》；卖家网《淘宝主图有什么用》；本站《090P 产品卖点与销售建议》。</p>
+    <p>本文为方法论整理，具体平台规则（主图尺寸、白底图位置、审核红线）以天猫/淘宝官方最新公告为准。</p>
+  </div>
+
+</main>
+<footer class="site-footer">亚都 YADU · 文章中心</footer>
+</body>
+</html>
