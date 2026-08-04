@@ -7,7 +7,7 @@
 **亚都官方商城**（`yadu-store`）：亚都（YADU）品牌加湿器产品的官方商城展示站点，是一个**纯前端单页应用（SPA）**，无后端、无数据库。
 
 - 页面语言为中文（`index.html` 中 `lang="zh-CN"`），代码中的文案、注释、产品数据均为中文。
-- 路由使用 `HashRouter`（GitHub Pages 子路径部署下 `BrowserRouter` 无法匹配 `/yadu-store/`）。共两个页面：`/`（首页，由多个 section 组件拼装：导航栏、Hero 轮播、产品区、服务条、页脚）和 `/matrix`（产品矩阵全屏页）。
+- 路由使用 `HashRouter`（GitHub Pages 子路径部署下 `BrowserRouter` 无法匹配 `/yadu-store/`）。共三个 SPA 页面：`/`（首页，由多个 section 组件拼装：导航栏、Hero 轮播、产品区、服务条、页脚）、`/matrix`（产品矩阵全屏页）和 `/articles`（文章中心列表页，文章本体是 `public/articles/` 下的独立静态页）。
 - **页内锚点不要用 `href="#id"`**：会改变 hash 导致 HashRouter 匹配失败白屏。统一用 `src/lib/scroll.ts` 的 `scrollToId()` 加 `onClick` 实现（参考 `Navbar.tsx` 的 `anchorScroll`）。
 - 所有产品数据（型号、规格、卖点、对比参数）硬编码在 `src/data/products.ts` 中，不经过任何接口请求。其中 `tmallTitle` 需按天猫规则控制在 60 字符（30 汉字）以内。
 - 产品图片为静态资源，放在 `public/images/` 下，代码中以**相对路径** `images/xxx.jpg` 引用（不带前导 `/`，保证部署到子路径如 GitHub Pages 时可用）。
@@ -62,7 +62,9 @@ scripts/
   sync-yuque-matrix.mjs  # 语雀「产品矩阵」表格同步脚本（node 直接运行）
 public/images/         # 产品图片等静态资源
 public/images/matrix/  # 产品矩阵页图片（sync:matrix 自动下载）
-public/marketing-brief.html  # 独立静态页「营销简报」（导航栏入口，构建时原样拷贝）
+public/articles/       # 文章中心静态页：article.css 为共享样式（站点 cyan/slate 色系），
+                       # 每篇文章一个独立 HTML（统一文章壳 + 页内 <style> 放该文专属组件样式），
+                       # 清单登记在 src/data/articles.ts
 ```
 
 ## 语雀数据同步

@@ -29,7 +29,7 @@ export default function Navbar() {
           <a href="#filters" onClick={anchorScroll('filters')} className="transition hover:text-cyan-600">滤网配件</a>
           <a href="#service" onClick={anchorScroll('service')} className="transition hover:text-cyan-600">服务保障</a>
           <Link to="/matrix" className="transition hover:text-cyan-600">产品矩阵</Link>
-          <a href="marketing-brief.html" target="_blank" rel="noreferrer" className="transition hover:text-cyan-600">营销简报</a>
+          <Link to="/articles" className="transition hover:text-cyan-600">文章中心</Link>
         </nav>
         <a
           href="#products"

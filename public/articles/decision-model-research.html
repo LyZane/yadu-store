@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>加湿器产品决策模型研究 · 亚都 YADU</title>
+<link rel="stylesheet" href="article.css">
+<style>
+  /* 本文档专属样式：仅放共享 article.css 没有的可视化组件样式，
+     颜色已全部映射到站点 cyan/slate 色系（原橙色系强调色统一改为蓝色 #2563eb） */
+
+  #humidifier-report .text-small { font-size: 12px; line-height: 1.5; }
+  #humidifier-report .text-muted { color: var(--text-muted); }
+
+  /* 信息类型图例（公开证据 / 策略模型） */
+  .legend-row { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-bottom: 4px; }
+  .legend-item { display: inline-flex; align-items: center; gap: 7px; color: var(--text-muted); }
+  .legend-dot { width: 9px; height: 9px; border-radius: 50%; background: #0891b2; }
+  .legend-dot.model { background: #2563eb; }
+
+  /* 章节头：小标 + 共享 h2 样式 */
+  #humidifier-report > section { margin-top: 40px; }
+  .section-kicker { display: block; font-size: 12px; letter-spacing: 1px; font-weight: 500; color: var(--text-muted); margin-bottom: 2px; }
+  .section-head h2 { margin-top: 0; }
+  .section-note { color: var(--text-muted); max-width: 68ch; }
+
+  /* 核心判断统计卡（卡片本身用共享 .card） */
+  .summary-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 10px; }
+  .viz-stat { display: flex; flex-direction: column; gap: 2px; }
+  .viz-stat-value { margin: 6px 0; font-size: 18px; font-weight: 600; line-height: 1.3; color: var(--text); }
+  .viz-stat p { margin: 0; font-size: 13px; }
+
+  /* 五步决策路径（编号圆点 + 顶部分隔线） */
+  .decision-flow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); list-style: none; padding: 0; margin: 14px 0 0; counter-reset: stage; font-size: 13.5px; }
+  .decision-flow li { position: relative; padding: 14px 12px 4px 0; border-top: 2px solid var(--border); counter-increment: stage; margin-bottom: 0; }
+  .decision-flow li::before {
+    content: counter(stage);
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    margin-top: -27px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    color: #fff;
+    background: #0891b2;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .decision-flow strong, .decision-flow span { display: block; }
+  .decision-flow span { margin-top: 4px; color: var(--text-muted); font-size: 12.5px; }
+
+  /* 人群权重：左侧切换按钮 + 右侧条形图 */
+  .segment-layout { display: grid; grid-template-columns: minmax(180px, 0.72fr) minmax(0, 1.6fr); gap: 24px; align-items: start; margin-top: 12px; }
+  .segment-buttons { display: grid; gap: 7px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: #fff;
+    color: var(--text-sub);
+    font-size: 13.5px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .segment-buttons .btn { justify-content: flex-start; width: 100%; }
+  .btn:hover { border-color: #0891b2; color: var(--accent-strong); }
+  .btn-primary, .btn-primary:hover { background: #0891b2; border-color: #0891b2; color: #fff; }
+
+  .segment-detail { display: grid; gap: 13px; }
+  .selected-line { min-height: 48px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+  .selected-line strong { font-size: 15px; }
+  .selected-line p { margin: 3px 0 0; font-size: 13px; color: var(--text-muted); }
+
+  .bar-list { display: grid; gap: 11px; }
+  .bar-row { display: grid; grid-template-columns: minmax(96px, 0.8fr) minmax(120px, 2fr) 38px; gap: 10px; align-items: center; font-size: 13px; color: var(--text-sub); }
+  .bar-track { height: 10px; overflow: hidden; border-radius: 999px; background: #e2e8f0; }
+  .bar-fill { height: 100%; border-radius: inherit; background: linear-gradient(90deg, #06b6d4, #2563eb); transition: width 220ms ease; }
+  .bar-value { text-align: right; font-variant-numeric: tabular-nums; color: var(--text); }
+
+  /* 家庭决策角色三栏 */
+  .role-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 12px; }
+  .role-item { padding-top: 14px; border-top: 2px solid var(--border); }
+  .role-icon { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; margin-bottom: 10px; border-radius: 50%; color: var(--accent-strong); background: #ecfeff; }
+  .role-icon svg { width: 17px; height: 17px; }
+  .role-item h3 { margin: 0 0 6px; }
+  .role-item p { margin: 0; font-size: 13px; color: var(--text-muted); }
+
+  /* 投放建议提示条（琥珀语义色，与共享 .note 同色系） */
+  .gender-conclusion { display: flex; gap: 10px; align-items: flex-start; margin-top: 16px; padding: 14px 16px; border: 1px solid #fde68a; border-radius: 10px; background: #fffbeb; }
+  .gender-conclusion svg { flex: 0 0 auto; width: 16px; height: 16px; margin-top: 4px; color: #b45309; }
+  .gender-conclusion p { margin: 0; font-size: 13.5px; color: #92400e; }
+
+  /* 表格辅助：横向滚动容器、人群列宽、机会等级圆点（表格本体用共享样式） */
+  .table-responsive { width: 100%; overflow-x: auto; }
+  #humidifier-report .fit-label { min-width: 88px; }
+  .priority { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+  .priority::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--text-muted); }
+  .priority.high::before { background: #0891b2; }
+  .priority.mid::before { background: #2563eb; }
+
+  /* 卖点排序（序号 + 三列网格） */
+  .message-stack { display: grid; margin: 10px 0 0; padding: 0; list-style: none; counter-reset: message-rank; font-size: 13.5px; }
+  .message-stack li { display: grid; grid-template-columns: 32px minmax(92px, 0.65fr) minmax(0, 2fr); gap: 12px; align-items: baseline; padding: 9px 0; border-bottom: 1px solid var(--border); counter-increment: message-rank; margin-bottom: 0; }
+  .message-stack li::before { content: counter(message-rank, decimal-leading-zero); color: var(--text-muted); font-size: 12.5px; font-variant-numeric: tabular-nums; }
+  .message-stack span { color: var(--text-muted); }
+
+  /* 报告底部结论行 */
+  .report-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--text-muted); }
+
+  @media (max-width: 640px) {
+    .summary-grid, .role-grid { grid-template-columns: 1fr; }
+    .decision-flow { grid-template-columns: 1fr; }
+    .decision-flow li { padding: 8px 0 16px 38px; border-top: 0; border-left: 2px solid var(--border); }
+    .decision-flow li::before { position: absolute; top: 4px; left: -13px; margin: 0; }
+    .segment-layout { grid-template-columns: 1fr; }
+    .segment-buttons { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .bar-row { grid-template-columns: minmax(88px, 1fr) minmax(90px, 1.4fr) 34px; gap: 7px; }
+    .message-stack li { grid-template-columns: 28px 1fr; }
+    .message-stack li span { grid-column: 2; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bar-fill { transition: none; }
+  }
+</style>
+</head>
+<body>
+<header class="site-bar">
+  <a class="brand" href="../index.html">
+    <span class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7s6.5 7 6.5 11.3a6.5 6.5 0 1 1-13 0C5.5 9.7 12 2.7 12 2.7z"/></svg></span>
+    <span><span class="name">亚都 YADU</span><br><span class="slogan">健康加湿 · 净润生活</span></span>
+  </a>
+  <a class="back" href="../index.html#/articles">← 返回文章列表</a>
+</header>
+<main class="article">
+  <!-- 报告头：由原文档 report-header 迁移为共享 .hero 渐变横幅 -->
+  <div class="hero">
+    <span class="tag">消费决策研究</span>
+    <h1 id="report-title">加湿器产品决策模型</h1>
+    <p>需求通常由干燥、母婴照护、鼻敏感或睡眠不适触发；消费者先排除“不安全、难清洁、会打湿”的产品，再在加湿能力、恒湿、噪音与价格之间取舍。</p>
+    <div class="meta">中国家用市场 · 2026-07</div>
+  </div>
+
+  <div id="humidifier-report" aria-labelledby="report-title">
+    <div class="legend-row text-small" aria-label="信息类型说明">
+      <span class="legend-item"><span class="legend-dot"></span>公开健康与使用证据</span>
+      <span class="legend-item"><span class="legend-dot model"></span>用于产品与营销规划的策略模型</span>
+    </div>
+
+    <section aria-labelledby="headline-findings">
+      <div class="section-head">
+        <span class="section-kicker text-small">EXECUTIVE VIEW</span>
+        <h2 id="headline-findings">三个核心判断</h2>
+      </div>
+      <div class="summary-grid">
+        <article class="card viz-stat">
+          <span class="text-muted">第一分层变量</span>
+          <div class="viz-stat-value">场景，不是性别</div>
+          <p>母婴、鼻敏感、北方供暖、办公室等场景，对功能权重的解释力高于单纯男女分类。</p>
+        </article>
+        <article class="card viz-stat">
+          <span class="text-muted">首要决策门槛</span>
+          <div class="viz-stat-value">干净与安全</div>
+          <p>清洁难度、微生物与白粉担忧、儿童烫伤风险，会先于参数比较淘汰产品。</p>
+        </article>
+        <article class="card viz-stat">
+          <span class="text-muted">最终成交抓手</span>
+          <div class="viz-stat-value">证据化体验</div>
+          <p>达到目标湿度的速度、恒湿稳定性、睡眠噪音和维护成本，需要可验证而非只喊概念。</p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="decision-path-title">
+      <div class="section-head">
+        <span class="section-kicker text-small">DECISION PATH</span>
+        <h2 id="decision-path-title">消费者的五步决策路径</h2>
+        <p class="section-note">一台加湿器不是从“参数表”开始卖，而是从一个具体不适开始。越靠前的环节，越决定用户会不会继续看下去。</p>
+      </div>
+      <ol class="decision-flow" aria-label="五步购买决策流程">
+        <li><strong>需求触发</strong><span>供暖干燥、皮肤紧绷、鼻喉不适、夜间睡眠</span></li>
+        <li><strong>锁定场景</strong><span>谁使用、在哪个房间、持续多久</span></li>
+        <li><strong>风险排除</strong><span>脏、白粉、积水、烫伤、清洗麻烦</span></li>
+        <li><strong>技术选型</strong><span>超声波、无雾蒸发、暖雾、复合机</span></li>
+        <li><strong>成交比较</strong><span>加湿量、恒湿、噪音、维护与总价格</span></li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="segment-model-title">
+      <div class="section-head">
+        <span class="section-kicker text-small">SEGMENT WEIGHTS</span>
+        <h2 id="segment-model-title">不同人群的决策权重</h2>
+        <p class="section-note">选择一个人群，查看其典型决策重心。权重是策略建模值，总和为 100，不代表公开市场份额。</p>
+      </div>
+      <div class="segment-layout">
+        <div class="segment-buttons" role="group" aria-label="选择目标人群">
+          <button type="button" class="btn btn-primary" data-segment="family" aria-pressed="true">母婴与儿童家庭</button>
+          <button type="button" class="btn" data-segment="sensitive" aria-pressed="false">鼻敏感人群</button>
+          <button type="button" class="btn" data-segment="heating" aria-pressed="false">北方供暖家庭</button>
+          <button type="button" class="btn" data-segment="beauty" aria-pressed="false">年轻女性</button>
+          <button type="button" class="btn" data-segment="office" aria-pressed="false">办公与租住人群</button>
+          <button type="button" class="btn" data-segment="assets" aria-pressed="false">植物／宠物／家居</button>
+          <button type="button" class="btn" data-segment="premium" aria-pressed="false">品质与智能用户</button>
+        </div>
+
+        <div class="segment-detail">
+          <div class="selected-line" aria-live="polite">
+            <strong id="segment-title">母婴与儿童家庭</strong>
+            <p id="segment-insight">安全先行：能否放心整夜使用，比“雾大不大”更重要。</p>
+          </div>
+          <div class="bar-list" id="weight-bars" role="img" aria-label="母婴与儿童家庭决策权重：卫生安全30，加湿能力14，恒湿控制16，睡眠噪音14，清洁维护16，购置成本6，智能设计4">
+            <div class="bar-row"><span>卫生安全</span><div class="bar-track"><div class="bar-fill" data-key="safety" style="width: 100%"></div></div><span class="bar-value" data-value="safety">30</span></div>
+            <div class="bar-row"><span>加湿能力</span><div class="bar-track"><div class="bar-fill" data-key="output" style="width: 46.7%"></div></div><span class="bar-value" data-value="output">14</span></div>
+            <div class="bar-row"><span>恒湿控制</span><div class="bar-track"><div class="bar-fill" data-key="control" style="width: 53.3%"></div></div><span class="bar-value" data-value="control">16</span></div>
+            <div class="bar-row"><span>睡眠噪音</span><div class="bar-track"><div class="bar-fill" data-key="noise" style="width: 46.7%"></div></div><span class="bar-value" data-value="noise">14</span></div>
+            <div class="bar-row"><span>清洁维护</span><div class="bar-track"><div class="bar-fill" data-key="care" style="width: 53.3%"></div></div><span class="bar-value" data-value="care">16</span></div>
+            <div class="bar-row"><span>购置成本</span><div class="bar-track"><div class="bar-fill" data-key="price" style="width: 20%"></div></div><span class="bar-value" data-value="price">6</span></div>
+            <div class="bar-row"><span>智能设计</span><div class="bar-track"><div class="bar-fill" data-key="smart" style="width: 13.3%"></div></div><span class="bar-value" data-value="smart">4</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="audience-title">
+      <div class="section-head">
+        <span class="section-kicker text-small">AUDIENCE MAP</span>
+        <h2 id="audience-title">人群、触发点与成交卖点</h2>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th class="fit-label">人群</th>
+              <th>购买触发</th>
+              <th>主要顾虑</th>
+              <th>最有效卖点</th>
+              <th>机会</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>母婴／儿童</th>
+              <td>夜间干燥、儿童鼻喉不适</td>
+              <td>细菌、白粉、烫伤、清洗死角</td>
+              <td>易拆洗、无热源风险、恒湿、童锁</td>
+              <td><span class="priority high">高</span></td>
+            </tr>
+            <tr>
+              <th>鼻敏感人群</th>
+              <td>鼻腔干燥、睡醒不适</td>
+              <td>加湿过度、脏水二次影响</td>
+              <td>精准恒湿、洁净路径、低噪</td>
+              <td><span class="priority high">高</span></td>
+            </tr>
+            <tr>
+              <th>北方供暖</th>
+              <td>冬季长时间低湿</td>
+              <td>加湿量不够、频繁加水</td>
+              <td>大加湿量、大水箱、广覆盖、低耗材</td>
+              <td><span class="priority high">高</span></td>
+            </tr>
+            <tr>
+              <th>年轻女性</th>
+              <td>皮肤与空调房舒适感</td>
+              <td>桌面水渍、噪音、颜值不协调</td>
+              <td>细腻体验、静音、易清洁、设计感</td>
+              <td><span class="priority mid">中高</span></td>
+            </tr>
+            <tr>
+              <th>办公／租住</th>
+              <td>桌面与小卧室干燥</td>
+              <td>占地、价格、移动与收纳</td>
+              <td>小体积、低价、低噪、加水方便</td>
+              <td><span class="priority mid">中</span></td>
+            </tr>
+            <tr>
+              <th>植物／宠物／家居</th>
+              <td>植物、木器、乐器需稳定湿度</td>
+              <td>局部过湿、长期运行成本</td>
+              <td>稳定湿控、定时、低耗材、大覆盖</td>
+              <td><span class="priority mid">中</span></td>
+            </tr>
+            <tr>
+              <th>品质／智能</th>
+              <td>全屋环境管理与设备联动</td>
+              <td>传感器准确性、耗材和售后</td>
+              <td>可靠恒湿、联动、数据可视化、品牌服务</td>
+              <td><span class="priority mid">中高</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="gender-title">
+      <div class="section-head">
+        <span class="section-kicker text-small">GENDER &amp; ROLES</span>
+        <h2 id="gender-title">性别更像“家庭决策角色”，不是独立购买原因</h2>
+        <p class="section-note">公开资料不足以支持可信的行业男女购买比例，因此不建议用一个精确数字包装结论。更稳妥的做法是识别谁提出需求、谁做参数筛选、谁承担最终风险。</p>
+      </div>
+      <div class="role-grid">
+        <article class="role-item">
+          <!-- 图标原为 lucide CDN 渲染，改为内联 SVG（sparkles），避免外部脚本 -->
+          <span class="role-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg></span>
+          <h3>需求提出者</h3>
+          <p>母婴照护、皮肤与睡眠场景中，女性尤其是母亲更常提出“家里需要加湿”。沟通应先回应照护焦虑。</p>
+        </article>
+        <article class="role-item">
+          <!-- 内联 SVG（sliders-horizontal） -->
+          <span class="role-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4h-7"/><path d="M10 4H3"/><path d="M21 12h-9"/><path d="M8 12H3"/><path d="M21 20h-5"/><path d="M12 20H3"/><path d="M14 2v4"/><path d="M8 10v4"/><path d="M16 18v4"/></svg></span>
+          <h3>参数筛选者</h3>
+          <p>高客单产品中，参数敏感型用户更关注加湿量、噪音、传感器、耗材和技术路线；这类角色可能由男性更多承担，但不宜绝对化。</p>
+        </article>
+        <article class="role-item">
+          <!-- 内联 SVG（shield-check） -->
+          <span class="role-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>
+          <h3>共同决策者</h3>
+          <p>儿童家庭往往是共同决策：安全与卫生决定“买不买”，性能、品牌和价格决定“买哪台”。</p>
+        </article>
+      </div>
+      <div class="gender-conclusion">
+        <!-- 内联 SVG（lightbulb） -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+        <p><strong>投放建议：</strong>人群定向先按“场景与家庭阶段”，创意再区分角色。对需求提出者讲安心与结果，对参数筛选者给测试证据和长期成本。</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="technology-title">
+      <div class="section-head">
+        <span class="section-kicker text-small">TECHNOLOGY CHOICE</span>
+        <h2 id="technology-title">技术路线如何进入消费者心智</h2>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th>路线</th>
+              <th>用户感知优势</th>
+              <th>典型阻力</th>
+              <th>更匹配人群</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>超声波有雾</th>
+              <td>可见雾量、安静、价格友好</td>
+              <td>对水质和清洁敏感，可能出现白粉或局部湿润</td>
+              <td>预算型、办公室、小空间</td>
+            </tr>
+            <tr>
+              <th>无雾蒸发</th>
+              <td>少白粉与水渍焦虑，恒湿体验自然</td>
+              <td>价格更高，滤芯／水网维护，风扇噪音</td>
+              <td>母婴、鼻敏感、长期开机家庭</td>
+            </tr>
+            <tr>
+              <th>暖雾／蒸汽</th>
+              <td>温暖感与“高温洁净”认知</td>
+              <td>能耗与热源风险，有儿童家庭更谨慎</td>
+              <td>寒冷地区、无幼童的特定场景</td>
+            </tr>
+            <tr>
+              <th>净化加湿复合</th>
+              <td>一体化空气管理、减少设备数量</td>
+              <td>高客单、耗材复杂、单项性能是否妥协</td>
+              <td>品质型、智能家居、全屋环境用户</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="message-title">
+      <div class="section-head">
+        <span class="section-kicker text-small">SELLING-POINT ORDER</span>
+        <h2 id="message-title">卖点应按这套顺序组织</h2>
+        <p class="section-note">排序代表大多数家庭场景中的沟通优先级。不同人群可按上方权重重新排列，但不应跳过卫生安全与真实效果证据。</p>
+      </div>
+      <ol class="message-stack">
+        <li><strong>卫生与安全</strong><span>易拆洗、少死角、水路洁净方案、儿童使用风险控制；“除菌率”需给出条件、方法与机构。</span></li>
+        <li><strong>加湿能力</strong><span>额定加湿量、适用面积、达到目标湿度所需时间；避免只展示“雾大”。</span></li>
+        <li><strong>恒湿能力</strong><span>传感器位置与精度、自动启停、避免过湿和凝露。</span></li>
+        <li><strong>睡眠体验</strong><span>睡眠档噪音、灯光可关闭、整夜续航、缺水保护。</span></li>
+        <li><strong>清洁维护</strong><span>开口大小、可拆件数量、清洗频率、滤芯寿命与年耗材成本。</span></li>
+        <li><strong>设计与智能</strong><span>外观、App、语音与场景联动，用于增强选择，不宜取代核心性能。</span></li>
+        <li><strong>价格证明</strong><span>把整机价、耗材、用水和用电放到年度总成本中解释。</span></li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="action-title">
+      <div class="section-head">
+        <span class="section-kicker text-small">PRODUCT ACTIONS</span>
+        <h2 id="action-title">对产品与电商页面的直接启示</h2>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th>环节</th>
+              <th>该回答的问题</th>
+              <th>页面与产品动作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>首屏</th>
+              <td>它适合谁，解决什么不适？</td>
+              <td>用一个主场景 + 一个结果 + 一个可信证据，避免堆满功能图标。</td>
+            </tr>
+            <tr>
+              <th>风险解除</th>
+              <td>会不会脏、湿、吵、伤人？</td>
+              <td>展示拆洗路径、湿控逻辑、睡眠档实测、缺水和儿童保护。</td>
+            </tr>
+            <tr>
+              <th>性能证明</th>
+              <td>多大房间、多久有效？</td>
+              <td>按真实房间条件展示湿度曲线；说明测试温度、初始湿度与档位。</td>
+            </tr>
+            <tr>
+              <th>成交比较</th>
+              <td>为什么比同价位更值？</td>
+              <td>把加湿量、清洁时间、年耗材、噪音和保修做同口径对比。</td>
+            </tr>
+            <tr>
+              <th>复购口碑</th>
+              <td>长期使用麻烦吗？</td>
+              <td>降低日常换水和周期清洁成本；提供清晰耗材价格与提醒。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="evidence-title">
+      <div class="section-head">
+        <span class="section-kicker text-small">EVIDENCE &amp; LIMITS</span>
+        <h2 id="evidence-title">证据边界与参考资料</h2>
+        <p class="section-note">健康资料支持“适度加湿、保持清洁、避免过湿”的方向，但不等于加湿器能治疗鼻炎、感冒或皮肤问题。人群权重与营销判断属于策略模型，应再用平台搜索词、评论语料、店铺成交与访谈验证。</p>
+      </div>
+      <ol class="source-list">
+        <li><a href="https://www.epa.gov/indoor-air-quality-iaq/use-and-care-home-humidifiers" target="_blank" rel="noreferrer">U.S. EPA — Use and Care of Home Humidifiers</a>：建议控制湿度、勤换水与清洁，并关注矿物质扩散。</li>
+        <li><a href="https://www.cpsc.gov/s3fs-public/5046.pdf" target="_blank" rel="noreferrer">U.S. CPSC — Dirty Humidifiers May Cause Health Problems</a>：说明脏污设备可能散布微生物与矿物颗粒，并建议室内相对湿度维持在约 30%–50%。</li>
+        <li><a href="https://www.mayoclinic.org/diseases-conditions/common-cold/in-depth/humidifiers/art-20048021" target="_blank" rel="noreferrer">Mayo Clinic — Humidifiers: Ease skin, breathing symptoms</a>：讨论干燥不适、过湿风险与清洁要求。</li>
+        <li>《GB/T 23332-2018 加湿器》：中国家用加湿器性能与测试相关国家标准，可用于校验额定加湿量、噪声等指标口径。</li>
+      </ol>
+    </section>
+
+    <footer class="report-footer text-small">
+      <span>结论：先按场景分人，再按角色沟通，最后用证据完成成交。</span>
+      <span>研究类型：公开资料整理 + 消费策略建模</span>
+    </footer>
+  </div>
+
+  <!-- 人群权重切换交互（原文档内联脚本，无外部依赖，原样保留） -->
+  <script>
+    (() => {
+      const root = document.getElementById('humidifier-report');
+      if (!root) return;
+
+      const labels = {
+        safety: '卫生安全',
+        output: '加湿能力',
+        control: '恒湿控制',
+        noise: '睡眠噪音',
+        care: '清洁维护',
+        price: '购置成本',
+        smart: '智能设计'
+      };
+
+      const segments = {
+        family: {
+          title: '母婴与儿童家庭',
+          insight: '安全先行：能否放心整夜使用，比“雾大不大”更重要。',
+          values: { safety: 30, output: 14, control: 16, noise: 14, care: 16, price: 6, smart: 4 }
+        },
+        sensitive: {
+          title: '鼻敏感人群',
+          insight: '稳定优先：避免过湿与脏水焦虑，精准恒湿和易清洁共同决定信任。',
+          values: { safety: 26, output: 16, control: 18, noise: 14, care: 16, price: 6, smart: 4 }
+        },
+        heating: {
+          title: '北方供暖家庭',
+          insight: '性能优先：大空间、长时低湿使加湿量、覆盖和续航成为硬门槛。',
+          values: { safety: 16, output: 30, control: 18, noise: 10, care: 10, price: 12, smart: 4 }
+        },
+        beauty: {
+          title: '年轻女性',
+          insight: '体验优先：舒适感、静音和设计共同影响购买，但卫生仍是底线。',
+          values: { safety: 20, output: 14, control: 14, noise: 18, care: 12, price: 10, smart: 12 }
+        },
+        office: {
+          title: '办公与租住人群',
+          insight: '轻量优先：预算、占地和移动便利性，往往比全屋级性能更重要。',
+          values: { safety: 14, output: 18, control: 12, noise: 18, care: 10, price: 20, smart: 8 }
+        },
+        assets: {
+          title: '植物／宠物／家居用户',
+          insight: '稳定优先：目标不是体感“有雾”，而是长期维持适合对象的湿度区间。',
+          values: { safety: 16, output: 24, control: 24, noise: 8, care: 12, price: 10, smart: 6 }
+        },
+        premium: {
+          title: '品质与智能用户',
+          insight: '系统优先：传感器可靠性、恒湿、联动和售后支撑高客单溢价。',
+          values: { safety: 22, output: 18, control: 20, noise: 14, care: 10, price: 4, smart: 12 }
+        }
+      };
+
+      const title = root.querySelector('#segment-title');
+      const insight = root.querySelector('#segment-insight');
+      const bars = root.querySelector('#weight-bars');
+      const buttons = root.querySelectorAll('[data-segment]');
+
+      function selectSegment(key) {
+        const segment = segments[key];
+        if (!segment) return;
+
+        title.textContent = segment.title;
+        insight.textContent = segment.insight;
+
+        Object.entries(segment.values).forEach(([metric, value]) => {
+          const fill = root.querySelector(`[data-key="${metric}"]`);
+          const valueNode = root.querySelector(`[data-value="${metric}"]`);
+          if (fill) fill.style.width = `${Math.min(100, (value / 30) * 100)}%`;
+          if (valueNode) valueNode.textContent = value;
+        });
+
+        bars.setAttribute(
+          'aria-label',
+          `${segment.title}决策权重：` + Object.entries(segment.values)
+            .map(([metric, value]) => `${labels[metric]}${value}`)
+            .join('，')
+        );
+
+        buttons.forEach((button) => {
+          const active = button.dataset.segment === key;
+          button.setAttribute('aria-pressed', String(active));
+          button.classList.toggle('btn-primary', active);
+        });
+      }
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => selectSegment(button.dataset.segment));
+      });
+    })();
+  </script>
+</main>
+<footer class="site-footer">亚都 YADU · 文章中心</footer>
+</body>
+</html>
