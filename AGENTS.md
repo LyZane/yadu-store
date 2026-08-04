@@ -62,6 +62,7 @@ scripts/
   sync-yuque-matrix.mjs  # 语雀「产品矩阵」表格同步脚本（node 直接运行）
 public/images/         # 产品图片等静态资源
 public/images/matrix/  # 产品矩阵页图片（sync:matrix 自动下载）
+public/marketing-brief.html  # 独立静态页「营销简报」（导航栏入口，构建时原样拷贝）
 ```
 
 ## 语雀数据同步
