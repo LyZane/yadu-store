@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>130E 产品卖点与销售建议 · 亚都 YADU</title>
+<link rel="stylesheet" href="article.css">
+<style>
+  /* ===== 本文档专属样式（颜色已映射到站点 slate/cyan 色系） ===== */
+
+  /* 核心判断（琥珀警告语义色） */
+  .verdict {
+    padding: 18px 20px;
+    margin-bottom: 32px;
+    border-left: 4px solid #b45309;
+    border-radius: 0 10px 10px 0;
+    background: #fffbeb;
+    color: #92400e;
+    font-size: 14.5px;
+    font-weight: 650;
+  }
+
+  /* 核心参数条 */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin-bottom: 8px;
+    background: #e2e8f0;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .metric { padding: 24px 22px; background: #ffffff; }
+  .metric strong {
+    display: block;
+    margin-bottom: 4px;
+    color: #0e7490;
+    font-size: 26px;
+    line-height: 1.2;
+  }
+  .metric span { font-size: 13px; color: #64748b; }
+
+  /* 章节头：左侧编号 + 右侧标题 */
+  .section-head {
+    display: grid;
+    grid-template-columns: 270px minmax(0, 1fr);
+    gap: 42px;
+    margin-bottom: 30px;
+    align-items: start;
+  }
+  .section-kicker {
+    padding-top: 8px;
+    color: #0e7490;
+    font-size: 13.5px;
+    font-weight: 750;
+    letter-spacing: 1px;
+  }
+  .section-head h2 { margin-top: 0; }
+  .section-intro { color: #64748b; }
+
+  /* 卖点优先级表（表格基础样式来自 article.css，此处仅补文档特有的单元格元素） */
+  .rank { color: #0891b2; font-size: 22px; font-weight: 800; }
+  .point-title {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 15.5px;
+    font-weight: 750;
+    color: #0f172a;
+  }
+  .evidence { color: #64748b; font-size: 13.5px; }
+  .consumer-value { color: #475569; }
+
+  /* 版本对照表内的版本标签 */
+  .variant-name { color: #0e7490; font-weight: 750; white-space: nowrap; }
+
+  /* 文案主视觉区（产品昵称 + 主张） */
+  .copy-lockup {
+    display: grid;
+    grid-template-columns: minmax(250px, .8fr) minmax(0, 1.2fr);
+    gap: 42px;
+    align-items: center;
+    margin-bottom: 34px;
+    padding: 30px 0;
+    border-top: 2px solid #0f172a;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .copy-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #0e7490;
+    font-size: 13px;
+    font-weight: 750;
+  }
+  .copy-name { display: block; font-size: 34px; line-height: 1.2; }
+  .copy-model { display: block; margin-top: 7px; color: #64748b; font-size: 14px; }
+  .copy-claim {
+    margin-bottom: 7px;
+    font-size: 27px;
+    font-weight: 780;
+    line-height: 1.3;
+    color: #0f172a;
+  }
+  .copy-support { margin-bottom: 0; color: #64748b; }
+
+  /* 文案矩阵表内的概念名与文案行 */
+  .copy-concept { color: #0e7490; font-weight: 780; white-space: nowrap; }
+  .copy-line {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 15px;
+    font-weight: 720;
+    color: #0f172a;
+  }
+  .copy-proof { color: #64748b; font-size: 13.5px; }
+
+  /* 建议减少使用的文案警示 */
+  .copy-note {
+    margin-top: 22px;
+    padding: 16px 18px;
+    border-left: 4px solid #b91c1c;
+    border-radius: 0 10px 10px 0;
+    background: #fef2f2;
+    color: #7f1d1d;
+    font-size: 13.5px;
+  }
+
+  /* 销售打法：自动编号网格 */
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 36px;
+    counter-reset: strategy;
+  }
+  .strategy {
+    position: relative;
+    padding: 22px 0 22px 56px;
+    border-bottom: 1px solid #e2e8f0;
+    counter-increment: strategy;
+  }
+  .strategy::before {
+    content: counter(strategy, decimal-leading-zero);
+    position: absolute;
+    top: 22px;
+    left: 0;
+    color: #0891b2;
+    font-size: 19px;
+    font-weight: 800;
+  }
+  .strategy h3 { margin: 0 0 5px; font-size: 16px; color: #0f172a; }
+  .strategy p { margin-bottom: 0; color: #64748b; font-size: 13.5px; }
+
+  /* 主图设计卡片 */
+  .shots { display: grid; grid-template-columns: 1fr; gap: 18px; }
+  .shot {
+    padding: 22px 24px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #ffffff;
+  }
+  .shot-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .shot-no { color: #0891b2; font-size: 20px; font-weight: 800; }
+  .shot-head h3 { margin: 0; font-size: 16px; color: #0f172a; }
+  .shot dl { margin: 0; }
+  .shot dt {
+    margin-top: 10px;
+    color: #0e7490;
+    font-size: 12.5px;
+    font-weight: 750;
+    letter-spacing: 0.5px;
+  }
+  .shot dd { margin: 3px 0 0; color: #475569; font-size: 13.5px; }
+  .prompt {
+    margin-top: 4px;
+    padding: 12px 14px;
+    border: 1px dashed #cbd5e1;
+    border-radius: 8px;
+    background: #f8fafc;
+    color: #475569;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .shot-src { color: #64748b; font-size: 12.5px; }
+
+  /* 详情页分屏表内的屏序 */
+  .screen-no { color: #0891b2; font-weight: 800; white-space: nowrap; }
+
+  /* 风险面板（站点错误红浅底） */
+  .risk-panel {
+    padding: 30px;
+    border: 1px solid #fecaca;
+    border-radius: 12px;
+    background: #fef2f2;
+  }
+  .risk-panel h3 { margin: 0 0 16px; color: #b91c1c; }
+  .risk-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 30px;
+    margin: 0;
+    padding-left: 22px;
+    color: #7f1d1d;
+  }
+  .risk-list li { padding-left: 3px; margin-bottom: 0; font-size: 13.5px; }
+
+  /* 统一基础参数 */
+  .specs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin-top: 34px;
+    background: #e2e8f0;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .spec { padding: 18px 20px; background: #f8fafc; }
+  .spec small { display: block; margin-bottom: 6px; color: #64748b; font-size: 12.5px; }
+  .spec strong { font-size: 16.5px; }
+
+  /* 文末来源说明 */
+  .doc-source { margin-top: 36px; font-size: 12.5px; color: #64748b; }
+  .doc-source p { margin: 4px 0; font-size: 12.5px; color: #64748b; }
+
+  /* 响应式 */
+  @media (max-width: 820px) {
+    .metrics { grid-template-columns: repeat(2, 1fr); }
+    .section-head { grid-template-columns: 1fr; gap: 4px; }
+    .section-kicker { padding-top: 0; }
+    .copy-lockup, .strategy-grid { grid-template-columns: 1fr; }
+    .risk-list { grid-template-columns: 1fr; }
+    .specs { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .metric { padding: 20px 16px; }
+    .metric strong { font-size: 22px; }
+    .copy-name { font-size: 28px; }
+    .copy-claim { font-size: 22px; }
+    .specs { grid-template-columns: 1fr; }
+    .risk-panel { padding: 24px 20px; }
+    .shot { padding: 18px; }
+  }
+</style>
+</head>
+<body>
+<header class="site-bar">
+  <a class="brand" href="../index.html">
+    <span class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7s6.5 7 6.5 11.3a6.5 6.5 0 1 1-13 0C5.5 9.7 12 2.7 12 2.7z"/></svg></span>
+    <span><span class="name">亚都 YADU</span><br><span class="slogan">健康加湿 · 净润生活</span></span>
+  </a>
+  <a class="back" href="../index.html#/articles">← 返回文章列表</a>
+</header>
+<main class="article">
+
+  <div class="hero">
+    <span class="tag">产品卖点与销售建议</span>
+    <h1>130E 产品卖点与销售建议</h1>
+    <p>SC550-YXS130E 落地式冷暖雾超声波旗舰：全系唯一冷&amp;暖双雾机型，13L 大水箱、最高 602mL/h 雾量，主打“冬暖夏凉”的四季加湿体验。</p>
+    <div class="meta">版本：智能除菌款（黑银配色，赠加长导雾管）｜资料依据：products.ts 官方规格、产品矩阵、130E 素材目录（检测报告 KJ202402794，2024-11）｜整理日期：2026-08</div>
+  </div>
+
+  <div class="verdict">核心判断：130E 的竞争力是“冷暖双雾 + 600mL/h 旗舰雾量 + 13L 长续航”的组合。暖雾是它区别于同门 130C/130D 的唯一理由，也是冬季的成交钩子；只讲“大雾量”会把它打成普通大水箱机型。</div>
+
+  <div class="metrics" aria-label="核心参数">
+    <div class="metric"><strong>最高602mL/h</strong><span>额定加湿量（热雾档）</span></div>
+    <div class="metric"><strong>13L</strong><span>大容量水箱</span></div>
+    <div class="metric"><strong>40℃</strong><span>暖雾辅热 + UV-C 双除菌</span></div>
+    <div class="metric"><strong>6档</strong><span>雾量调节（睡眠/均衡/强湿）</span></div>
+  </div>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">01 / 版本与属性对照</div>
+      <div>
+        <h2>一个型号，两种在售套装</h2>
+        <p class="section-intro">产品矩阵中 130E 仅有一个条目，无颜色或机械/触摸多版本之分；在售差异体现在是否随附加长导雾管。同型号不同套装的属性对照如下。</p>
+      </div>
+    </div>
+
+    <table>
+      <colgroup><col style="width:16%"><col style="width:42%"><col style="width:42%"></colgroup>
+      <thead><tr><th>属性</th><th><span class="variant-name">标准装</span></th><th><span class="variant-name">加长导雾管套装（当前主推）</span></th></tr></thead>
+      <tbody>
+        <tr><td>配色 / 型号</td><td colspan="2">黑银配色，SC550-YXS130E（机身 250×250×615mm，顶部 360° 旋转出雾口）</td></tr>
+        <tr><td>出雾结构</td><td>顶部出雾口直出</td><td>加赠加长导雾管（管长约 1000mm），高位送雾、雾柱更高，远离地面打湿</td></tr>
+        <tr><td>操控方式</td><td colspan="2">上置触控屏（湿度/温度数显）+ 红外遥控</td></tr>
+        <tr><td>水箱 / 加水</td><td colspan="2">13L，顶部上加水 + 可拆卸水箱，素材标注可直加自来水</td></tr>
+        <tr><td>加湿量</td><td colspan="2">最高 602mL/h（检测报告 KJ202402794 实测 602.3mL/h，热雾模式）</td></tr>
+        <tr><td>冷暖双雾</td><td colspan="2">冷雾 / 40℃ 暖雾双模式，暖雾档辅热 + UV-C 双重除菌</td></tr>
+        <tr><td>水路净化</td><td colspan="2">麦饭石初滤 + 活水循环 + UV-C 光解除菌</td></tr>
+        <tr><td>恒湿 / 档位</td><td colspan="2">AI 智能恒湿（素材口径 30%–95%），六档雾量（睡眠 / 均衡 / 强湿场景档）</td></tr>
+        <tr><td>定时 / 安全</td><td colspan="2">1–14 小时定时，缺水断电保护，睡眠模式</td></tr>
+        <tr><td>噪音</td><td colspan="2">素材标注 38dB(A) 低噪运行（矩阵口径为“柔声”，未登记具体数值）</td></tr>
+        <tr><td>额定功率</td><td colspan="2">冷雾 35W / 暖雾 835W（products.ts 口径）</td></tr>
+        <tr><td>价格带</td><td colspan="2">天猫专卖店 ¥499，京东旗舰店 ¥429（产品矩阵登记价，随促销浮动）</td></tr>
+        <tr><td>适合人群</td><td colspan="2">怕冷想要暖雾、追求旗舰体验的家庭；客厅 / 大卧室全屋加湿</td></tr>
+      </tbody>
+    </table>
+
+    <div class="copy-note"><strong>口径提醒：</strong>详情页规格图（厂内型号 JS-24H）标注“冷雾 32W / 热雾 235W、冷雾 550mL/h / 热雾 600mL/h”，与 products.ts 的“冷雾 35W / 暖雾 835W、最高 602mL/h”不一致；续航在主图素材中为 23H、矩阵登记为 21h。对外统一以 products.ts 为准，素材图需回炉修改（详见末节风险面板）。</div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">02 / 核心卖点</div>
+      <div>
+        <h2>按购买决策重要度排序</h2>
+        <p class="section-intro">冷暖双雾是选择 130E 而非其他机型的理由，排首位；其后按“有没有效果 → 干不干净 → 麻不麻烦 → 体验好不好”的决策顺序展开。</p>
+      </div>
+    </div>
+
+    <table class="selling-points">
+      <colgroup><col style="width:8%"><col style="width:37%"><col style="width:55%"></colgroup>
+      <thead><tr><th>顺序</th><th>卖点与证据</th><th>消费者价值</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="rank">01</td>
+          <td><span class="point-title">冷暖双雾，冬暖夏凉</span><span class="evidence">冷雾 / 40℃ 暖雾双模式一键切换；暖雾档 40℃ 辅热 + UV-C 双重除菌；全系唯一暖雾机型。</span></td>
+          <td class="consumer-value">解决“冬天开加湿器喷冷雾、越加越冷”的真实痛点；夏天用冷雾清爽不闷。一台机器覆盖四季，是旗舰溢价的核心理由。</td>
+        </tr>
+        <tr>
+          <td class="rank">02</td>
+          <td><span class="point-title">旗舰雾量与全屋覆盖</span><span class="evidence">最高 602mL/h，检测报告 KJ202402794 实测 602.3mL/h（热雾模式、湿度设定 95%RH 条件）；赠加长导雾管高位送雾。</span></td>
+          <td class="consumer-value">先回答“加湿有没有用、客厅带不带动”。有可查证编号的实测报告，比“巨雾澎湃”的形容更有说服力。</td>
+        </tr>
+        <tr>
+          <td class="rank">03</td>
+          <td><span class="point-title">水路卫生三件套</span><span class="evidence">麦饭石初滤（加水即初步净化）+ 活水循环（吸水式结构不间断循环）+ 抽水至上置储水区后 UV-C 灯照射除菌。</span></td>
+          <td class="consumer-value">回应超声波机型最敏感的“水箱久放、雾气干不干净”问题；也是素材宣称“可直加自来水”的支撑点（硬水地区仍建议纯净水）。</td>
+        </tr>
+        <tr>
+          <td class="rank">04</td>
+          <td><span class="point-title">13L 大水箱长续航</span><span class="evidence">13L 容量，续航口径 21–23 小时（矩阵 21h / 主图素材 23H，需统一）。</span></td>
+          <td class="consumer-value">一次加水覆盖全天或整晚，不用半夜爬起来补水，适合持续开空调、暖气的家庭。</td>
+        </tr>
+        <tr>
+          <td class="rank">05</td>
+          <td><span class="point-title">AI 智能恒湿 + 六档雾量</span><span class="evidence">智能恒湿（素材口径 30%–95%），湿度实时数显；睡眠 / 均衡 / 强湿等六档雾量。</span></td>
+          <td class="consumer-value">避免一直喷雾造成过湿返潮；档位直观，睡眠、日常、快速加湿三种场景一看就懂。</td>
+        </tr>
+        <tr>
+          <td class="rank">06</td>
+          <td><span class="point-title">加水与清洁便利</span><span class="evidence">顶部上加水不弯腰不搬运，可拆卸水箱，大口径方便伸手清洗。</span></td>
+          <td class="consumer-value">对 13L 落地机型，“好不好加水、好不好洗”直接决定长期使用率和好评率。</td>
+        </tr>
+        <tr>
+          <td class="rank">07</td>
+          <td><span class="point-title">睡眠体验与安全</span><span class="evidence">素材标注 38dB(A) 低噪运行、睡眠模式、缺水断电保护。</span></td>
+          <td class="consumer-value">满足卧室夜间使用并降低干烧风险。销售表述用“低噪运行”，不称“无声 / 静音”。</td>
+        </tr>
+        <tr>
+          <td class="rank">08</td>
+          <td><span class="point-title">操控与落地形态</span><span class="evidence">上置触控屏 + 红外遥控，1–14h 定时，360° 旋转出雾口；615mm 塔式机身、250mm 直径窄占地。</span></td>
+          <td class="consumer-value">沙发上、床上都能遥控；落地摆放不占桌面，黑银塔身适配客厅装修风格。</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">03 / 产品文案</div>
+      <div>
+        <h2>用一个名字占领“冷暖双雾”认知</h2>
+        <p class="section-intro">命名参照竞品“加湿小方块”的形状记忆逻辑：130E 是圆柱塔身 + 冷暖两种雾，昵称直接锁定“塔”与“双雾”。文案统一“概念名 + 消费利益 + 参数证据”，不堆程度词。</p>
+      </div>
+    </div>
+
+    <div class="copy-lockup">
+      <div>
+        <span class="copy-label">推荐产品昵称</span>
+        <strong class="copy-name">亚都双雾塔</strong>
+        <span class="copy-model">SC550-YXS130E</span>
+      </div>
+      <div>
+        <div class="copy-claim">一塔双雾，冬暖夏凉</div>
+        <p class="copy-support">40℃ 暖雾 + UV-C 双除菌｜最高 602mL/h 实测雾量｜13L 昼夜长润</p>
+      </div>
+    </div>
+
+    <table class="copy-matrix">
+      <colgroup><col style="width:18%"><col style="width:23%"><col style="width:59%"></colgroup>
+      <thead><tr><th>产品卖点</th><th>概念名</th><th>主文案与证据</th></tr></thead>
+      <tbody>
+        <tr><td>冷暖双雾</td><td class="copy-concept">冷暖双润</td><td><span class="copy-line">冬天的雾是暖的，夏天的雾是凉的</span><span class="copy-proof">40℃ 辅热暖雾 + 常温冷雾，一键切换，一台机器用四季。</span></td></tr>
+        <tr><td>旗舰雾量</td><td class="copy-concept">高塔匀润</td><td><span class="copy-line">雾从高处落下，湿润铺满全屋</span><span class="copy-proof">最高 602mL/h（报告 KJ202402794 实测 602.3），加长导雾管高位送雾。</span></td></tr>
+        <tr><td>水路净化</td><td class="copy-concept">活水净润</td><td><span class="copy-line">水先净，雾才净</span><span class="copy-proof">麦饭石初滤、活水循环、UV-C 照射除菌，雾化前完成三道水路处理。</span></td></tr>
+        <tr><td>13L 水箱</td><td class="copy-concept">昼夜长润</td><td><span class="copy-line">一箱水，润过昼夜</span><span class="copy-proof">13L 充沛容量，续航约 21 小时（口径待统一后对外标注）。</span></td></tr>
+        <tr><td>智能恒湿</td><td class="copy-concept">恒润有度</td><td><span class="copy-line">湿度有数，舒适有度</span><span class="copy-proof">AI 智能恒湿，湿度实时数显，按环境自动调节输出。</span></td></tr>
+        <tr><td>六档雾量</td><td class="copy-concept">分景润控</td><td><span class="copy-line">想轻润，还是快润，由你决定</span><span class="copy-proof">睡眠 / 均衡 / 强湿六档雾量，适配不同时段与空间。</span></td></tr>
+        <tr><td>睡眠安全</td><td class="copy-concept">静夜轻润</td><td><span class="copy-line">润着，也安静着</span><span class="copy-proof">素材标注 38dB(A) 低噪运行，睡眠模式 + 缺水断电保护。</span></td></tr>
+        <tr><td>上加水</td><td class="copy-concept">揭盖续润</td><td><span class="copy-line">加水不弯腰，清洗不费手</span><span class="copy-proof">顶部上加水、可拆卸大口径水箱，手可伸入清洁。</span></td></tr>
+        <tr><td>双操控</td><td class="copy-concept">双控随润</td><td><span class="copy-line">近在指尖，远在手边</span><span class="copy-proof">上置触控屏 + 红外遥控，1–14 小时定时，360° 旋转出雾口。</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="copy-note"><strong>建议减少使用：</strong>“超大雾量、巨雾澎湃、母婴级、无菌加湿”。前两者空洞无差异且与全系机型撞词；“母婴级”“无菌”缺少标准与检测依据，素材中的“母婴人群推荐”建议改写为“适合关注用水卫生的家庭”。</div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">04 / 销售建议</div>
+      <div>
+        <h2>人群 × 渠道 × 话术侧重</h2>
+        <p class="section-intro">推荐定位：“怕冷家庭的四季加湿旗舰——冬天出暖雾的 13L 大水箱加湿器”。</p>
+      </div>
+    </div>
+    <div class="strategy-grid">
+      <article class="strategy"><h3>首屏只讲一件事：冷暖双雾</h3><p>暖雾是 130E 区别于 130C/130D/090P 的唯一理由。首屏三秒内让用户知道“这台冬天出暖雾”，雾量与水箱放到第二层。</p></article>
+      <article class="strategy"><h3>人群话术分三层</h3><p>怕冷 / 暖气房人群讲“冬天加湿不再喷冷雾”；大户型客厅讲 602mL/h 实测 + 13L；老人与育儿家庭讲水路三道处理 + 智能恒湿，不碰“母婴级”。</p></article>
+      <article class="strategy"><h3>渠道侧重差异化</h3><p>天猫主图打冷暖双雾差异与套装赠品；京东强调检测报告编号与参数表（参考京东主图的角标式利益点）；拼多多突出到手价与“赠加长导雾管”。</p></article>
+      <article class="strategy"><h3>促销节奏跟着季节走</h3><p>9–10 月加湿季前蓄水种草“一机用四季”；双 11 / 双 12 正值入冬，主打暖雾刚需 + 价保 30 天；夏季反季用“冷雾清爽 + 低功率 35W”维持动销。</p></article>
+      <article class="strategy"><h3>视频演示拍“看得见的暖”</h3><p>拍冷暖雾切换瞬间、暖雾档出雾口的温度对比、湿度数显爬升、揭盖加水与水箱拆洗。暖雾体感是图文讲不清、视频一镜到底能讲清的点。</p></article>
+      <article class="strategy"><h3>连带销售与耗材</h3><p>加长导雾管已是赠品，作为下单权益强化感知；连带推荐纯净水 / 除垢剂（硬水地区防白粉水垢）、备用麦饭石滤芯；客服话术主动建立“定期清洗水箱与雾化片”的维护预期。</p></article>
+      <article class="strategy"><h3>用证据支持强主张</h3><p>602mL/h 必须带报告编号 KJ202402794 与测试条件；续航、38dB(A) 等素材口径未与 products.ts 对齐前，对外一律标注“以产品说明书为准”。</p></article>
+      <article class="strategy"><h3>暖雾功耗要提前讲</h3><p>暖雾档 835W 与电暖器同级，是常见咨询与差评点。话术主动说明“暖雾档适合睡前快速暖润，日常恒温用冷雾档 35W”，把功耗从缺点变成使用指导。</p></article>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">05 / 天猫主图（5 张）设计</div>
+      <div>
+        <h2>逐张拆解：内容、构成与提示词</h2>
+        <p class="section-intro">五张的顺序即决策顺序：差异认知 → 场景共鸣 → 效果证据 → 卫生安心 → 省心合集。提示词按“主体 + 场景 + 光线 + 构图 + 风格 + 文案区留白”结构书写，画面元素与大字文案互相印证。</p>
+      </div>
+    </div>
+
+    <div class="shots">
+      <article class="shot">
+        <div class="shot-head"><span class="shot-no">01</span><h3>首屏 KV：一塔双雾，冬暖夏凉</h3></div>
+        <dl>
+          <dt>核心内容</dt><dd>黑银塔身旗舰亮相，大字“一塔双雾 冬暖夏凉”，副标“13L｜最高602mL/h｜40℃暖雾”。第一眼完成品类差异认知。</dd>
+          <dt>画面构成</dt><dd>产品居右 2/3，顶部雾柱升腾；背景从左到右由冷蓝渐变到暖橙，冷暖双色氛围光分别打在产品两侧，直观暗示“双雾”。左侧 1/3 纯色留白带放大字文案；右下角小字角标“赠加长导雾管”。</dd>
+          <dt>AI 生图提示词</dt><dd class="prompt">主体：黑银配色圆柱塔式落地加湿器，顶部圆形出雾口喷出细腻白色雾柱，机身中部有数显屏。场景：深色质感室内背景，左侧冷蓝色氛围光、右侧暖橙色氛围光，光线在机身交汇。构图：产品位于画面右侧三分之二，竖向居中，左侧留出大面积深色纯色区域供文案排版。风格：电商旗舰首屏海报，高级灰黑科技风，写实产品摄影，8K 细节。文案区留白：左侧三分之一保持干净暗色背景，无杂物。</dd>
+          <dt>参照素材</dt><dd class="shot-src">dump/130E详情主图/1.jpg（夜景首屏结构）、dump/130E详情主图/5.jpg（冷暖双色氛围）</dd>
+        </dl>
+      </article>
+
+      <article class="shot">
+        <div class="shot-head"><span class="shot-no">02</span><h3>差异卖点：冬天的雾是暖的</h3></div>
+        <dl>
+          <dt>核心内容</dt><dd>冷暖双模式对比，大字“冬暖夏凉 水润加倍”，辅标“40℃辅热暖雾 + UV-C 双除菌”。把抽象模式翻译成体感。</dd>
+          <dt>画面构成</dt><dd>上下双场景：上半冷蓝色调夏日卧室（冷雾模式标注），下半暖橙色调冬日客厅（暖雾模式标注），同一台产品各出现一次，形成“一台机器两种季节”的对照。</dd>
+          <dt>AI 生图提示词</dt><dd class="prompt">主体：同一款黑银圆柱塔式加湿器出现在上下两个场景中，顶部喷出白色雾气。场景：上半部分为冷蓝色调的夏季卧室，床品清爽；下半部分为暖橙色调的冬季客厅，沙发与暖光落地灯。光线：上半冷色月光感，下半暖色壁炉光感。构图：画面水平均分为上下两层，产品分别位于两层的右侧，中间以细分割线区隔。风格：电商对比海报，写实家居渲染。文案区留白：上下两层的左侧各留一块纯色区域放置“冷雾模式”“暖雾模式”标签。</dd>
+          <dt>参照素材</dt><dd class="shot-src">dump/130E详情主图/5.jpg（上下双场景原版式）、dump/130E详情主图/8.jpg（暖雾 40℃ 氛围）</dd>
+        </dl>
+      </article>
+
+      <article class="shot">
+        <div class="shot-head"><span class="shot-no">03</span><h3>效果证据：602mL/h 实测雾量</h3></div>
+        <dl>
+          <dt>核心内容</dt><dd>大字“最高602mL/h 实测雾量”，附检测报告编号 KJ202402794。用可查证证据替代“巨雾澎湃”。</dd>
+          <dt>画面构成</dt><dd>客厅场景中产品喷出高雾柱（配合加长导雾管），左下角叠放检测报告局部特写角标，编号清晰可读；空间纵深暗示全屋覆盖。</dd>
+          <dt>AI 生图提示词</dt><dd class="prompt">主体：黑银塔式加湿器加装银色加长导雾管，雾柱从一米高处喷出，雾气蓬松细腻。场景：现代深色客厅，灰色墙面、深色木地板、休闲椅与落地窗帘，空间开阔有纵深。光线：柔和的顶光与侧光，雾柱被侧光打亮形成体积光。构图：产品位于右侧黄金分割点，雾柱向上延伸出画，左下角预留一块深色区域放置检测报告角标。风格：写实电商场景图，高级灰调。文案区留白：画面上方三分之一保持干净的深色渐变背景。</dd>
+          <dt>参照素材</dt><dd class="shot-src">dump/130E详情主图/9.jpg（报告角标 + 客厅雾柱原版式）</dd>
+        </dl>
+      </article>
+
+      <article class="shot">
+        <div class="shot-head"><span class="shot-no">04</span><h3>卫生安心：水先净，雾才净</h3></div>
+        <dl>
+          <dt>核心内容</dt><dd>水路三道处理剖视，大字“水先净 雾才净”，辅标“麦饭石过滤 · 活水循环 · UV-C 除菌”。回应“雾气干不干净”。</dd>
+          <dt>画面构成</dt><dd>产品半透明剖面，水流自底部水箱向上：麦饭石滤芯层 → 循环水流箭头 → 顶部 UV-C 紫光照射区，三点用虚线标注引出文字；背景深色突出水路光效。</dd>
+          <dt>AI 生图提示词</dt><dd class="prompt">主体：黑银圆柱加湿器半透明剖面透视图，内部结构清晰可见：底部水箱中有麦饭石滤材，蓝色水流箭头自下而上循环，顶部储水区有紫色 UV-C 紫外线灯照射效果。场景：纯深色背景。光线：内部水流为冷蓝色发光效果，UV-C 区域为紫色光晕，科技感强。构图：产品竖向居中偏右，水流箭头垂直贯穿，四周留出标注引线空间。风格：电商产品结构渲染图，3D 透视科技感。文案区留白：画面左侧与顶部保持干净深色背景供标注文字。</dd>
+          <dt>参照素材</dt><dd class="shot-src">dump/130E详情主图/3.jpg（水路剖视与标注原版式）、素材/杀菌.png、素材/杀菌2.tif</dd>
+        </dl>
+      </article>
+
+      <article class="shot">
+        <div class="shot-head"><span class="shot-no">05</span><h3>省心合集：一箱水，润过昼夜</h3></div>
+        <dl>
+          <dt>核心内容</dt><dd>利益点合集收尾：13L 长续航、上加水、遥控 + 触控、1–14h 定时、缺水断电，大字“13L 一箱水 润过昼夜”。</dd>
+          <dt>画面构成</dt><dd>卧室夜景中产品静立床边，数显屏亮起湿度读数；右侧纵向排列 4–5 个图标式利益点小标（仿 SKU 图勾选列表）；左下角“赠加长导雾管”赠品角标。</dd>
+          <dt>AI 生图提示词</dt><dd class="prompt">主体：黑银塔式加湿器静立于卧室床边地毯上，数显屏显示湿度与温度读数，顶部有轻柔薄雾。场景：深夜卧室，暖黄床头灯，深灰床品，安静氛围。光线：低照度暖光，产品数显屏微光清晰可见。构图：产品位于画面左侧三分之一，右侧三分之二为干净深色墙面留白，供纵向排列图标利益点。风格：写实家居夜景，安静治愈感。文案区留白：右侧墙面与顶部保持纯色无杂物。</dd>
+          <dt>参照素材</dt><dd class="shot-src">dump/130E详情主图/10.jpg（13L 续航）、13.jpg（上加水场景）、130Esku.jpg（勾选式利益点列表与赠品角标）</dd>
+        </dl>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">06 / 详情页设计思路</div>
+      <div>
+        <h2>按屏拆分：先差异，再证据，后保障</h2>
+        <p class="section-intro">共 12 屏。每屏给出核心内容与提示词要点；画面元素必须与当屏大字互相印证，不出现与文案无关的装饰。</p>
+      </div>
+    </div>
+
+    <table>
+      <colgroup><col style="width:10%"><col style="width:30%"><col style="width:60%"></colgroup>
+      <thead><tr><th>屏序</th><th>核心内容</th><th>画面与提示词要点</th></tr></thead>
+      <tbody>
+        <tr><td class="screen-no">第 1 屏</td><td>首屏海报：一塔双雾，冬暖夏凉</td><td>与主图 01 同 KV 延展：冷暖双色氛围光 + 雾柱，深色高级灰背景。提示词要点：黑银塔式加湿器 + 冷蓝暖橙渐变背景 + 左侧文案留白，写实电商海报风。</td></tr>
+        <tr><td class="screen-no">第 2 屏</td><td>痛点共鸣：冬天加湿的三大委屈</td><td>三格痛点插画：冷雾越加越冷 / 水箱久放不放心 / 半夜起床加水。提示词要点：三组极简场景小图，人物裹毯子、皱眉看水箱、摸黑起身，灰蓝色调，每格下方留文案位。</td></tr>
+        <tr><td class="screen-no">第 3 屏</td><td>核心卖点①：冷暖双雾模式详解</td><td>冷雾 / 暖雾双模式对照 + 40℃ 辅热原理。提示词要点：上下双场景（夏卧室冷蓝 / 冬客厅暖橙），暖雾档出雾口橙色热流光效，参照素材 5.jpg、8.jpg 版式。</td></tr>
+        <tr><td class="screen-no">第 4 屏</td><td>核心卖点②：602mL/h 实测雾量</td><td>客厅雾柱 + 检测报告局部特写（编号 KJ202402794 可读）。提示词要点：加长导雾管高位雾柱 + 侧光体积光 + 左下角报告角标留白，参照素材 9.jpg。</td></tr>
+        <tr><td class="screen-no">第 5 屏</td><td>核心卖点③：水路三道处理</td><td>剖面图讲麦饭石初滤 → 活水循环 → UV-C 除菌；配文强调“净化限定在加湿水路”。提示词要点：半透明剖面 + 蓝色水流箭头 + 顶部紫色 UV 光晕，参照素材 3.jpg、7.jpg。</td></tr>
+        <tr><td class="screen-no">第 6 屏</td><td>核心卖点④：13L 续航与上加水</td><td>13L 容量 + 续航曲线 + 揭盖加水实拍感场景。提示词要点：卧室夜景产品 + 底部续航时间轴曲线 + 人物手提水壶从顶部加水，参照素材 10.jpg、13.jpg。</td></tr>
+        <tr><td class="screen-no">第 7 屏</td><td>核心卖点⑤：AI 恒湿与六档雾量</td><td>湿度数显 + 30%–95% 恒湿区间 + 睡眠/均衡/强湿三场景档。提示词要点：产品数显屏特写 + 蓝色恒湿光环 + 底部三档雾量对比小图，参照素材 11.jpg、12.jpg。</td></tr>
+        <tr><td class="screen-no">第 8 屏</td><td>睡眠与安全：38dB(A) 低噪</td><td>卧室安睡场景 + 噪音对比刻度（图书馆 45dB / 本机 38dB(A)）+ 缺水断电。提示词要点：暖黄夜灯卧室 + 人物安睡 + 左侧声波刻度条留白，参照素材 14.jpg；表述用“低噪”，不写“静音”。</td></tr>
+        <tr><td class="screen-no">第 9 屏</td><td>操控：触控 + 遥控 + 定时</td><td>上置触控屏特写 + 手持遥控 + 1–14h 定时 + 360° 旋转出雾口。提示词要点：俯视角度触控屏手指点按特写 + 沙发手持遥控场景，参照素材 16.jpg。</td></tr>
+        <tr><td class="screen-no">第 10 屏</td><td>参数总览</td><td>白底产品三视图 + 参数表（以 products.ts 口径为准：13L / 最高602mL/h / 40℃暖雾 / 六档 / 冷雾35W·暖雾835W / 250×250×615mm）。提示词要点：纯白背景产品正/侧/俯三视图，工程图标线风格，参照素材 130Esku.jpg 尺寸标注法。</td></tr>
+        <tr><td class="screen-no">第 11 屏</td><td>对比：为什么选冷暖雾升级款</td><td>对比传统加湿器与无雾加湿器（加水口、容量、除菌、暖雾）。提示词要点：三栏对比卡片版式，中间本品高亮、两侧灰化，参照素材 6.jpg；不贬低竞品品牌，只比结构。</td></tr>
+        <tr><td class="screen-no">第 12 屏</td><td>保障与承诺</td><td>价保 30 天、保修两年、旗舰正品、赠加长导雾管。提示词要点：深色收尾海报，产品小图 + 盾牌/徽章式权益图标，金色点缀，参照素材 1.jpg 底部权益条。</td></tr>
+      </tbody>
+    </table>
+
+    <div class="risk-panel">
+      <h3>上线前必须统一的口径与风险</h3>
+      <ul class="risk-list">
+        <li>功率冲突：products.ts“冷雾35W/暖雾835W” vs 详情页规格图“冷雾32W/热雾235W”，须以量产铭牌与说明书为准后回炉改图。</li>
+        <li>加湿量口径：标称 600 / 最高 602 / 实测 602.3mL/h 并存，对外统一“最高602mL/h（报告 KJ202402794）”。</li>
+        <li>续航 21h（矩阵）与 23H（主图素材）不一致，统一前标注“约 21 小时”。</li>
+        <li>噪音：素材写 38dB(A)，矩阵仅登记“柔声”，需检测报告支撑后再上参数表。</li>
+        <li>恒湿范围 30%–95% 仅见于素材图，products.ts 与矩阵未登记，统一后再对外标注。</li>
+        <li>“可直加自来水”需补充硬水地区水垢与白粉提示，建议引导纯净水。</li>
+        <li>“母婴人群推荐 / 母婴级”缺标准依据，改为“适合关注用水卫生的家庭”。</li>
+        <li>暖雾档 835W 功耗须在详情页主动说明使用场景，避免“电老虎”差评。</li>
+      </ul>
+    </div>
+
+    <div class="specs" aria-label="130E统一基础参数">
+      <div class="spec"><small>产品型号</small><strong>SC550-YXS130E</strong></div>
+      <div class="spec"><small>水箱容量</small><strong>13L</strong></div>
+      <div class="spec"><small>额定加湿量</small><strong>最高602mL/h</strong></div>
+      <div class="spec"><small>暖雾辅热</small><strong>40℃</strong></div>
+      <div class="spec"><small>雾量档位</small><strong>6档</strong></div>
+      <div class="spec"><small>额定功率</small><strong>冷雾35W / 暖雾835W</strong></div>
+      <div class="spec"><small>操控方式</small><strong>触控 + 红外遥控</strong></div>
+      <div class="spec"><small>产品尺寸</small><strong>250×250×615mm</strong></div>
+    </div>
+  </section>
+
+  <div class="doc-source">
+    <p>分析对象：/Users/zane/亚都/亚都产品资料/130E（主图、详情页、SKU 与规格素材）；官方规格以 src/data/products.ts 与产品矩阵为准。</p>
+    <p>依据现有产品物料整理；最终销售口径应以量产说明书、检测报告及平台合规要求为准。</p>
+  </div>
+
+</main>
+<footer class="site-footer">亚都 YADU · 文章中心</footer>
+</body>
+</html>

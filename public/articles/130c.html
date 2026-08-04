@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>130C 产品卖点与销售建议 · 亚都 YADU</title>
+<link rel="stylesheet" href="article.css">
+<style>
+  /* ===== 本文档专属样式（颜色已映射到站点 slate/cyan 色系） ===== */
+
+  /* 核心判断（琥珀语义色） */
+  .verdict {
+    padding: 18px 20px;
+    margin-bottom: 32px;
+    border-left: 4px solid #b45309;
+    border-radius: 0 10px 10px 0;
+    background: #fffbeb;
+    color: #92400e;
+    font-size: 14.5px;
+    font-weight: 650;
+  }
+
+  /* 核心参数条 */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin-bottom: 8px;
+    background: #e2e8f0;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .metric { padding: 24px 22px; background: #ffffff; }
+  .metric strong {
+    display: block;
+    margin-bottom: 4px;
+    color: #0e7490;
+    font-size: 26px;
+    line-height: 1.2;
+  }
+  .metric span { font-size: 13px; color: #64748b; }
+
+  /* 章节头：左侧编号 + 右侧标题 */
+  .section-head {
+    display: grid;
+    grid-template-columns: 270px minmax(0, 1fr);
+    gap: 42px;
+    margin-bottom: 30px;
+    align-items: start;
+  }
+  .section-kicker {
+    padding-top: 8px;
+    color: #0e7490;
+    font-size: 13.5px;
+    font-weight: 750;
+    letter-spacing: 1px;
+  }
+  .section-head h2 { margin-top: 0; }
+  .section-intro { color: #64748b; }
+
+  /* 卖点优先级表（表格基础样式来自 article.css，此处仅补文档特有的单元格元素） */
+  .rank { color: #0891b2; font-size: 22px; font-weight: 800; }
+  .point-title {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 15.5px;
+    font-weight: 750;
+    color: #0f172a;
+  }
+  .evidence { color: #64748b; font-size: 13.5px; }
+  .consumer-value { color: #475569; }
+
+  /* 版本对照表：版本列头与差异高亮 */
+  .version-table th:first-child { width: 15%; }
+  .version-table .diff { color: #0e7490; font-weight: 700; }
+  .version-table .same { color: #64748b; }
+
+  /* 文案主视觉区（产品昵称 + 主张） */
+  .copy-lockup {
+    display: grid;
+    grid-template-columns: minmax(250px, .8fr) minmax(0, 1.2fr);
+    gap: 42px;
+    align-items: center;
+    margin-bottom: 34px;
+    padding: 30px 0;
+    border-top: 2px solid #0f172a;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .copy-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #0e7490;
+    font-size: 13px;
+    font-weight: 750;
+  }
+  .copy-name { display: block; font-size: 34px; line-height: 1.2; }
+  .copy-model { display: block; margin-top: 7px; color: #64748b; font-size: 14px; }
+  .copy-claim {
+    margin-bottom: 7px;
+    font-size: 27px;
+    font-weight: 780;
+    line-height: 1.3;
+    color: #0f172a;
+  }
+  .copy-support { margin-bottom: 0; color: #64748b; }
+
+  /* 文案矩阵表内的概念名与文案行 */
+  .copy-concept { color: #0e7490; font-weight: 780; white-space: nowrap; }
+  .copy-line {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 15px;
+    font-weight: 720;
+    color: #0f172a;
+  }
+  .copy-proof { color: #64748b; font-size: 13.5px; }
+
+  /* 文案使用场景卡片 */
+  .copy-use-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 34px;
+  }
+  .copy-use {
+    padding: 24px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #f8fafc;
+  }
+  .copy-use h3 { margin: 0 0 14px; color: #1d4ed8; font-size: 14px; }
+  .copy-use strong {
+    display: block;
+    margin-bottom: 9px;
+    font-size: 18px;
+    line-height: 1.45;
+  }
+  .copy-use p { margin-bottom: 0; color: #64748b; font-size: 13.5px; }
+
+  /* 建议减少使用的文案警示 */
+  .copy-note {
+    margin-top: 22px;
+    padding: 16px 18px;
+    border-left: 4px solid #b91c1c;
+    border-radius: 0 10px 10px 0;
+    background: #fef2f2;
+    color: #7f1d1d;
+    font-size: 13.5px;
+  }
+
+  /* 销售打法：自动编号网格 */
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 36px;
+    counter-reset: strategy;
+  }
+  .strategy {
+    position: relative;
+    padding: 22px 0 22px 56px;
+    border-bottom: 1px solid #e2e8f0;
+    counter-increment: strategy;
+  }
+  .strategy::before {
+    content: counter(strategy, decimal-leading-zero);
+    position: absolute;
+    top: 22px;
+    left: 0;
+    color: #0891b2;
+    font-size: 19px;
+    font-weight: 800;
+  }
+  .strategy h3 { margin: 0 0 5px; font-size: 16px; color: #0f172a; }
+  .strategy p { margin-bottom: 0; color: #64748b; font-size: 13.5px; }
+
+  /* 主图设计卡片 */
+  .shot {
+    margin-bottom: 18px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #ffffff;
+    overflow: hidden;
+  }
+  .shot-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 16px 22px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #f8fafc;
+  }
+  .shot-head .no { color: #0891b2; font-size: 19px; font-weight: 800; }
+  .shot-head h3 { margin: 0; font-size: 16px; color: #0f172a; }
+  .shot-body { padding: 18px 22px 20px; }
+  .shot-body dl { margin: 0; }
+  .shot-body dt {
+    margin-top: 12px;
+    color: #0e7490;
+    font-size: 13px;
+    font-weight: 750;
+  }
+  .shot-body dt:first-child { margin-top: 0; }
+  .shot-body dd { margin: 4px 0 0; color: #475569; font-size: 13.5px; }
+  .shot-body .prompt {
+    margin-top: 6px;
+    padding: 12px 14px;
+    border-left: 3px solid #06b6d4;
+    border-radius: 0 8px 8px 0;
+    background: #f8fafc;
+    color: #475569;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .shot-body .ref { color: #64748b; font-size: 12.5px; }
+
+  /* 风险面板 */
+  .risk-panel {
+    padding: 30px;
+    border: 1px solid #fecaca;
+    border-radius: 12px;
+    background: #fef2f2;
+  }
+  .risk-panel h3 { margin: 0 0 16px; color: #b91c1c; }
+  .risk-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 30px;
+    margin: 0;
+    padding-left: 22px;
+    color: #7f1d1d;
+  }
+  .risk-list li { padding-left: 3px; margin-bottom: 0; font-size: 13.5px; }
+
+  /* 统一基础参数 */
+  .specs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin-top: 34px;
+    background: #e2e8f0;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .spec { padding: 18px 20px; background: #f8fafc; }
+  .spec small { display: block; margin-bottom: 6px; color: #64748b; font-size: 12.5px; }
+  .spec strong { font-size: 16.5px; }
+
+  /* 文末来源说明 */
+  .doc-source { margin-top: 36px; font-size: 12.5px; color: #64748b; }
+  .doc-source p { margin: 4px 0; font-size: 12.5px; color: #64748b; }
+
+  /* 响应式 */
+  @media (max-width: 820px) {
+    .metrics { grid-template-columns: repeat(2, 1fr); }
+    .section-head { grid-template-columns: 1fr; gap: 4px; }
+    .section-kicker { padding-top: 0; }
+    .copy-lockup, .strategy-grid { grid-template-columns: 1fr; }
+    .copy-use-grid { grid-template-columns: 1fr; }
+    .specs { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .metric { padding: 20px 16px; }
+    .metric strong { font-size: 22px; }
+    .copy-name { font-size: 28px; }
+    .copy-claim { font-size: 22px; }
+    .risk-list, .specs { grid-template-columns: 1fr; }
+    .risk-panel { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+<header class="site-bar">
+  <a class="brand" href="../index.html">
+    <span class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7s6.5 7 6.5 11.3a6.5 6.5 0 1 1-13 0C5.5 9.7 12 2.7 12 2.7z"/></svg></span>
+    <span><span class="name">亚都 YADU</span><br><span class="slogan">健康加湿 · 净润生活</span></span>
+  </a>
+  <a class="back" href="../index.html#/articles">← 返回文章列表</a>
+</header>
+<main class="article">
+
+  <div class="hero">
+    <span class="tag">产品卖点与销售建议</span>
+    <h1>130C 产品卖点与销售建议</h1>
+    <p>SC400-YXS130C 落地式超声波加湿器，13L 经典畅销款（白/深灰/金三色，另有 WiFi 款）。基于灰金、白色两套主图与详情页素材及产品矩阵数据，按消费者购买决策的重要程度重新梳理。</p>
+    <div class="meta">亚都 YADU · 文章中心 ｜ 覆盖版本：130C 白 / 深灰 / 金、130C-WiFi ｜ 素材日期：2024-12 至 2025-07</div>
+  </div>
+
+  <div class="verdict">核心判断：130C 的竞争力是“13L 大水箱 + 400mL/h + UV-C 除菌活水 + 智能恒湿”的均衡组合，三百元价位段用“大容量经典款”打认知，比单独喊“大雾量”更稳。</div>
+
+  <div class="metrics" aria-label="核心参数">
+    <div class="metric"><strong>400mL/h</strong><span>额定加湿量</span></div>
+    <div class="metric"><strong>13L</strong><span>大容量水箱</span></div>
+    <div class="metric"><strong>约32小时</strong><span>满水理论续航</span></div>
+    <div class="metric"><strong>≤38dB</strong><span>标称运行噪声</span></div>
+  </div>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">01 / 版本与属性对照</div>
+      <div>
+        <h2>同一型号，两个配置</h2>
+        <p class="section-intro">130C 的白、深灰、金三色为同一配置，差异仅在外观；130C-WiFi 款在遥控基础上增加手机 APP 远程控制与负离子功能，价格高出约 90–100 元。数据以产品矩阵与店铺在售页为准。</p>
+      </div>
+    </div>
+
+    <table class="version-table">
+      <thead><tr><th>属性</th><th>130C（白 / 深灰 / 金）</th><th>130C-WiFi 款</th></tr></thead>
+      <tbody>
+        <tr><td>定位</td><td>客厅日常加湿，经典畅销</td><td>同配置 + 远程智能</td></tr>
+        <tr><td>操控方式</td><td>上置触控键 + 红外遥控</td><td class="diff">上置触控键 + 红外遥控 + 手机 APP</td></tr>
+        <tr><td>除菌净化·水路</td><td>UV-C 光解除菌 + 活水循环</td><td class="same">同左</td></tr>
+        <tr><td>空气净化</td><td>—</td><td class="diff">负离子（矩阵口径，需核对量产配置）</td></tr>
+        <tr><td>水箱容量</td><td>13L</td><td class="same">同左</td></tr>
+        <tr><td>加湿量</td><td>400mL/h</td><td class="same">同左</td></tr>
+        <tr><td>满水续航</td><td>约 32 小时（理论值）</td><td class="same">同左</td></tr>
+        <tr><td>适用面积</td><td>30–50㎡</td><td class="same">同左</td></tr>
+        <tr><td>智能恒湿</td><td>✅ 恒湿范围 40%–70%（矩阵口径）</td><td class="same">✅</td></tr>
+        <tr><td>定时范围</td><td>1–12h（矩阵口径，另有素材标注 1–14h）</td><td class="same">同左</td></tr>
+        <tr><td>运行噪声</td><td>≤38dB</td><td class="same">同左</td></tr>
+        <tr><td>额定功率</td><td>25W</td><td class="same">同左</td></tr>
+        <tr><td>在售价格带</td><td class="diff">¥298（京东旗舰店）/ ¥299（天猫青桔）</td><td class="diff">¥384–398（天猫 / 京东）</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">02 / 核心卖点</div>
+      <div>
+        <h2>消费者最关心什么</h2>
+        <p class="section-intro">排序依据是购买影响力，而不是素材中出现的先后顺序。先回答“雾干不干净、加湿有没有效果、用起来麻不麻烦”，再补充体验功能。</p>
+      </div>
+    </div>
+
+    <table class="selling-points">
+      <colgroup><col style="width:8%"><col style="width:37%"><col style="width:55%"></colgroup>
+      <thead><tr><th>顺序</th><th>卖点与证据</th><th>消费者价值</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="rank">01</td>
+          <td><span class="point-title">水路卫生：UV-C 除菌 + 活水循环</span><span class="evidence">抽水至上置储水区经 UV-C 灯照射除菌后再雾化，吸水式结构不间断循环形成活水；素材宣称除菌率 99.9%。</span></td>
+          <td class="consumer-value">回应超声波加湿器最敏感的“水箱久放生菌、雾气是否干净”问题，是区别于普通大水箱机型的主要价值。</td>
+        </tr>
+        <tr>
+          <td class="rank">02</td>
+          <td><span class="point-title">加湿效率与覆盖能力</span><span class="evidence">400mL/h 额定加湿量、30–50㎡ 适用面积、三档雾量（睡眠/均衡/强湿）；部分主图标注 360° 旋转出雾口。</span></td>
+          <td class="consumer-value">先解决“加湿慢、只湿机器周围”的核心顾虑。高位塔式出雾比桌面小机更能覆盖客厅。</td>
+        </tr>
+        <tr>
+          <td class="rank">03</td>
+          <td><span class="point-title">13L 水箱与长续航</span><span class="evidence">13L 大容量，满水理论续航约 32 小时（素材口径“超 32 小时”）。</span></td>
+          <td class="consumer-value">一次加水覆盖一天一夜，适合持续开空调、暖气的家庭，免去半夜和通勤前补水。</td>
+        </tr>
+        <tr>
+          <td class="rank">04</td>
+          <td><span class="point-title">智能恒湿与湿度数显</span><span class="evidence">一键智能恒湿，LED 大屏实时显示湿度（素材数显示例 55%RH），自动调节输出。</span></td>
+          <td class="consumer-value">避免一直喷雾造成过湿返潮，让卧室、老人房用得更省心。恒湿范围口径需统一后再对外标注。</td>
+        </tr>
+        <tr>
+          <td class="rank">05</td>
+          <td><span class="point-title">防漏与加水便利</span><span class="evidence">主机提起不漏水的专利抽水结构（中国实用新型专利 ZL202022130660 5）、大口径上加水、可直加自来水。</span></td>
+          <td class="consumer-value">13L 机型最怕“搬动漏水、加水麻烦”，专利防漏 + 揭盖续水直接降低长期使用成本。</td>
+        </tr>
+        <tr>
+          <td class="rank">06</td>
+          <td><span class="point-title">睡眠体验与安全</span><span class="evidence">≤38dB（素材对标：25dB 呼吸声、42dB 窃窃私语）、睡眠模式自动熄屏、缺水断电保护、第二代降噪风机。</span></td>
+          <td class="consumer-value">满足卧室整夜使用，熄屏无光污染；缺水自动断电降低干烧风险。表述应为“低噪运行”，不能称“无声”。</td>
+        </tr>
+        <tr>
+          <td class="rank">07</td>
+          <td><span class="point-title">控制与场景适配</span><span class="evidence">上置触控键不弯腰 + 红外遥控，WiFi 款增加手机 APP 远程控制；1–12h 定时。</span></td>
+          <td class="consumer-value">沙发上、床上都能操作；APP 远程可在下班路上提前开机，到家即是舒适湿度。</td>
+        </tr>
+        <tr>
+          <td class="rank">08</td>
+          <td><span class="point-title">塔式占地与低功率</span><span class="evidence">机身约 765mm 高、底盘直径约 180mm（白色款 SKU 图标注），额定功率 25W。</span></td>
+          <td class="consumer-value">落地细塔不占桌面，连续运行 24 小时理论耗电约 0.6 度，长开不心疼。</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">03 / 产品文案</div>
+      <div>
+        <h2>用一个名字占领产品认知</h2>
+        <p class="section-intro">参照竞品“加湿小方块”的命名逻辑，把 130C 的圆柱高塔形态与 13L 大水量合并成可记忆的昵称。文案统一采用“概念名 + 消费利益 + 参数证据”，不依赖空洞的程度词。</p>
+      </div>
+    </div>
+
+    <div class="copy-lockup">
+      <div>
+        <span class="copy-label">推荐产品昵称</span>
+        <strong class="copy-name">亚都水塔</strong>
+        <span class="copy-model">SC400-YXS130C · 13L 落地款</span>
+      </div>
+      <div>
+        <div class="copy-claim">塔装 13 升，水润全屋</div>
+        <p class="copy-support">UV-C 除菌活水｜400mL/h 高塔匀润｜智能恒湿数显</p>
+      </div>
+    </div>
+
+    <table class="copy-matrix">
+      <colgroup><col style="width:18%"><col style="width:23%"><col style="width:59%"></colgroup>
+      <thead><tr><th>产品卖点</th><th>概念名</th><th>主文案与证据</th></tr></thead>
+      <tbody>
+        <tr><td>水路除菌</td><td class="copy-concept">活水净雾</td><td><span class="copy-line">先除菌，再成雾</span><span class="copy-proof">水抽至上置储水区经 UV-C 灯照射除菌后雾化，吸水式结构循环形成活水，除菌率 99.9%。</span></td></tr>
+        <tr><td>13L 水箱</td><td class="copy-concept">一昼长润</td><td><span class="copy-line">一箱水，润过一天一夜</span><span class="copy-proof">13L 充沛容量，满水理论续航约 32 小时。</span></td></tr>
+        <tr><td>加湿效率</td><td class="copy-concept">高塔匀润</td><td><span class="copy-line">雾从高处落，润到房间角</span><span class="copy-proof">400mL/h 加湿量，落地塔式高位出雾，适用 30–50㎡。</span></td></tr>
+        <tr><td>智能恒湿</td><td class="copy-concept">感湿知润</td><td><span class="copy-line">湿度看得见，润得刚刚好</span><span class="copy-proof">一键智能恒湿，LED 大屏实时显示室内湿度，自动调节输出。</span></td></tr>
+        <tr><td>防漏结构</td><td class="copy-concept">提机不漏</td><td><span class="copy-line">提起主机，水留箱内</span><span class="copy-proof">专利抽水结构设计，主机提起不漏水（专利号 ZL202022130660 5）。</span></td></tr>
+        <tr><td>上加水</td><td class="copy-concept">揭盖续润</td><td><span class="copy-line">加水不弯腰，直加自来水</span><span class="copy-proof">大口径上加水口，手可伸入清洗，可直加自来水。</span></td></tr>
+        <tr><td>睡眠模式</td><td class="copy-concept">熄屏轻润</td><td><span class="copy-line">润着，也安静着</span><span class="copy-proof">运行噪声 ≤38dB，睡眠模式自动熄屏，第二代降噪风机。</span></td></tr>
+        <tr><td>三档雾量</td><td class="copy-concept">分景润泽</td><td><span class="copy-line">睡眠微润、日常舒润、干燥快润</span><span class="copy-proof">睡眠 / 均衡 / 强湿三档，适配不同时段与空间。</span></td></tr>
+        <tr><td>三重操控</td><td class="copy-concept">三控随润</td><td><span class="copy-line">站着能按，躺着能控，路上能开</span><span class="copy-proof">上置触控 + 红外遥控，WiFi 款再加手机 APP 远程控制。</span></td></tr>
+        <tr><td>25W 功率</td><td class="copy-concept">低耗长润</td><td><span class="copy-line">整月长开，电费无感</span><span class="copy-proof">额定功率 25W，连续运行 24 小时理论耗电约 0.6 度。</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="copy-use-grid">
+      <article class="copy-use">
+        <h3>首屏推荐</h3>
+        <strong>亚都水塔<br>塔装 13 升，水润全屋</strong>
+        <p>UV-C 除菌活水循环，400mL/h 高塔匀润，一箱润过一天一夜，智能恒湿不返潮。</p>
+      </article>
+      <article class="copy-use">
+        <h3>短视频开场</h3>
+        <strong>加湿器最脏的地方，你看不见。</strong>
+        <p>亚都水塔先把水抽上来用 UV-C 灯照一遍，再变成雾。先除菌，再成雾。</p>
+      </article>
+      <article class="copy-use">
+        <h3>直播核心话术</h3>
+        <strong>13 升有多大？两天加一次水都够。</strong>
+        <p>先讲 13L 续航与 UV-C 水路，再落到专利防漏、上加水和智能恒湿，解决加水、卫生、过湿三个实际问题。</p>
+      </article>
+    </div>
+
+    <div class="copy-note"><strong>建议减少使用：</strong>“超大雾量、巨雾澎湃、母婴人群推荐、危害健康加湿”。前两者缺少差异且素材间互抄，“母婴”类表述缺少标准依据，“危害健康”属于恐吓式对比，均有合规风险。</div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">04 / 销售建议</div>
+      <div>
+        <h2>从功能清单转向问题解决</h2>
+        <p class="section-intro">推荐定位：“三百元价位、适合客厅长时间使用的 13L 大容量除菌恒湿加湿器”。</p>
+      </div>
+    </div>
+    <div class="strategy-grid">
+      <article class="strategy"><h3>人群 × 渠道 × 话术侧重</h3><p>天猫/京东搜索人群（空调房家庭）：主打 13L + 400mL/h + 除菌，标题关键词“大容量、客厅、空调房”；拼多多价格敏感人群：主推 ¥298–299 基础款，话术“经典款卖了很多年”；有远程需求的年轻家庭：加 ¥90 升 WiFi 款，话术“下班路上开机，到家就润”。</p></article>
+      <article class="strategy"><h3>三色版本的角色分工</h3><p>白色款走自然清新场景图（现有“草地水景”首图风格），深灰/金色走质感客厅场景图；SKU 图用一张三视图列清全部功能点（参照现有白色 SKU 图结构）。</p></article>
+      <article class="strategy"><h3>促销节奏</h3><p>9–10 月加湿旺季前完成主图与详情页改版并备货；双 11 / 双 12 主推基础款走量、WiFi 款做“加 90 元升智能”的升级选项；年货节绑定“送礼送健康”场景。价保 30 天承诺沿用现有口径。</p></article>
+      <article class="strategy"><h3>连带销售</h3><p>本品无滤芯耗材，连带重点放在：除垢剂 / 清洁刷（硬水地区刚需）、纯净水加购提示、WiFi 升级款差价引导，以及“客厅 130C + 卧室小机型”的组合推荐。</p></article>
+      <article class="strategy"><h3>建立维护预期</h3><p>主动说明定期清洗水箱与雾化片；硬水地区建议纯净水或软化水，减少白粉与水垢差评——“可直加自来水”的表述需与水质提示同时出现。</p></article>
+      <article class="strategy"><h3>用证据支持强主张</h3><p>99.9% 除菌率必须带检测对象、条件和报告编号；32 小时续航标注为理论值；专利结构直接挂专利号 ZL202022130660 5，比“防漏黑科技”更可信。</p></article>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">05 / 天猫主图设计</div>
+      <div>
+        <h2>5 张主图逐张拆解</h2>
+        <p class="section-intro">沿用现有素材验证过的“黑金质感客厅 + 大字参数”视觉体系，白色款可复用自然场景。每张图的大字文案必须与画面元素互相印证。</p>
+      </div>
+    </div>
+
+    <article class="shot">
+      <div class="shot-head"><span class="no">P1</span><h3>首图：一眼看清“大容量 + 除菌”</h3></div>
+      <div class="shot-body">
+        <dl>
+          <dt>核心内容</dt><dd>左侧大字「13L 大水箱 / 400mL/h」，下方三条卖点胶囊：UV-C 光解除菌、智能恒湿、上加水；右侧产品 3/4 侧视图，顶部出雾。</dd>
+          <dt>画面构成</dt><dd>暖调质感客厅环境融合（落地灯、木地板），产品立于画面右 1/3，出雾向上延伸形成纵向视觉引导；左侧上 2/3 为文案区，底部保留价保 / 物流角标位。</dd>
+          <dt>AI 生图提示词</dt>
+        </dl>
+        <div class="prompt">主体：亚都 130C 落地式圆柱加湿器（深灰色细高塔形机身，顶部黑色数显屏显示“55”，顶部出雾口喷出细腻白雾）。场景：暖色调现代客厅，木地板、米色落地灯柔光背景虚化。光线：右侧暖光轮廓光 + 正面柔光，金属腰环反光。构图：产品在画面右三分之一竖直居中，左侧大面积深色留白用于文案，正方形 1:1。风格：高端家电电商主图摄影，写实渲染质感。文案区留白：左半部分无杂物，顶部留出品牌 logo 位。</div>
+        <p class="ref">参照素材：130C-灰、金/dump/主图/1.jpg（现有京东首图结构）、130C-白/dump/主图/首图.jpg（白色款自然场景版）。</p>
+      </div>
+    </article>
+
+    <article class="shot">
+      <div class="shot-head"><span class="no">P2</span><h3>除菌：把看不见的水路做成剖视</h3></div>
+      <div class="shot-body">
+        <dl>
+          <dt>核心内容</dt><dd>大字「UV-C 光解除菌 除菌率 99.9%*」，机身透明剖视，水箱内部 UV-C 灯照射水流的紫色光效，标注“先除菌再加湿”。</dd>
+          <dt>画面构成</dt><dd>深色背景 + 机身透视剖面，水流从下水箱抽至上置储水区，UV-C 紫光在储水区炸开，病毒颗粒被光束击碎；右上角小字注释位（*检测报告编号）。</dd>
+          <dt>AI 生图提示词</dt>
+        </dl>
+        <div class="prompt">主体：圆柱形加湿器半透明剖视图，内部可见下置大水箱、上置储水区和紫色 UV-C 杀菌灯，水流管道向上输送，紫色光束照射下病毒颗粒碎裂消散。场景：纯黑背景配紫色科技感光晕。光线：内部紫蓝色发光为主光源，边缘青色轮廓光。构图：产品垂直居中占画面 70%，顶部留白放大字标题，底部留白放参数注释。风格：3D 产品结构渲染图，科技透视风格，冷色调。文案区留白：顶部约 25% 与底部约 15% 纯色无元素。</div>
+        <p class="ref">参照素材：130C-灰、金/dump/主图/4.jpg（UV-C 紫光剖视）、dump/主图/3.jpg（除菌&活水循环系统标注版）。</p>
+      </div>
+    </article>
+
+    <article class="shot">
+      <div class="shot-head"><span class="no">P3</span><h3>大水箱：13L 到底多大</h3></div>
+      <div class="shot-body">
+        <dl>
+          <dt>核心内容</dt><dd>大字「13L 充沛容量 一箱润过一天一夜」，副标“满水理论续航约 32 小时”；画面用等效对比让 13L 可感知（约 26 瓶 500mL 矿泉水）。</dd>
+          <dt>画面构成</dt><dd>夜间卧室 / 走廊场景，产品机身半透明显示内部满水水位线与气泡，地面积水倒影；左侧竖排大字。</dd>
+          <dt>AI 生图提示词</dt>
+        </dl>
+        <div class="prompt">主体：亚都 130C 白色落地加湿器，圆柱机身半透明处理，可见内部 13L 蓝色水体与上升气泡，顶部黑色数显屏亮着“55”。场景：夜晚暖光卧室走廊，木地板，墙面微光。光线：低色温环境光 + 机身内部水体透出淡蓝光。构图：产品居中偏右，左侧竖排留白用于大字标题，正方形 1:1。风格：电商场景渲染图，静谧夜晚氛围，写实。文案区留白：左侧约 30% 竖条区域无杂物。</div>
+        <p class="ref">参照素材：130C-灰、金/dump/主图/7.jpg（走廊场景 + 机身水体效果）。</p>
+      </div>
+    </article>
+
+    <article class="shot">
+      <div class="shot-head"><span class="no">P4</span><h3>恒湿与三档：把“会自动调”讲具体</h3></div>
+      <div class="shot-body">
+        <dl>
+          <dt>核心内容</dt><dd>大字「智能恒湿 湿度看得见」，数显屏特写 55%RH；下方三联小图：睡眠档微润 / 均衡档舒润 / 强湿档快润，雾量大小递进。</dd>
+          <dt>画面构成</dt><dd>上半屏为俯视出雾口特写 + 湿度波纹扩散线，下半屏三宫格档位对比；整体黑金色调与首图统一。</dd>
+          <dt>AI 生图提示词</dt>
+        </dl>
+        <div class="prompt">主体：加湿器顶部出雾口俯视特写，黑色亮面数显屏清晰显示“55 %RH”，白色水雾升腾，周围金色同心圆波纹线向外扩散。场景：深色背景配金色光线纹理。光线：顶部柔光 + 屏幕自发光。构图：上半部俯视特写，下半部留三宫格分栏位用于档位对比小图，正方形 1:1。风格：高端家电功能卖点图，黑金配色，科技感动效线条。文案区留白：顶部 20% 放大字标题，中部波纹区不放文字。</div>
+        <p class="ref">参照素材：130C-灰、金/dump/主图/8.jpg（恒湿波纹）、130C-白/dump/主图/2.jpg（三档雾量九宫格版式）。</p>
+      </div>
+    </article>
+
+    <article class="shot">
+      <div class="shot-head"><span class="no">P5</span><h3>静音与 SKU：睡眠场景 + 全功能清单</h3></div>
+      <div class="shot-body">
+        <dl>
+          <dt>核心内容</dt><dd>第五张按平台习惯二选一：睡眠静音图（大字「≤38dB 轻音不扰眠」，分贝刻度尺对标 11dB 小猫走路 / 25dB 呼吸声 / 42dB 窃窃私语）或 SKU 功能清单图（左侧勾选列表 + 右侧产品正立面 + 765mm/180mm 尺寸标注）。</dd>
+          <dt>画面构成</dt><dd>静音图：暗调卧室、婴儿安睡剪影、产品熄屏状态仅顶部微雾；SKU 图：纯白底、金色勾选标签，产品右侧立面，尺寸线标注。</dd>
+          <dt>AI 生图提示词</dt>
+        </dl>
+        <div class="prompt">主体：深夜卧室床边，亚都 130C 加湿器熄屏运行，顶部一缕细雾，近景为熟睡人物的柔焦剪影。场景：深蓝黑夜色调卧室，窗帘微透光。光线：极暗环境光 + 远处小夜灯暖点光，画面整体低亮度。构图：人物在画面上半部，产品在下半部居中，中间横向留白放分贝刻度尺图形。风格：安静治愈系电商场景图，电影感暗调。文案区留白：顶部 18% 放大字「≤38dB」，中部横条留给刻度信息图。</div>
+        <p class="ref">参照素材：130C-灰、金/dump/主图/9.jpg（38dB 刻度尺）、130C-白/dump/主图/sku.jpg（SKU 清单 + 尺寸标注）。</p>
+      </div>
+    </article>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">06 / 详情页设计思路</div>
+      <div>
+        <h2>按决策顺序排屏</h2>
+        <p class="section-intro">先回答“干不干净、有没有效果”，再讲“麻不麻烦、安不安心”，最后给参数与保障。每屏附提示词要点。</p>
+      </div>
+    </div>
+
+    <article class="shot">
+      <div class="shot-head"><span class="no">S1</span><h3>首屏海报</h3></div>
+      <div class="shot-body">
+        <dl>
+          <dt>核心内容</dt><dd>品牌 + 大字主张「高效健康加湿 洁净水润呵护」，三标签：智能恒湿 / UV-C 除菌 / 便捷上加水；产品正面全身像，顶部浓雾。</dd>
+          <dt>提示词要点</dt><dd>主体为白色/深灰塔式加湿器全身正面像；场景为拱形结构暖光展厅；顶部 30% 留标题区；竖版长图 790px 宽，写实渲染，产品与雾气占下半屏。</dd>
+        </dl>
+        <p class="ref">参照素材：130C-灰、金/dump/详情/加湿器详情_01.jpg。</p>
+      </div>
+    </article>
+
+    <article class="shot">
+      <div class="shot-head"><span class="no">S2</span><h3>痛点对比屏</h3></div>
+      <div class="shot-body">
+        <dl>
+          <dt>核心内容</dt><dd>「拒绝不健康加湿」左右对比：传统加湿器（加水口小难清洗 / 3L 频繁加水 / 无除菌）与无雾加湿器（滤网发黄霉变 / 5L 小容量）→ 本品四项答案（大口径上加水 / 13L / UV-C 除菌 / 活水循环）。</dd>
+          <dt>提示词要点</dt><dd>三栏信息图版式，左右灰调竞品简笔剪影，中间本品彩色实机；竞品用图标 + 短句，不用真实品牌图，避免贬低式对比合规风险。</dd>
+        </dl>
+        <p class="ref">参照素材：130C-灰、金/dump/详情/加湿器详情_05.jpg。</p>
+      </div>
+    </article>
+
+    <article class="shot">
+      <div class="shot-head"><span class="no">S3</span><h3>核心卖点屏 × 4：除菌活水 → 雾量 → 续航 → 恒湿</h3></div>
+      <div class="shot-body">
+        <dl>
+          <dt>核心内容</dt><dd>①除菌&活水循环系统剖视（抽水至上置储水区 UV-C 照射 + 吸水式不间断循环，超声波陶瓷雾化器）；②400mL/h 客厅场景出雾；③13L 水体机身 + 32h 续航；④智能恒湿数显 + 三档雾量。</dd>
+          <dt>提示词要点</dt><dd>四屏统一黑金色调与金色同心圆波纹母题；剖视屏强调水流路径箭头与 UV-C 紫光；每屏顶部大字 + 右侧/下方 2–3 行注解，文字区不超过画面 40%。</dd>
+        </dl>
+        <p class="ref">参照素材：dump/主图/3.jpg、6.jpg、7.jpg、8.jpg；dump/详情/加湿器详情_02.jpg。</p>
+      </div>
+    </article>
+
+    <article class="shot">
+      <div class="shot-head"><span class="no">S4</span><h3>使用便利屏 × 2：防漏结构 + 静音睡眠</h3></div>
+      <div class="shot-body">
+        <dl>
+          <dt>核心内容</dt><dd>①上置主机/下置水箱分离示意，「主机提起不漏水」+ 专利号 ZL202022130660 5；②睡眠模式熄屏 + 38dB 分贝刻度对标（11dB 小猫走路 / 25dB 呼吸声 / 42dB 窃窃私语），缺水断电保护。</dd>
+          <dt>提示词要点</dt><dd>防漏屏：主机提起瞬间的结构分解图，下置水箱水面平静无溢出，金色标注线；静音屏：暗调卧室 + 熟睡人物剪影 + 横向刻度尺，刻度数字用大号衬线数字突出。</dd>
+        </dl>
+        <p class="ref">参照素材：dump/主图/5.jpg；dump/详情/加湿器详情_09.jpg。</p>
+      </div>
+    </article>
+
+    <article class="shot">
+      <div class="shot-head"><span class="no">S5</span><h3>操控与参数屏</h3></div>
+      <div class="shot-body">
+        <dl>
+          <dt>核心内容</dt><dd>三种控制方式三联图（上置触控不弯腰 / 红外遥控 / WiFi 款 APP 远程）+ 全参数表（型号、功率、水箱、加湿量、档位、噪音、尺寸、重量）。</dd>
+          <dt>提示词要点</dt><dd>三联竖版卡片：手指点触数显屏特写 / 手持遥控器对准整机 / 手持手机 APP 界面截图位；参数屏用白底表格，不用效果图。</dd>
+        </dl>
+        <p class="ref">参照素材：dump/详情/加湿器详情_13.jpg；130C-白/dump/主图/sku.jpg（参数口径）。</p>
+      </div>
+    </article>
+
+    <article class="shot">
+      <div class="shot-head"><span class="no">S6</span><h3>对比与保障屏</h3></div>
+      <div class="shot-body">
+        <dl>
+          <dt>核心内容</dt><dd>系列内对比（130C 经典款 / 130D 三重抑菌 / WiFi 款差异一句话）引导选对版本；保障：专利证书位、缺水断电、价保 30 天、多仓速发。</dd>
+          <dt>提示词要点</dt><dd>对比用浅色三列表格信息图即可，不必生图；保障屏用证书框 + 服务图标四宫格，色调转浅（米白底）收束全页。</dd>
+        </dl>
+        <p class="ref">参照素材：产品矩阵版本对照（src/data/matrix.ts）；dump/主图/1.jpg 底部服务角标。</p>
+      </div>
+    </article>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">07 / 上线前校验</div>
+      <div><h2>素材口径必须统一</h2><p class="section-intro">灰金与白色两套素材及数据源之间存在参数出入，若直接组合使用，容易造成参数投诉。</p></div>
+    </div>
+    <div class="risk-panel">
+      <h3>需优先处理的冲突与风险</h3>
+      <ul class="risk-list">
+        <li>恒湿范围：产品数据为 50%–70%，产品矩阵为 40%–70%，需核对说明书统一。</li>
+        <li>定时范围：矩阵为 1–12h，白色款 SKU 图标注 1–14h。</li>
+        <li>360° 旋转出雾口只在部分主图出现，应核对量产结构后再决定是否保留。</li>
+        <li>WiFi 款“负离子”仅出现在矩阵中，主图/详情未体现，需核对量产配置。</li>
+        <li>99.9% 除菌率需绑定具体检测报告、菌种和测试条件（白色主图已带 * 注占位）。</li>
+        <li>“约 32 小时续航”为理论值，需标注测试档位与环境条件。</li>
+        <li>“可直加自来水”应补充硬水地区水质差异和水垢提示。</li>
+        <li>“母婴人群推荐”“拒绝危害健康加湿”存在医疗化与恐吓式表述风险，建议改写。</li>
+      </ul>
+    </div>
+    <div class="specs" aria-label="130C统一基础参数">
+      <div class="spec"><small>产品型号</small><strong>SC400-YXS130C</strong></div>
+      <div class="spec"><small>额定功率</small><strong>25W</strong></div>
+      <div class="spec"><small>水箱容量</small><strong>13L</strong></div>
+      <div class="spec"><small>额定加湿量</small><strong>400mL/h</strong></div>
+      <div class="spec"><small>加湿档位</small><strong>3档</strong></div>
+      <div class="spec"><small>运行噪声</small><strong>≤38dB</strong></div>
+      <div class="spec"><small>适用面积</small><strong>30–50㎡</strong></div>
+      <div class="spec"><small>机身尺寸</small><strong>高约765mm · 底盘约180mm</strong></div>
+    </div>
+  </section>
+
+  <div class="doc-source">
+    <p>分析对象：/Users/zane/亚都/亚都产品资料/130C-灰、金、/Users/zane/亚都/亚都产品资料/130C-白；数据源：src/data/products.ts、src/data/matrix.ts</p>
+    <p>依据现有产品物料整理；最终销售口径应以量产说明书、检测报告及平台合规要求为准。</p>
+  </div>
+
+</main>
+<footer class="site-footer">亚都 YADU · 文章中心</footer>
+</body>
+</html>

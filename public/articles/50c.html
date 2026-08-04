@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>50C 产品卖点与销售建议 · 亚都 YADU</title>
+<link rel="stylesheet" href="article.css">
+<style>
+  /* ===== 本文档专属样式（颜色已映射到站点 slate/cyan 色系） ===== */
+
+  /* 核心判断（琥珀警告语义色） */
+  .verdict {
+    padding: 18px 20px;
+    margin-bottom: 32px;
+    border-left: 4px solid #b45309;
+    border-radius: 0 10px 10px 0;
+    background: #fffbeb;
+    color: #92400e;
+    font-size: 14.5px;
+    font-weight: 650;
+  }
+
+  /* 核心参数条 */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin-bottom: 8px;
+    background: #e2e8f0;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .metric { padding: 24px 22px; background: #ffffff; }
+  .metric strong {
+    display: block;
+    margin-bottom: 4px;
+    color: #0e7490;
+    font-size: 26px;
+    line-height: 1.2;
+  }
+  .metric span { font-size: 13px; color: #64748b; }
+
+  /* 章节头：左侧编号 + 右侧标题 */
+  .section-head {
+    display: grid;
+    grid-template-columns: 270px minmax(0, 1fr);
+    gap: 42px;
+    margin-bottom: 30px;
+    align-items: start;
+  }
+  .section-kicker {
+    padding-top: 8px;
+    color: #0e7490;
+    font-size: 13.5px;
+    font-weight: 750;
+    letter-spacing: 1px;
+  }
+  .section-head h2 { margin-top: 0; }
+  .section-intro { color: #64748b; }
+
+  /* 版本对照表：版本列头 */
+  .version-col { white-space: nowrap; }
+  .version-col small { display: block; margin-top: 2px; font-weight: 400; color: #64748b; }
+  .same { color: #64748b; } /* 与标准版相同的单元格 */
+
+  /* 卖点优先级表（表格基础样式来自 article.css） */
+  .rank { color: #0891b2; font-size: 22px; font-weight: 800; }
+  .point-title {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 15.5px;
+    font-weight: 750;
+    color: #0f172a;
+  }
+  .evidence { color: #64748b; font-size: 13.5px; }
+  .consumer-value { color: #475569; }
+
+  /* 文案主视觉区（产品昵称 + 主张） */
+  .copy-lockup {
+    display: grid;
+    grid-template-columns: minmax(250px, .8fr) minmax(0, 1.2fr);
+    gap: 42px;
+    align-items: center;
+    margin-bottom: 34px;
+    padding: 30px 0;
+    border-top: 2px solid #0f172a;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .copy-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #0e7490;
+    font-size: 13px;
+    font-weight: 750;
+  }
+  .copy-name { display: block; font-size: 34px; line-height: 1.2; }
+  .copy-model { display: block; margin-top: 7px; color: #64748b; font-size: 14px; }
+  .copy-claim {
+    margin-bottom: 7px;
+    font-size: 27px;
+    font-weight: 780;
+    line-height: 1.3;
+    color: #0f172a;
+  }
+  .copy-support { margin-bottom: 0; color: #64748b; }
+
+  /* 文案矩阵表内的概念名与文案行 */
+  .copy-concept { color: #0e7490; font-weight: 780; white-space: nowrap; }
+  .copy-line {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 15px;
+    font-weight: 720;
+    color: #0f172a;
+  }
+  .copy-proof { color: #64748b; font-size: 13.5px; }
+
+  /* 文案使用场景卡片 */
+  .copy-use-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 34px;
+  }
+  .copy-use {
+    padding: 24px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #f8fafc;
+  }
+  .copy-use h3 { margin: 0 0 14px; color: #1d4ed8; font-size: 14px; }
+  .copy-use strong {
+    display: block;
+    margin-bottom: 9px;
+    font-size: 18px;
+    line-height: 1.45;
+  }
+  .copy-use p { margin-bottom: 0; color: #64748b; font-size: 13.5px; }
+
+  /* 建议减少使用的文案警示 */
+  .copy-note {
+    margin-top: 22px;
+    padding: 16px 18px;
+    border-left: 4px solid #b91c1c;
+    border-radius: 0 10px 10px 0;
+    background: #fef2f2;
+    color: #7f1d1d;
+    font-size: 13.5px;
+  }
+
+  /* 销售打法：自动编号网格 */
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 36px;
+    counter-reset: strategy;
+  }
+  .strategy {
+    position: relative;
+    padding: 22px 0 22px 56px;
+    border-bottom: 1px solid #e2e8f0;
+    counter-increment: strategy;
+  }
+  .strategy::before {
+    content: counter(strategy, decimal-leading-zero);
+    position: absolute;
+    top: 22px;
+    left: 0;
+    color: #0891b2;
+    font-size: 19px;
+    font-weight: 800;
+  }
+  .strategy h3 { margin: 0 0 5px; font-size: 16px; color: #0f172a; }
+  .strategy p { margin-bottom: 0; color: #64748b; font-size: 13.5px; }
+
+  /* 顾虑转译四宫格 */
+  .message-map {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #ffffff;
+  }
+  .message { padding: 24px; border-right: 1px solid #e2e8f0; }
+  .message:last-child { border-right: 0; }
+  .message .concern {
+    display: block;
+    margin-bottom: 13px;
+    color: #b91c1c;
+    font-size: 13.5px;
+    font-weight: 750;
+  }
+  .message strong { display: block; margin-bottom: 8px; font-size: 16px; }
+  .message p { margin-bottom: 0; color: #64748b; font-size: 13.5px; }
+
+  /* 主图设计卡片 */
+  .shot {
+    margin-bottom: 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #ffffff;
+    overflow: hidden;
+  }
+  .shot-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 16px 22px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #f8fafc;
+  }
+  .shot-no { color: #0891b2; font-size: 19px; font-weight: 800; white-space: nowrap; }
+  .shot-title { font-size: 15.5px; font-weight: 750; color: #0f172a; }
+  .shot-body { padding: 18px 22px 20px; }
+  .shot-field { margin-bottom: 12px; font-size: 13.5px; color: #475569; }
+  .shot-field:last-child { margin-bottom: 0; }
+  .shot-field b { display: block; margin-bottom: 3px; color: #0e7490; font-size: 13px; }
+  .prompt {
+    margin-top: 4px;
+    padding: 13px 16px;
+    border-radius: 10px;
+    background: #0f172a;
+    color: #cbd5e1;
+    font-size: 12.8px;
+    line-height: 1.8;
+  }
+  .refs { margin-top: 4px; }
+  .refs .badge { margin-right: 6px; }
+
+  /* 风险面板 */
+  .risk-panel {
+    padding: 30px;
+    border: 1px solid #fecaca;
+    border-radius: 12px;
+    background: #fef2f2;
+  }
+  .risk-panel h3 { margin: 0 0 16px; color: #b91c1c; }
+  .risk-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 30px;
+    margin: 0;
+    padding-left: 22px;
+    color: #7f1d1d;
+  }
+  .risk-list li { padding-left: 3px; margin-bottom: 0; font-size: 13.5px; }
+
+  /* 统一基础参数 */
+  .specs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin-top: 34px;
+    background: #e2e8f0;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .spec { padding: 18px 20px; background: #f8fafc; }
+  .spec small { display: block; margin-bottom: 6px; color: #64748b; font-size: 12.5px; }
+  .spec strong { font-size: 16.5px; }
+
+  /* 文末来源说明 */
+  .doc-source { margin-top: 36px; font-size: 12.5px; color: #64748b; }
+  .doc-source p { margin: 4px 0; font-size: 12.5px; color: #64748b; }
+
+  /* 响应式 */
+  @media (max-width: 820px) {
+    .metrics { grid-template-columns: repeat(2, 1fr); }
+    .section-head { grid-template-columns: 1fr; gap: 4px; }
+    .section-kicker { padding-top: 0; }
+    .copy-lockup, .strategy-grid { grid-template-columns: 1fr; }
+    .copy-use-grid { grid-template-columns: 1fr; }
+    .message-map { grid-template-columns: repeat(2, 1fr); }
+    .message:nth-child(2) { border-right: 0; }
+    .message:nth-child(-n+2) { border-bottom: 1px solid #e2e8f0; }
+    .specs { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .metric { padding: 20px 16px; }
+    .metric strong { font-size: 22px; }
+    .copy-name { font-size: 28px; }
+    .copy-claim { font-size: 22px; }
+    .message-map, .risk-list, .specs { grid-template-columns: 1fr; }
+    .message { border-right: 0; border-bottom: 1px solid #e2e8f0; }
+    .message:last-child { border-bottom: 0; }
+    .risk-panel { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+<header class="site-bar">
+  <a class="brand" href="../index.html">
+    <span class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7s6.5 7 6.5 11.3a6.5 6.5 0 1 1-13 0C5.5 9.7 12 2.7 12 2.7z"/></svg></span>
+    <span><span class="name">亚都 YADU</span><br><span class="slogan">健康加湿 · 净润生活</span></span>
+  </a>
+  <a class="back" href="../index.html#/articles">← 返回文章列表</a>
+</header>
+<main class="article">
+
+  <div class="hero">
+    <span class="tag">YADU · 产品卖点与销售建议</span>
+    <h1>50C 产品卖点与销售建议</h1>
+    <p>SZ400-YXS50C 冷蒸发式无雾加湿器，白/黑两色同配置，另有 50C语音版。基于产品数据、产品矩阵与白/黑两色主图、详情页素材，按消费者购买决策的重要程度重新梳理。</p>
+    <div class="meta">亚都 YADU · 文章中心 ｜ 版本：50C（白/黑）＋ 50C语音版 ｜ 资料：产品矩阵 2026-08 同步 · 官方素材 2025-12 至 2026-07</div>
+  </div>
+
+  <div class="verdict">核心判断：50C 的竞争力不在单个参数，而在「无雾冷蒸发 + UV-C/麦饭石/滤网三重净水 + 9W 超省电 + 入门价格带」的组合——它是把用户从超声波有雾机升级到无雾机的最低门槛选择。</div>
+
+  <div class="metrics" aria-label="核心参数">
+    <div class="metric"><strong>400mL/h</strong><span>额定加湿量</span></div>
+    <div class="metric"><strong>5L</strong><span>水箱容量</span></div>
+    <div class="metric"><strong>12.5h</strong><span>满水续航</span></div>
+    <div class="metric"><strong>9W</strong><span>额定功率（超省电）</span></div>
+  </div>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">01 / 版本与属性对照</div>
+      <div>
+        <h2>白、黑、语音版是同一台机器</h2>
+        <p class="section-intro">白色与黑色为同一型号 SZ400-YXS50C 的两个配色，功能参数完全一致；50C语音版同平台、仅操控方式升级为「语音 + 遥控」，其余属性与标准版共用（产品矩阵中为合并单元格）。</p>
+      </div>
+    </div>
+
+    <table>
+      <colgroup><col style="width:16%"><col style="width:28%"><col style="width:28%"><col style="width:28%"></colgroup>
+      <thead>
+        <tr>
+          <th>属性</th>
+          <th class="version-col">50C 白色<small>SZ400-YXS50C</small></th>
+          <th class="version-col">50C 黑色<small>SZ400-YXS50C</small></th>
+          <th class="version-col">50C语音版<small>同平台升级款</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>加湿方式</td><td>冷蒸发无雾（滤网蒸发）</td><td class="same">同左</td><td class="same">同左</td></tr>
+        <tr><td>操控方式</td><td>顶部触控 + 红外遥控</td><td class="same">同左</td><td><strong>语音 + 遥控</strong></td></tr>
+        <tr><td>水路净化</td><td>UV-C 杀菌 + 麦饭石净化 + 高密度滤网</td><td class="same">同左</td><td class="same">同左（UV / 麦饭石 / 滤网）</td></tr>
+        <tr><td>水箱容量</td><td>5L</td><td class="same">同左</td><td class="same">同左</td></tr>
+        <tr><td>加湿量</td><td>400mL/h</td><td class="same">同左</td><td class="same">同左</td></tr>
+        <tr><td>满水续航</td><td>12.5h</td><td class="same">同左</td><td class="same">同左</td></tr>
+        <tr><td>适用面积</td><td>20-40㎡（卧室 / 儿童房）</td><td class="same">同左</td><td class="same">同左</td></tr>
+        <tr><td>智能恒湿</td><td>✅ 40%-70%，湿度数显</td><td class="same">同左</td><td class="same">✅ 同左</td></tr>
+        <tr><td>加湿档位</td><td>3 档（睡眠 / 日常 / 快速）</td><td class="same">同左</td><td class="same">同左</td></tr>
+        <tr><td>定时范围</td><td>1-12h</td><td class="same">同左</td><td class="same">同左</td></tr>
+        <tr><td>运行噪声</td><td>柔声（素材未标注 dB 值）</td><td class="same">同左</td><td class="same">同左</td></tr>
+        <tr><td>额定功率</td><td>9W（超省电）</td><td class="same">同左</td><td class="same">同左</td></tr>
+        <tr><td>外形尺寸</td><td>210×210×350mm（详情页标注 210×350mm）</td><td class="same">同左</td><td class="same">同左</td></tr>
+        <tr>
+          <td>在售价格<br>（2026-08 矩阵）</td>
+          <td>京东 亚都环境电器旗舰店 ¥299<br>天猫 亚都青桔专卖店 ¥459.62</td>
+          <td class="same">同左（配色 SKU）</td>
+          <td>京东 ¥389<br>天猫 ¥557.62</td>
+        </tr>
+        <tr><td>适合谁</td><td>卧室 / 儿童房，无雾入门首选</td><td class="same">同左，偏好深色家居</td><td class="same">同左，想要动口不动手</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">02 / 核心卖点</div>
+      <div>
+        <h2>消费者最关心什么</h2>
+        <p class="section-intro">排序依据是购买影响力，而不是素材中出现的先后顺序。无雾品类先回答「加湿方式干不干净、水卫不卫生、省不省心」，再讲恒湿、操控等体验功能。</p>
+      </div>
+    </div>
+
+    <table class="selling-points">
+      <colgroup><col style="width:8%"><col style="width:37%"><col style="width:55%"></colgroup>
+      <thead><tr><th>顺序</th><th>卖点与证据</th><th>消费者价值</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="rank">01</td>
+          <td><span class="point-title">冷蒸发无雾，无水雾无白粉</span><span class="evidence">主图「无雾抗菌 母婴加湿 / 健康无白粉」「冷蒸发式加湿技术，无水雾无粉尘健康自然」；详情页「无湿感水润，不打湿地面、桌面或家具」。</span></td>
+          <td class="consumer-value">回应超声波加湿器最被诟病的问题：白粉落家具、水雾打湿桌面地板、水中杂质随雾扩散。这是无雾品类存在的理由，必须先讲。</td>
+        </tr>
+        <tr>
+          <td class="rank">02</td>
+          <td><span class="point-title">水路三重净化</span><span class="evidence">UV-C 光解除菌 + 麦饭石吸附水垢异味杂质 + 高密度滤网深层过滤（主图 2/7/9）。</span></td>
+          <td class="consumer-value">回答「水箱里的水泡着滤网，久放卫不卫生」。三重结构是区别于同价位杂牌无雾机的主要价值，也是母婴人群下单的关键理由。</td>
+        </tr>
+        <tr>
+          <td class="rank">03</td>
+          <td><span class="point-title">400mL/h 加湿力与覆盖</span><span class="evidence">400mL/h 额定加湿量，适用 20-40㎡，主图标注「全屋循环加湿」。</span></td>
+          <td class="consumer-value">先解决「无雾机是不是加湿慢」的刻板印象——400mL/h 对卧室、儿童房是足量配置；一小时加湿量约等于一小瓶矿泉水。</td>
+        </tr>
+        <tr>
+          <td class="rank">04</td>
+          <td><span class="point-title">9W 超省电</span><span class="evidence">额定功率 9W；整夜（8h）运行约 0.07 度电，连续 24h 约 0.22 度电。</span></td>
+          <td class="consumer-value">无雾机需要整晚长开，9W 让用户「敢开一整季」。对比暖雾机型数百瓦的功率，是长期使用成本上的硬差异。</td>
+        </tr>
+        <tr>
+          <td class="rank">05</td>
+          <td><span class="point-title">5L 水箱与 12.5h 续航</span><span class="evidence">5L 大容量，按 400mL/h 理论续航 12.5 小时；透明水位条实时可见。</span></td>
+          <td class="consumer-value">睡前加一次水覆盖整晚，不用半夜起来续水；水位一眼见底，避免干烧焦虑。</td>
+        </tr>
+        <tr>
+          <td class="rank">06</td>
+          <td><span class="point-title">智能恒湿 40%-70%</span><span class="evidence">一键智能恒湿、湿度实时数显（主图数显 55%）。</span></td>
+          <td class="consumer-value">避免「开一整晚会不会太湿」的顾虑，到达设定湿度自动调节，卧室和儿童房用着省心。</td>
+        </tr>
+        <tr>
+          <td class="rank">07</td>
+          <td><span class="point-title">加水与清洁便利</span><span class="evidence">免开盖上加水；开放水箱设计、清洁无死角；滤网可水洗替换（有原装滤网耗材在售）。</span></td>
+          <td class="consumer-value">无雾机的滤网和水箱是长期维护点，「好加水、好拆洗、滤网能换」直接决定复购口碑与耗材连带。</td>
+        </tr>
+        <tr>
+          <td class="rank">08</td>
+          <td><span class="point-title">敏感人群适配与睡眠体验</span><span class="evidence">主图标注孕妇、儿童、老人、易敏四类人群；3 档加湿（一档适用睡眠）、柔声运行、1-12h 定时。</span></td>
+          <td class="consumer-value">给「为家人买」的送礼/母婴决策一个明确理由；销售表述应为「柔声低噪」，不能称「无声」。</td>
+        </tr>
+        <tr>
+          <td class="rank">09</td>
+          <td><span class="point-title">操控与细节</span><span class="evidence">顶部触控屏 + 红外遥控（语音版加语音操控）；顶部内置香薰盒。</span></td>
+          <td class="consumer-value">在床上、沙发上即可完成操作；香薰盒为独立仓，需提示精油不可直接加入水箱。</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">03 / 产品文案</div>
+      <div>
+        <h2>用一个名字占领产品认知</h2>
+        <p class="section-intro">参照竞品「加湿小方块」的形状命名逻辑：50C 是 210mm 直径的圆柱桌面机，机身圆润、水路封闭如「舱」，命名「加湿小圆舱」——「圆」呼应形状，「舱」呼应三重净水的洁净封闭感。文案统一采用「概念名 + 消费利益 + 参数证据」，不依赖空洞程度词。</p>
+      </div>
+    </div>
+
+    <div class="copy-lockup">
+      <div>
+        <span class="copy-label">推荐产品昵称</span>
+        <strong class="copy-name">加湿小圆舱</strong>
+        <span class="copy-model">亚都 50C · SZ400-YXS50C</span>
+      </div>
+      <div>
+        <div class="copy-claim">不见雾，只见润</div>
+        <p class="copy-support">冷蒸发无雾｜UV-C × 麦饭石 × 滤网三重净水｜5L 润过整夜｜9W 超省电</p>
+      </div>
+    </div>
+
+    <table class="copy-matrix">
+      <colgroup><col style="width:18%"><col style="width:23%"><col style="width:59%"></colgroup>
+      <thead><tr><th>产品卖点</th><th>概念名</th><th>主文案与证据</th></tr></thead>
+      <tbody>
+        <tr><td>冷蒸发无雾</td><td class="copy-concept">无雾净润</td><td><span class="copy-line">不冒一缕雾，只留一室润</span><span class="copy-proof">冷蒸发技术让水分子自然蒸发，无白粉、无杂质扩散，不打湿桌面与地板。</span></td></tr>
+        <tr><td>水路净化</td><td class="copy-concept">三重净水</td><td><span class="copy-line">水先过三关，再变成润</span><span class="copy-proof">UV-C 光解除菌、麦饭石吸附水垢异味、高密度滤网深层过滤，蒸发前完成三道处理。</span></td></tr>
+        <tr><td>加湿力</td><td class="copy-concept">满屋匀润</td><td><span class="copy-line">一小时一瓶水，润透一间卧</span><span class="copy-proof">400mL/h 额定加湿量，约等于每小时向空气补入一小瓶矿泉水，适用 20-40㎡。</span></td></tr>
+        <tr><td>5L 续航</td><td class="copy-concept">整夜长润</td><td><span class="copy-line">睡前一箱水，醒时仍有余</span><span class="copy-proof">5L 大容量水箱，满水理论续航 12.5 小时，透明水位条余量一眼可见。</span></td></tr>
+        <tr><td>9W 功率</td><td class="copy-concept">轻电长润</td><td><span class="copy-line">整夜开机，不到 0.1 度电</span><span class="copy-proof">额定功率 9W，按 8 小时睡眠计算耗电约 0.07 度，开一整季也不用心疼电费。</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="copy-use-grid">
+      <article class="copy-use">
+        <h3>首屏推荐</h3>
+        <strong>加湿小圆舱<br>不见雾，只见润</strong>
+        <p>冷蒸发无雾加湿，无白粉不打湿家具；UV-C × 麦饭石 × 滤网三重净水，5L 一箱润过整夜。</p>
+      </article>
+      <article class="copy-use">
+        <h3>短视频开场</h3>
+        <strong>把纸巾压在出风口，它还是干的。</strong>
+        <p>加湿小圆舱不靠水雾加湿——水被滤网吸住、自然蒸发，湿润进了空气，不会落在你家家具上。</p>
+      </article>
+      <article class="copy-use">
+        <h3>直播核心话术</h3>
+        <strong>看不到雾，不等于没在加湿。</strong>
+        <p>先演示湿度数显上升，再讲 UV-C、麦饭石、滤网三道水关，最后落到 9W 一整夜不到 0.1 度电，打消「无雾=没效果」和「开整夜费电」两个顾虑。</p>
+      </article>
+    </div>
+
+    <div class="copy-note"><strong>建议减少使用：</strong>「大雾量、巨雾」（与无雾定位自相矛盾，素材主图 5 已出现「均匀大雾量」字样需修正）、「母婴级、医用级除菌」（无标准依据）、「静音」（只能表述为柔声低噪，素材未提供 dB 实测值）。</div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">04 / 销售建议</div>
+      <div>
+        <h2>人群 × 渠道 × 话术侧重</h2>
+        <p class="section-intro">推荐定位：「300-500 元档的无雾入门首选，卧室/儿童房的第一台无雾加湿器」。京东 ¥299 起走量、天猫 ¥459 档承接品牌搜索，语音版作利润款。</p>
+      </div>
+    </div>
+    <div class="strategy-grid">
+      <article class="strategy"><h3>母婴家庭 × 天猫/京东</h3><p>先讲无白粉、UV-C 三重净水，再讲 40%-70% 恒湿不过湿。表述限于「适合关注用水卫生的家庭」，不做防过敏、护呼吸道等医疗化承诺。</p></article>
+      <article class="strategy"><h3>空调房白领 × 抖音/小红书</h3><p>核心创意是「可视化无雾」：出风口压纸巾不湿、湿度数显爬升。直接对冲「看不到雾=没效果」的品类认知障碍。</p></article>
+      <article class="strategy"><h3>超声波升级人群 × 全渠道</h3><p>话术用「加一点钱，从有雾升到无雾」：对比白粉、打湿桌面、水垢随雾三个老痛点，把 50C 讲成升级而非新购。</p></article>
+      <article class="strategy"><h3>促销节奏</h3><p>9-11 月加湿季主推、6-8 月空调房次推；大促以京东 ¥299 为锚点价，语音版（+约 ¥90）做同链接阶梯 SKU，遥控版引流、语音版获利。</p></article>
+      <article class="strategy"><h3>耗材连带：50C 原装滤网</h3><p>滤网可水洗但属耗材（发黄、加湿效率下降即换）。首单搭售备用滤网提升客单，老客按 3-6 个月周期做复购提醒，详情页与客服话术统一「按主机型号选滤网」。</p></article>
+      <article class="strategy"><h3>建立维护预期</h3><p>主动说明定期清洗水箱与滤网；硬水地区同样适用冷蒸发（水垢留在滤网而非空气中），但需提示勤洗滤网以维持加湿效率，减少「用久雾效变差」差评。</p></article>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">05 / 天猫主图（5 张）设计</div>
+      <div>
+        <h2>每张图只讲一件事</h2>
+        <p class="section-intro">沿用现有素材的高转化结构（左文右图、大字卖点 + 金色标签），把「雾量」类旧口径全部替换为无雾语言。提示词按「主体 + 场景 + 光线 + 构图 + 风格 + 文案区留白」结构编写，画面元素与大字文案互相印证。</p>
+      </div>
+    </div>
+
+    <article class="shot">
+      <div class="shot-head"><span class="shot-no">图 1</span><span class="shot-title">首图：一句话定位 + 三证据标签</span></div>
+      <div class="shot-body">
+        <div class="shot-field"><b>核心内容</b>大字「不见雾 只见润」，副标「冷蒸发无雾加湿」；三条金色胶囊标签：健康无白粉 / 三重净水 / 9W 超省电；底部 365 天只换不修角标。</div>
+        <div class="shot-field"><b>画面构成</b>产品置于右侧三分之二、45° 微侧立于大理石桌面，背景虚化出床头与暖光台灯（环境融合）；左侧三分之一纯色留白放大字（卖点提炼）；蜂窝进风孔与数显屏清晰可辨（视觉冲击）。</div>
+        <div class="shot-field"><b>AI 生图提示词</b><div class="prompt">主体：亚都 50C 无雾加湿器，白色圆润圆柱机身、黑色顶部触控屏显示湿度数字、机身上半部蜂窝状进风孔。场景：现代简约卧室，大理石纹理床头柜，旁有一本翻开的书与白色马克杯，背景虚化出床铺与暖光台灯。光线：清晨柔和侧光，浅米暖调，机身轮廓带柔和高光。构图：产品位于画面右侧三分之二处、正面微侧 45°，左侧留大面积干净浅色区域用于排文字。风格：电商主图级写实产品渲染，干净通透，高级感。文案区：画面左侧三分之一保持纯色留白，不放任何杂物。</div></div>
+        <div class="shot-field"><b>参照素材</b><span class="refs"><span class="badge badge-cyan">50c白/主图/1.jpg</span><span class="badge badge-cyan">50c黑/主图/主图1.jpg</span></span></div>
+      </div>
+    </article>
+
+    <article class="shot">
+      <div class="shot-head"><span class="shot-no">图 2</span><span class="shot-title">原理图：冷蒸发三步，回答「没雾怎么加湿」</span></div>
+      <div class="shot-body">
+        <div class="shot-field"><b>核心内容</b>大字「无雾冷蒸发 健康自然加湿」，机身半透明剖视展示三步：① 吸入干燥空气 → ② 滤网净化过滤粉尘颗粒 → ③ 释放洁净水蒸气；气泡标注「无水雾 无粉尘」。</div>
+        <div class="shot-field"><b>画面构成</b>深蓝科技感背景衬托剖视机身，蓝色滤网居中，上升气流用箭头光带表现；三个步骤编号环绕机身分布，顶部留白放大字。</div>
+        <div class="shot-field"><b>AI 生图提示词</b><div class="prompt">主体：亚都 50C 无雾加湿器半透明剖视图，内部清晰可见蓝色圆筒形高密度蒸发滤网与顶部风扇，气流以发光蓝色箭头自下而上穿过滤网、从顶部出风口升起。场景：深蓝色科技感虚拟空间，地面带淡蓝色粒子光点。光线：机身内部透出冷蓝色辉光，边缘轮廓光。构图：产品居中偏下、垂直居中剖视，三步流程编号元素分布机身左右两侧，顶部留约四分之一空间用于标题文字。风格：3D 技术原理图渲染，干净、专业、有呼吸感。文案区：顶部纯深蓝留白。</div></div>
+        <div class="shot-field"><b>参照素材</b><span class="refs"><span class="badge badge-cyan">50c白/主图/3.jpg</span></span></div>
+      </div>
+    </article>
+
+    <article class="shot">
+      <div class="shot-head"><span class="shot-no">图 3</span><span class="shot-title">净水图：三重净化水路，母婴下单关键图</span></div>
+      <div class="shot-body">
+        <div class="shot-field"><b>核心内容</b>大字「水过三关 再变成润」，三模块并列：UV-C 光解除菌（紫色光束剖视水箱）/ 麦饭石净化（吸附水垢、异味、杂质气泡）/ 高密度滤网（深层过滤、冷蒸发）。</div>
+        <div class="shot-field"><b>画面构成</b>沿用现有六宫格/三联卡结构：左侧水箱 UV-C 紫光特写，右侧麦饭石颗粒与水流动效，底部滤网特写；每个模块配一句短文案，画面里的紫光、麦饭石颗粒、蓝色滤网分别对应「杀菌 / 吸附 / 过滤」三词。</div>
+        <div class="shot-field"><b>AI 生图提示词</b><div class="prompt">主体：三联卡片式排版——左卡：加湿器透明水箱剖视，内部紫色 UV-C 紫外线光束照射水体、微生物被光解的粒子特效；中卡：水流穿过白色圆柱滤芯，褐色麦饭石颗粒环绕，水垢、异味、杂质以蓝色气泡标注被吸附；右卡：蓝色圆筒褶皱滤网特写，标注高密度、瞬吸收、冷蒸发。场景：深黑/深蓝科技背景，统一冷色调光效。光线：各模块自带辉光（紫、蓝、青），产品轮廓光清晰。构图：三张竖版卡片横向等分排列，上方留约五分之一空间放大字标题。风格：电商卖点图解，写实材质 + 光效示意。文案区：顶部深色留白，卡片内下缘留短文案位。</div></div>
+        <div class="shot-field"><b>参照素材</b><span class="refs"><span class="badge badge-cyan">50c白/主图/2.jpg</span><span class="badge badge-cyan">50c白/主图/7.jpg</span><span class="badge badge-cyan">50c白/主图/9.jpg</span></span></div>
+      </div>
+    </article>
+
+    <article class="shot">
+      <div class="shot-head"><span class="shot-no">图 4</span><span class="shot-title">人群图：母婴敏感人群场景，建立情感信任</span></div>
+      <div class="shot-body">
+        <div class="shot-field"><b>核心内容</b>大字「无雾无白粉 呵护敏感人群」，副标「无湿感水润，不打湿地面、桌面或家具」；孕妇 / 儿童 / 老人 / 易敏四枚圆形图标。</div>
+        <div class="shot-field"><b>画面构成</b>产品置于前景茶几清晰锐利，背景一家三口在沙发上的生活场景柔焦虚化（环境融合）；四枚人群图标横向排列于标题下方；产品周围不放任何雾气特效——画面的「干爽感」本身就是文案「无雾」的印证。</div>
+        <div class="shot-field"><b>AI 生图提示词</b><div class="prompt">主体：亚都 50C 无雾加湿器置于浅色圆茶几上，白色机身、黑色数显屏清晰显示湿度数字，出风口干净无任何雾气。场景：明亮温馨的客厅，背景柔焦虚化出一家三口坐在米色沙发上的生活画面，地毯上有儿童玩偶。光线：午后自然窗光，明亮柔和，整体暖白色调。构图：产品在前景中下三分之一处清晰对焦，背景人物大幅虚化，画面上半部分为干净的浅色空间。风格：生活方式电商摄影，真实、温暖、有呼吸感。文案区：画面上半部浅色留白，用于标题与四枚人群图标。</div></div>
+        <div class="shot-field"><b>参照素材</b><span class="refs"><span class="badge badge-cyan">50c白/主图/6.jpg</span><span class="badge badge-cyan">50c黑/详情/无雾加湿1详情页_03.jpg</span></span></div>
+      </div>
+    </article>
+
+    <article class="shot">
+      <div class="shot-head"><span class="shot-no">图 5</span><span class="shot-title">参数图：四大硬指标 + 省电账，收口促单</span></div>
+      <div class="shot-body">
+        <div class="shot-field"><b>核心内容</b>四宫格大数字：5L 水箱容量 / 400mL/h 加湿量 / 12.5h 最长加湿时长 / 9W 整夜不到 0.1 度电；底部三档加湿标签（睡眠 / 日常 / 快速）。注意旧素材「均匀大雾量」字样必须改为「大加湿量」。</div>
+        <div class="shot-field"><b>画面构成</b>深色背景突出产品数显屏特写（55% 湿度）与半透明水箱剖视（水面、滤芯可见），金色大数字纵向排列于左侧；或俯拍产品 + 三档彩色标签卡。数字与画面部件一一对应：水箱对应 5L、数显对应恒湿、滤网对应 400mL/h。</div>
+        <div class="shot-field"><b>AI 生图提示词</b><div class="prompt">主体：亚都 50C 无雾加湿器黑色数显屏特写（白色 LED 显示 55% 湿度与功能图标），机身下半部半透明剖视露出清澈水面与内部滤芯结构，少量水泡上升。场景：深灰黑色石材质感背景，底部白色大理石台面。光线：低调暗光，数显屏白色背光发光，水箱区域冷蓝色透光，金色高光描边。构图：产品位于画面右侧、占高度约四分之三，左侧纵向排列四组大数字参数位，底部横向三个圆角标签位。风格：高端电商参数图，黑金配色，材质写实。文案区：左侧整列与底部横条为纯深色留白，用于排数字与标签文字。</div></div>
+        <div class="shot-field"><b>参照素材</b><span class="refs"><span class="badge badge-cyan">50c白/主图/5.jpg</span><span class="badge badge-cyan">50c白/主图/8.jpg</span><span class="badge badge-cyan">50c黑/详情/无雾加湿1详情页_18.jpg</span></span></div>
+      </div>
+    </article>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">06 / 详情页设计思路</div>
+      <div>
+        <h2>按购买决策顺序分屏</h2>
+        <p class="section-intro">现有详情页为「六大核心体验」并列结构，建议改为决策顺序：先解决「无雾靠不靠谱」，再讲净水、加湿力、续航省电，最后参数与保障收口。每屏提示词沿用「主体 + 场景 + 光线 + 构图 + 风格 + 文案区留白」结构。</p>
+      </div>
+    </div>
+    <div class="strategy-grid">
+      <article class="strategy"><h3>首屏海报</h3><p>昵称「加湿小圆舱」+「不见雾 只见润」+ 四证标（无雾 / 三重净水 / 12.5h / 9W）。提示词要点：卧室床头柜场景、晨光、产品 45° 右侧构图、上半部留白。</p></article>
+      <article class="strategy"><h3>痛点屏</h3><p>有雾加湿器三宗罪：白粉落家具、水雾打湿桌面地板、水垢杂质随雾扩散。提示词要点：对比画面——左侧传统机型喷白雾、桌面水渍特写，右侧 50C 干爽出风，中间分割线。</p></article>
+      <article class="strategy"><h3>原理屏：冷蒸发三步</h3><p>吸入干燥空气 → 滤网净化 → 释放洁净水蒸气。参照 50c白/主图/3.jpg：半透明剖视 + 蓝色滤网 + 上升气流箭头，深蓝科技背景，顶部标题留白。</p></article>
+      <article class="strategy"><h3>卖点屏一：三重净水</h3><p>UV-C 光解除菌 / 麦饭石吸附水垢异味 / 高密度滤网深层过滤。参照主图 2/7/9 的三联卡结构，紫光、颗粒、蓝色滤网与「杀菌、吸附、过滤」逐词对应。</p></article>
+      <article class="strategy"><h3>卖点屏二：加湿力</h3><p>400mL/h + 20-40㎡ + 全屋循环。参照主图 4：客厅俯角场景 + 绿色循环气流箭头 + 双参数金标，画面用气流可视化代替雾气。</p></article>
+      <article class="strategy"><h3>卖点屏三：续航与省电</h3><p>5L / 12.5h / 9W / 整夜不到 0.1 度电。参照主图 5：数显屏特写 + 半透明水箱剖视，黑金参数图风格（旧「大雾量」字样须改「大加湿量」）。</p></article>
+      <article class="strategy"><h3>卖点屏四：智能恒湿</h3><p>40%-70% 一键恒湿 + 湿度数显 + 3 档（睡眠/日常/快速）。参照主图 2/8：恒湿水球视觉 + 三档彩色标签卡，数显 55% 与「恒湿」文案互证。</p></article>
+      <article class="strategy"><h3>体验屏</h3><p>免开盖上加水、红外遥控、1-12h 定时、柔声睡眠、顶部香薰盒（注明精油不入水箱）。提示词要点：手部动作实拍感——俯身加水、躺姿遥控，浅暖家居场景。</p></article>
+      <article class="strategy"><h3>细节屏</h3><p>透明水位条、开放水箱无死角、可拆洗滤网。参照详情页_17 的三模块细节图，白底产品特写，材质写实。</p></article>
+      <article class="strategy"><h3>参数屏</h3><p>型号 SZ400-YXS50C、210×210×350mm、9W、50Hz、5L、400mL/h。参照详情页_18：白底正视图 + 尺寸标注线 + 参数表，简洁克制。</p></article>
+      <article class="strategy"><h3>版本对比屏</h3><p>50C vs 50C语音版（仅差语音操控，+约 ¥90）；向上引导：60㎡ 以上选 120C、20-60㎡ 客厅选 80C。表格化呈现，与本站产品矩阵口径一致。</p></article>
+      <article class="strategy"><h3>保障屏</h3><p>365 天只换不修、七仓发货当日/次日达、50C 原装滤网耗材入口（提示 3-6 个月更换周期），把售后与复购同时收口。</p></article>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">07 / 顾虑转译</div>
+      <div><h2>消费者问题与对应话术</h2><p class="section-intro">无雾品类特有的认知障碍要用画面和数显证据回答，而不是用形容词。</p></div>
+    </div>
+    <div class="message-map">
+      <article class="message"><span class="concern">看不到雾，是不是没在工作？</span><strong>无雾是技术，不是没效果</strong><p>冷蒸发本就不产生可见雾气；出风口压纸巾不湿、湿度数显实时上升，两个画面即证据。</p></article>
+      <article class="message"><span class="concern">怕白粉弄脏家具</span><strong>杂质留在滤网，不进空气</strong><p>水垢与杂质被麦饭石和滤网截留，蒸发的是纯水分子，桌面地板不被打湿。</p></article>
+      <article class="message"><span class="concern">怕整夜开费电</span><strong>9W，整夜不到 0.1 度电</strong><p>按 8 小时睡眠约 0.07 度电；搭配 1-12h 定时与恒湿自动调节，想开就开。</p></article>
+      <article class="message"><span class="concern">怕水箱滤网难打理</span><strong>开放水箱 + 可水洗滤网</strong><p>免开盖上加水、水箱伸手可洗、滤网可水洗替换，发黄或效率下降时换原装滤网即可。</p></article>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">08 / 上线前校验</div>
+      <div><h2>素材口径必须统一</h2><p class="section-intro">现有素材跨新旧版本、渠道价格与无雾定位存在冲突，直接组合使用容易引发投诉。</p></div>
+    </div>
+    <div class="risk-panel">
+      <h3>需优先处理的冲突与风险</h3>
+      <ul class="risk-list">
+        <li>主图 5「均匀大雾量」与无雾定位自相矛盾，须统一改为「大加湿量」。</li>
+        <li>主图到手价 ¥188 与矩阵在售价格（京东 ¥299 / 天猫 ¥459.62）不一致，上主图前统一价格口径。</li>
+        <li>「母婴加湿、呵护敏感人群」不得延伸为防过敏、护呼吸道等医疗化承诺。</li>
+        <li>噪声仅有「柔声」描述、无 dB 实测值，禁用「静音」「无声」，也不要虚构分贝数。</li>
+        <li>语音版与标准版共用素材，语音款详情页需补语音操控实拍或渲染图，避免图文不符。</li>
+        <li>续航 12.5h 为满水理论值，应标注随档位与环境湿度变化，避免绝对承诺。</li>
+        <li>香薰盒为独立仓，须明确精油不可直接加入水箱。</li>
+        <li>滤网「可水洗」不等于「免更换」，详情与客服话术需统一更换周期预期。</li>
+      </ul>
+    </div>
+    <div class="specs" aria-label="50C统一基础参数">
+      <div class="spec"><small>产品型号</small><strong>SZ400-YXS50C</strong></div>
+      <div class="spec"><small>额定功率</small><strong>9W</strong></div>
+      <div class="spec"><small>水箱容量</small><strong>5L</strong></div>
+      <div class="spec"><small>额定加湿量</small><strong>400mL/h</strong></div>
+      <div class="spec"><small>满水续航</small><strong>12.5h（理论）</strong></div>
+      <div class="spec"><small>适用面积</small><strong>20-40㎡</strong></div>
+      <div class="spec"><small>智能恒湿</small><strong>40%-70%</strong></div>
+      <div class="spec"><small>外形尺寸</small><strong>210×210×350mm</strong></div>
+    </div>
+  </section>
+
+  <div class="doc-source">
+    <p>分析对象：/Users/zane/亚都/亚都产品资料/50c白、50c黑、50C滤网</p>
+    <p>参数依据：src/data/products.ts、src/data/matrix.ts（产品矩阵 2026-08-03 同步）；价格随渠道与活动波动，最终销售口径以量产说明书、检测报告及平台合规要求为准。</p>
+  </div>
+
+</main>
+<footer class="site-footer">亚都 YADU · 文章中心</footer>
+</body>
+</html>
