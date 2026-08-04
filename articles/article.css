@@ -159,8 +159,85 @@ th { background: #f1f5f9; font-weight: 600; color: var(--text); }
   color: var(--text-muted);
 }
 
+/* ---- 左侧目录面板（article.js 自动生成，宽屏显示） ---- */
+.toc-panel {
+  position: fixed;
+  top: 84px;
+  left: max(12px, calc(50% - 660px));
+  width: 200px;
+  max-height: calc(100vh - 130px);
+  overflow-y: auto;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 12px;
+  z-index: 40;
+  display: none;
+}
+@media (min-width: 1280px) {
+  .toc-panel { display: block; }
+}
+.toc-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  padding: 0 8px 8px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 6px;
+}
+.toc-link {
+  display: block;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-sub);
+  text-decoration: none;
+  padding: 5px 8px;
+  border-left: 2px solid transparent;
+  border-radius: 0 6px 6px 0;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.toc-link:hover { color: var(--accent); background: #f8fafc; }
+.toc-link.active {
+  color: var(--accent-strong);
+  border-left-color: var(--accent);
+  background: #ecfeff;
+  font-weight: 600;
+}
+.toc-link.toc-h3 { padding-left: 20px; font-size: 12px; color: var(--text-muted); }
+
+/* ---- 右侧回到顶部 / 底部按钮（article.js 自动生成） ---- */
+.page-nav-btns {
+  position: fixed;
+  right: 20px;
+  bottom: 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 40;
+}
+.page-nav-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+  transition: color 0.15s, border-color 0.15s, transform 0.15s;
+}
+.page-nav-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
 @media print {
   .site-bar { position: static; }
   body { background: #fff; }
   .hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .toc-panel, .page-nav-btns { display: none; }
 }
