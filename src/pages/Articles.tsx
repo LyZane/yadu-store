@@ -30,7 +30,7 @@ export default function Articles() {
   return (
     <div className="flex min-h-screen flex-col bg-slate-50 font-sans text-slate-900 antialiased">
       <Navbar />
-      <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-14 sm:px-6">
+      <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-12 sm:px-6">
         <div className="flex items-center gap-3">
           <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 text-white shadow-sm">
             <Newspaper className="h-5 w-5" />
@@ -71,53 +71,39 @@ export default function Articles() {
           </div>
         </div>
 
-        {/* 文章卡片 */}
+        {/* 文章列表：一行一篇，提高信息密度 */}
         {filtered.length > 0 ? (
-          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-6 flex flex-col gap-2.5">
             {filtered.map((a) => (
               <a
                 key={a.slug}
                 href={`articles/${a.slug}.html`}
                 target="_blank"
                 rel="noreferrer"
-                className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-300 hover:shadow-md"
+                className="group flex items-center gap-4 rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm transition hover:border-cyan-300 hover:shadow-md"
               >
                 {a.cover ? (
-                  <div className="flex h-44 items-center justify-center bg-white p-4">
-                    <img
-                      src={a.cover}
-                      alt={a.title}
-                      loading="lazy"
-                      className="max-h-full max-w-full object-contain transition group-hover:scale-105"
-                    />
-                  </div>
+                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg border border-slate-100 bg-white p-1">
+                    <img src={a.cover} alt="" loading="lazy" className="max-h-full max-w-full object-contain" />
+                  </span>
                 ) : (
-                  <div className="flex h-24 items-end bg-gradient-to-br from-cyan-500 to-blue-600 p-4">
-                    <span className="rounded-md bg-white/15 px-2 py-0.5 text-xs font-semibold text-white">
+                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 text-white">
+                    <Newspaper className="h-6 w-6" />
+                  </span>
+                )}
+                <span className="min-w-0 flex-1">
+                  <span className="flex items-center gap-2">
+                    <span className="truncate text-[15px] font-bold text-slate-900 transition group-hover:text-cyan-700">
+                      {a.title}
+                    </span>
+                    <span className="hidden shrink-0 rounded bg-cyan-50 px-1.5 py-0.5 text-[11px] font-semibold text-cyan-700 sm:inline">
                       {a.tag}
                     </span>
-                  </div>
-                )}
-                <div className="flex flex-1 flex-col border-t border-slate-100 p-5">
-                  <div className="flex items-center justify-between">
-                    {a.cover ? (
-                      <span className="rounded-md bg-cyan-50 px-2 py-0.5 text-xs font-semibold text-cyan-700">
-                        {a.tag}
-                      </span>
-                    ) : (
-                      <span />
-                    )}
-                    <span className="text-xs text-slate-400">{a.date}</span>
-                  </div>
-                  <h2 className="mt-3 text-base font-bold leading-snug text-slate-900 transition group-hover:text-cyan-700">
-                    {a.title}
-                  </h2>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">{a.summary}</p>
-                  <span className="mt-4 flex items-center gap-1 text-sm font-medium text-cyan-600">
-                    阅读全文
-                    <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </span>
-                </div>
+                  <span className="mt-0.5 block truncate text-[13px] text-slate-500">{a.summary}</span>
+                </span>
+                <span className="hidden shrink-0 text-xs text-slate-400 md:inline">{a.date}</span>
+                <ArrowUpRight className="h-4 w-4 shrink-0 text-slate-300 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-cyan-600" />
               </a>
             ))}
           </div>

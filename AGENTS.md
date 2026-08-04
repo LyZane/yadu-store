@@ -63,6 +63,8 @@ scripts/
 public/images/         # 产品图片等静态资源
 public/images/matrix/  # 产品矩阵页图片（sync:matrix 自动下载）
 public/articles/       # 文章中心静态页：article.css 为共享样式（站点 cyan/slate 色系），
+                       # article.js 为共享增强脚本（自动生成左侧目录面板、右侧回顶/回底按钮，
+                       # 新文章页需在 </body> 前引入 <script src="article.js" defer>），
                        # 每篇文章一个独立 HTML（统一文章壳 + 页内 <style> 放该文专属组件样式），
                        # 清单登记在 src/data/articles.ts
 ```
