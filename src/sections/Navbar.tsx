@@ -1,16 +1,25 @@
-import { Link } from 'react-router'
+import { Link, useLocation, useNavigate } from 'react-router'
 import { Droplets } from 'lucide-react'
-import { scrollToId } from '@/lib/scroll'
+import { scrollToId, scrollToIdWhenReady } from '@/lib/scroll'
 
-// 页内锚点用 onClick 滚动实现（href 仅作语义标注），避免改动 hash 与 HashRouter 路由冲突
-function anchorScroll(id: string) {
-  return (e: React.MouseEvent<HTMLAnchorElement>) => {
+// 页内锚点用 onClick 滚动实现（href 仅作语义标注），避免改动 hash 与 HashRouter 路由冲突；
+// 不在首页时先跳回首页，等渲染完成再滚动到目标锚点
+function useAnchorScroll() {
+  const navigate = useNavigate()
+  const location = useLocation()
+  return (id: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
-    scrollToId(id)
+    if (location.pathname === '/') {
+      scrollToId(id)
+    } else {
+      navigate('/')
+      scrollToIdWhenReady(id)
+    }
   }
 }
 
 export default function Navbar() {
+  const anchorScroll = useAnchorScroll()
   return (
     <header className="sticky top-0 z-50 w-full border-b border-slate-200/70 bg-white/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">

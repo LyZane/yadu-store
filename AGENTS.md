@@ -8,7 +8,7 @@
 
 - 页面语言为中文（`index.html` 中 `lang="zh-CN"`），代码中的文案、注释、产品数据均为中文。
 - 路由使用 `HashRouter`（GitHub Pages 子路径部署下 `BrowserRouter` 无法匹配 `/yadu-store/`）。共三个 SPA 页面：`/`（首页，由多个 section 组件拼装：导航栏、Hero 轮播、产品区、服务条、页脚）、`/matrix`（产品矩阵全屏页）和 `/articles`（文章中心列表页，文章本体是 `public/articles/` 下的独立静态页）。
-- **页内锚点不要用 `href="#id"`**：会改变 hash 导致 HashRouter 匹配失败白屏。统一用 `src/lib/scroll.ts` 的 `scrollToId()` 加 `onClick` 实现（参考 `Navbar.tsx` 的 `anchorScroll`）。
+- **页内锚点不要用 `href="#id"`**：会改变 hash 导致 HashRouter 匹配失败白屏。统一用 `src/lib/scroll.ts` 的 `scrollToId()` 加 `onClick` 实现（参考 `Navbar.tsx` 的 `useAnchorScroll`；非首页时先 `navigate('/')` 再用 `scrollToIdWhenReady()` 等渲染后滚动）。
 - 所有产品数据（型号、规格、卖点、对比参数）硬编码在 `src/data/products.ts` 中，不经过任何接口请求。其中 `tmallTitle` 需按天猫规则控制在 60 字符（30 汉字）以内。
 - 产品图片为静态资源，放在 `public/images/` 下，代码中以**相对路径** `images/xxx.jpg` 引用（不带前导 `/`，保证部署到子路径如 GitHub Pages 时可用）。
 
