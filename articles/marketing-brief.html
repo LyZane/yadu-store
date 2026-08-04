@@ -3,101 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>亚都加湿器 · 卖点-人群-话术营销简报</title>
+<title>亚都加湿器 · 卖点-人群-话术营销简报 · 亚都 YADU</title>
+<link rel="stylesheet" href="article.css">
 <style>
-  :root {
-    --brand: #c2410c;
-    --brand-light: #fff7ed;
-    --blue: #1d4ed8;
-    --blue-light: #eff6ff;
-    --teal: #0f766e;
-    --teal-light: #f0fdfa;
-    --text: #1e293b;
-    --text-sub: #64748b;
-    --bg: #f8fafc;
-    --card: #ffffff;
-    --border: #e2e8f0;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.75;
-    -webkit-font-smoothing: antialiased;
-  }
-  .container { max-width: 920px; margin: 0 auto; padding: 32px 20px 64px; }
+  /* 本文档专属样式：仅放共享 article.css 没有的组件样式，且颜色必须已按站点色系调整 */
 
-  .hero {
-    background: linear-gradient(135deg, #9a3412 0%, #c2410c 55%, #ea580c 100%);
-    color: #fff;
-    border-radius: 16px;
-    padding: 44px 40px;
-    margin-bottom: 32px;
-  }
-  .hero .tag {
-    display: inline-block;
-    background: rgba(255,255,255,.18);
-    border: 1px solid rgba(255,255,255,.35);
-    border-radius: 999px;
-    font-size: 13px;
-    padding: 4px 14px;
-    margin-bottom: 14px;
-    letter-spacing: 1px;
-  }
-  .hero h1 { font-size: 27px; line-height: 1.4; margin-bottom: 10px; }
-  .hero p { font-size: 14.5px; opacity: .9; max-width: 680px; }
-  .hero .meta { margin-top: 18px; font-size: 12.5px; opacity: .72; }
+  /* 小节引导语 */
+  .section-desc { color: var(--text-muted); font-size: 13.5px; margin-bottom: 18px; padding-left: 18px; }
 
-  section { margin-bottom: 42px; }
-  h2 {
-    font-size: 20px;
-    margin-bottom: 6px;
-    padding-left: 14px;
-    border-left: 4px solid var(--brand);
-    line-height: 1.4;
-  }
-  .section-desc { color: var(--text-sub); font-size: 13.5px; margin-bottom: 18px; padding-left: 18px; }
-  h3 { font-size: 16px; margin: 26px 0 12px; color: var(--brand); }
-
-  .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 22px 24px;
-    margin-bottom: 16px;
-  }
-
-  /* 策略一句话 */
+  /* 策略一句话（原橙底，改为青色浅底） */
   .strategy {
-    background: var(--brand-light);
-    border: 1px solid #fed7aa;
+    background: #ecfeff;
+    border: 1px solid #a5f3fc;
     border-radius: 12px;
     padding: 22px 26px;
     font-size: 16px;
     line-height: 1.9;
+    color: var(--text);
   }
-  .strategy b { color: var(--brand); }
+  .strategy b { color: var(--accent-strong); }
 
-  /* 对照表 */
-  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
-  th {
-    background: var(--brand-light);
-    color: #9a3412;
-    text-align: left;
-    padding: 10px 12px;
-    font-weight: 600;
-    white-space: nowrap;
-  }
-  td { padding: 12px; border-top: 1px solid var(--border); vertical-align: top; }
-  tr:nth-child(even) td { background: #fffbf7; }
+  /* 话术气泡（原橙色虚线，改为青色虚线浅底） */
   .huashu {
-    background: #fff;
-    border: 1px dashed #fdba74;
+    background: #ecfeff;
+    border: 1px dashed #67e8f9;
     border-radius: 8px;
     padding: 8px 12px;
     margin-bottom: 6px;
     font-size: 13px;
+    color: var(--text-sub);
   }
   .huashu:last-child { margin-bottom: 0; }
 
@@ -114,15 +48,19 @@
     margin-bottom: 12px;
   }
   .copy-block .cb-title { font-weight: 700; font-size: 15px; }
-  .layer-badge {
-    font-size: 11.5px; font-weight: 600;
-    border-radius: 999px; padding: 2px 10px;
-  }
-  .layer-badge.l1 { background: #fee2e2; color: #b91c1c; }
-  .layer-badge.l2 { background: #ffedd5; color: #c2410c; }
-  .layer-badge.l3 { background: #ccfbf1; color: #0f766e; }
-  .cb-note { font-size: 12.5px; color: var(--text-sub); }
+  .cb-note { font-size: 12.5px; color: var(--text-muted); }
 
+  /* 卖点层级徽章：必答题=红、加分题=琥珀、差异化=绿 */
+  .layer-badge {
+    font-size: 11.5px; font-weight: 700;
+    border-radius: 999px; padding: 2px 10px;
+    white-space: nowrap;
+  }
+  .layer-badge.l1 { background: #fef2f2; color: #b91c1c; }
+  .layer-badge.l2 { background: #fffbeb; color: #b45309; }
+  .layer-badge.l3 { background: #f0fdf4; color: #15803d; }
+
+  /* 图文案行 */
   .img-copy {
     display: grid;
     grid-template-columns: 1fr;
@@ -132,7 +70,7 @@
     display: flex;
     gap: 10px;
     align-items: baseline;
-    background: #fafafa;
+    background: var(--bg);
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 9px 14px;
@@ -142,51 +80,43 @@
     flex-shrink: 0;
     font-size: 11.5px;
     font-weight: 700;
-    color: var(--blue);
-    background: var(--blue-light);
+    color: #1d4ed8;
+    background: #eff6ff;
     border-radius: 6px;
     padding: 2px 8px;
     white-space: nowrap;
   }
-  .img-line .copy { font-weight: 600; }
-  .img-line .sub { color: var(--text-sub); font-size: 12.5px; font-weight: 400; }
+  .img-line .copy { font-weight: 600; color: var(--text); }
+  .img-line .sub { color: var(--text-muted); font-size: 12.5px; font-weight: 400; }
 
+  /* 占位符高亮（原橙色，改为琥珀色保留辨识度） */
   .ph {
-    color: var(--brand);
-    background: var(--brand-light);
+    background: #fffbeb;
+    color: #b45309;
     border-radius: 4px;
     padding: 0 4px;
     font-weight: 700;
   }
 
-  .note {
-    background: #fffbeb;
-    border: 1px solid #fde68a;
-    border-radius: 10px;
-    padding: 14px 18px;
-    font-size: 13px;
-    color: #92400e;
-  }
-  .note b { display: block; margin-bottom: 4px; }
-
-  ul.tight { padding-left: 22px; font-size: 13.5px; }
-  ul.tight li { margin-bottom: 8px; }
-
-  footer {
-    margin-top: 44px;
+  /* 文末数据来源行 */
+  .doc-meta {
+    margin-top: 32px;
     padding-top: 18px;
     border-top: 1px solid var(--border);
     font-size: 12.5px;
-    color: var(--text-sub);
-  }
-  @media print {
-    body { background: #fff; }
-    .hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    color: var(--text-muted);
   }
 </style>
 </head>
 <body>
-<div class="container">
+<header class="site-bar">
+  <a class="brand" href="../index.html">
+    <span class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7s6.5 7 6.5 11.3a6.5 6.5 0 1 1-13 0C5.5 9.7 12 2.7 12 2.7z"/></svg></span>
+    <span><span class="name">亚都 YADU</span><br><span class="slogan">健康加湿 · 净润生活</span></span>
+  </a>
+  <a class="back" href="../index.html#/articles">← 返回文章列表</a>
+</header>
+<main class="article">
 
   <div class="hero">
     <span class="tag">内部营销简报 · 一页纸</span>
@@ -203,7 +133,7 @@
       对宝妈讲 <b>「安全」</b>、对年轻女性讲 <b>「水润颜值」</b>、对家庭采购者讲 <b>「省心性价比」</b>——<br>
       中端 200–500 元走量，母婴线做溢价。
     </div>
-    <p style="font-size:12.5px;color:var(--text-sub);margin-top:10px;padding-left:4px">
+    <p style="font-size:12.5px;color:var(--text-muted);margin-top:10px;padding-left:4px">
       依据：加湿效果（38%）＋价格（18%）＋品牌信誉（15-19%）是决策前三要素；无雾品类占比 3 年从 9%→30%；42% 用户愿为信赖品牌付溢价（华信人 2025、奥维云网 2025）。
     </p>
   </section>
@@ -221,7 +151,7 @@
           <th>沟通话术（可直接使用）</th>
         </tr>
         <tr>
-          <td><b>宝妈 / 母婴家庭</b><br><span style="font-size:12px;color:var(--text-sub)">付费意愿最高</span></td>
+          <td><b>宝妈 / 母婴家庭</b><br><span style="font-size:12px;color:var(--text-muted)">付费意愿最高</span></td>
           <td>无雾冷蒸发<br>全水路抑菌<br>睡眠档静音<br>大水箱整夜续航</td>
           <td>
             <div class="huashu">「看得见的白雾，看不见的是水里的杂质。亚都无雾加湿，宝宝呼吸的每一口都是纯净水润。」</div>
@@ -230,7 +160,7 @@
           </td>
         </tr>
         <tr>
-          <td><b>年轻女性</b><br><span style="font-size:12px;color:var(--text-sub)">悦己 / 美容场景</span></td>
+          <td><b>年轻女性</b><br><span style="font-size:12px;color:var(--text-muted)">悦己 / 美容场景</span></td>
           <td>皮肤补水<br>高颜值设计<br>小巧不占地<br>静音陪伴</td>
           <td>
             <div class="huashu">「空调房待一天，皮肤水分被偷走。开一整晚，早上醒来脸还是润的。」</div>
@@ -238,7 +168,7 @@
           </td>
         </tr>
         <tr>
-          <td><b>家庭采购者</b><br><span style="font-size:12px;color:var(--text-sub)">性价比导向</span></td>
+          <td><b>家庭采购者</b><br><span style="font-size:12px;color:var(--text-muted)">性价比导向</span></td>
           <td>智能恒湿<br>上加水 / 可拆洗<br>滤网耗材成本透明<br>大品牌售后</td>
           <td>
             <div class="huashu">「设定 55% 湿度就不用管了，加湿、恒湿、缺水停机全部自动。」</div>
@@ -247,7 +177,7 @@
           </td>
         </tr>
         <tr>
-          <td><b>敏感人群</b><br><span style="font-size:12px;color:var(--text-sub)">鼻炎 / 呼吸道敏感</span></td>
+          <td><b>敏感人群</b><br><span style="font-size:12px;color:var(--text-muted)">鼻炎 / 呼吸道敏感</span></td>
           <td>无雾无白粉<br>水质净化过滤<br>抑菌率实测数据</td>
           <td>
             <div class="huashu">「超声波的白雾会带着水垢和细菌进空气。无雾冷蒸发，只给水分子，不给杂质。」</div>
@@ -255,7 +185,7 @@
           </td>
         </tr>
         <tr>
-          <td><b>银发家庭</b><br><span style="font-size:12px;color:var(--text-sub)">子女代购</span></td>
+          <td><b>银发家庭</b><br><span style="font-size:12px;color:var(--text-muted)">子女代购</span></td>
           <td>一键操作<br>大屏数显<br>缺水自动停机<br>国民老品牌</td>
           <td>
             <div class="huashu">「给爸妈买的东西，越简单越好。一键开关，水没了自动停，大屏数字看得清。」</div>
@@ -405,7 +335,7 @@
   <section>
     <h2>四、使用规范与合规提醒</h2>
     <div class="card">
-      <ul class="tight">
+      <ul>
         <li><b>占位符必须替换为实测值：</b>所有 <span class="ph">橙色标记</span>（加湿量、分贝、抑菌率、滤网价格等）需填写第三方实测 / 检测报告数据，并保留凭证——测评类内容会验证参数，虚标会被反噬。</li>
         <li><b>广告法红线：</b>避免「最」「第一」「100% 无菌」等绝对化用语；「抑菌率 99.X%」需注明检测机构与报告编号。</li>
         <li><b>「母婴级」宣称：</b>仅在取得对应认证（如 SGS 母婴安全、3C、0 臭氧检测）后使用，并在详情页公示证书。</li>
@@ -419,10 +349,9 @@
     </div>
   </section>
 
-  <footer>
-    亚都加湿器营销简报 · 2026 年 7 月 ｜ 数据来源：华信人咨询《2025 年中国加湿器消费者洞察报告》（N=1449）、奥维云网（AVC）2025 年报、头豹研究院 ｜ 文案供内部与市场团队使用
-  </footer>
+  <p class="doc-meta">亚都加湿器营销简报 · 2026 年 7 月 ｜ 数据来源：华信人咨询《2025 年中国加湿器消费者洞察报告》（N=1449）、奥维云网（AVC）2025 年报、头豹研究院 ｜ 文案供内部与市场团队使用</p>
 
-</div>
+</main>
+<footer class="site-footer">亚都 YADU · 文章中心</footer>
 </body>
 </html>

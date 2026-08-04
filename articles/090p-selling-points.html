@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>090P 产品卖点与销售建议 · 亚都 YADU</title>
+<link rel="stylesheet" href="article.css">
+<style>
+  /* ===== 本文档专属样式（颜色已映射到站点 slate/cyan 色系） ===== */
+
+  /* 核心判断（原琥珀色块 → 站点警告琥珀语义色） */
+  .verdict {
+    padding: 18px 20px;
+    margin-bottom: 32px;
+    border-left: 4px solid #b45309;
+    border-radius: 0 10px 10px 0;
+    background: #fffbeb;
+    color: #92400e;
+    font-size: 14.5px;
+    font-weight: 650;
+  }
+
+  /* 核心参数条 */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin-bottom: 8px;
+    background: #e2e8f0;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .metric { padding: 24px 22px; background: #ffffff; }
+  .metric strong {
+    display: block;
+    margin-bottom: 4px;
+    color: #0e7490;
+    font-size: 26px;
+    line-height: 1.2;
+  }
+  .metric span { font-size: 13px; color: #64748b; }
+
+  /* 章节头：左侧编号 + 右侧标题 */
+  .section-head {
+    display: grid;
+    grid-template-columns: 270px minmax(0, 1fr);
+    gap: 42px;
+    margin-bottom: 30px;
+    align-items: start;
+  }
+  .section-kicker {
+    padding-top: 8px;
+    color: #0e7490;
+    font-size: 13.5px;
+    font-weight: 750;
+    letter-spacing: 1px;
+  }
+  .section-head h2 { margin-top: 0; }
+  .section-intro { color: #64748b; }
+
+  /* 卖点优先级表（表格基础样式来自 article.css，此处仅补文档特有的单元格元素） */
+  .rank { color: #0891b2; font-size: 22px; font-weight: 800; }
+  .point-title {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 15.5px;
+    font-weight: 750;
+    color: #0f172a;
+  }
+  .evidence { color: #64748b; font-size: 13.5px; }
+  .consumer-value { color: #475569; }
+
+  /* 文案主视觉区（产品昵称 + 主张） */
+  .copy-lockup {
+    display: grid;
+    grid-template-columns: minmax(250px, .8fr) minmax(0, 1.2fr);
+    gap: 42px;
+    align-items: center;
+    margin-bottom: 34px;
+    padding: 30px 0;
+    border-top: 2px solid #0f172a;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .copy-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #0e7490;
+    font-size: 13px;
+    font-weight: 750;
+  }
+  .copy-name { display: block; font-size: 34px; line-height: 1.2; }
+  .copy-model { display: block; margin-top: 7px; color: #64748b; font-size: 14px; }
+  .copy-claim {
+    margin-bottom: 7px;
+    font-size: 27px;
+    font-weight: 780;
+    line-height: 1.3;
+    color: #0f172a;
+  }
+  .copy-support { margin-bottom: 0; color: #64748b; }
+
+  /* 文案矩阵表内的概念名与文案行 */
+  .copy-concept { color: #0e7490; font-weight: 780; white-space: nowrap; }
+  .copy-line {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 15px;
+    font-weight: 720;
+    color: #0f172a;
+  }
+  .copy-proof { color: #64748b; font-size: 13.5px; }
+
+  /* 文案使用场景卡片（原灰绿底 → slate-50） */
+  .copy-use-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 34px;
+  }
+  .copy-use {
+    padding: 24px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #f8fafc;
+  }
+  .copy-use h3 { margin: 0 0 14px; color: #1d4ed8; font-size: 14px; }
+  .copy-use strong {
+    display: block;
+    margin-bottom: 9px;
+    font-size: 18px;
+    line-height: 1.45;
+  }
+  .copy-use p { margin-bottom: 0; color: #64748b; font-size: 13.5px; }
+
+  /* 建议减少使用的文案警示（原红色 → 站点错误红语义色） */
+  .copy-note {
+    margin-top: 22px;
+    padding: 16px 18px;
+    border-left: 4px solid #b91c1c;
+    border-radius: 0 10px 10px 0;
+    background: #fef2f2;
+    color: #7f1d1d;
+    font-size: 13.5px;
+  }
+
+  /* 价值证据深色区块（原深绿 → slate-900 深色带） */
+  .feature-band {
+    margin: 42px 0;
+    padding: 40px 0 44px;
+    border-radius: 16px;
+    background: #0f172a;
+    color: #e2e8f0;
+  }
+  .feature-band .section-head { margin-bottom: 26px; }
+  .feature-band .section-kicker { color: #67e8f9; }
+  .feature-band h2 { color: #ffffff; border-left-color: #06b6d4; margin-bottom: 10px; }
+  .feature-band .section-intro { color: #94a3b8; }
+
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .proof {
+    border: 1px solid #334155;
+    border-radius: 12px;
+    background: #1e293b;
+  }
+  .proof-copy { padding: 22px 24px 24px; }
+  .proof-copy h3 { margin: 0 0 8px; font-size: 17px; color: #ffffff; }
+  .proof-copy p { margin-bottom: 0; color: #cbd5e1; font-size: 13.5px; }
+
+  /* 销售打法：自动编号网格（原琥珀编号 → cyan） */
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 36px;
+    counter-reset: strategy;
+  }
+  .strategy {
+    position: relative;
+    padding: 22px 0 22px 56px;
+    border-bottom: 1px solid #e2e8f0;
+    counter-increment: strategy;
+  }
+  .strategy::before {
+    content: counter(strategy, decimal-leading-zero);
+    position: absolute;
+    top: 22px;
+    left: 0;
+    color: #0891b2;
+    font-size: 19px;
+    font-weight: 800;
+  }
+  .strategy h3 { margin: 0 0 5px; font-size: 16px; color: #0f172a; }
+  .strategy p { margin-bottom: 0; color: #64748b; font-size: 13.5px; }
+
+  /* 顾虑转译四宫格（顾虑标签原红色 → 站点错误红） */
+  .message-map {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #ffffff;
+  }
+  .message { padding: 24px; border-right: 1px solid #e2e8f0; }
+  .message:last-child { border-right: 0; }
+  .message .concern {
+    display: block;
+    margin-bottom: 13px;
+    color: #b91c1c;
+    font-size: 13.5px;
+    font-weight: 750;
+  }
+  .message strong { display: block; margin-bottom: 8px; font-size: 16px; }
+  .message p { margin-bottom: 0; color: #64748b; font-size: 13.5px; }
+
+  /* 风险面板（原红色底 → 站点错误红浅底） */
+  .risk-panel {
+    padding: 30px;
+    border: 1px solid #fecaca;
+    border-radius: 12px;
+    background: #fef2f2;
+  }
+  .risk-panel h3 { margin: 0 0 16px; color: #b91c1c; }
+  .risk-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 30px;
+    margin: 0;
+    padding-left: 22px;
+    color: #7f1d1d;
+  }
+  .risk-list li { padding-left: 3px; margin-bottom: 0; font-size: 13.5px; }
+
+  /* 统一基础参数（原灰绿底 → slate-50） */
+  .specs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin-top: 34px;
+    background: #e2e8f0;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .spec { padding: 18px 20px; background: #f8fafc; }
+  .spec small { display: block; margin-bottom: 6px; color: #64748b; font-size: 12.5px; }
+  .spec strong { font-size: 16.5px; }
+
+  /* 文末来源说明 */
+  .doc-source { margin-top: 36px; font-size: 12.5px; color: #64748b; }
+  .doc-source p { margin: 4px 0; font-size: 12.5px; color: #64748b; }
+
+  /* 响应式 */
+  @media (max-width: 820px) {
+    .metrics { grid-template-columns: repeat(2, 1fr); }
+    .section-head { grid-template-columns: 1fr; gap: 4px; }
+    .section-kicker { padding-top: 0; }
+    .copy-lockup, .proof-grid, .strategy-grid { grid-template-columns: 1fr; }
+    .copy-use-grid { grid-template-columns: 1fr; }
+    .message-map { grid-template-columns: repeat(2, 1fr); }
+    .message:nth-child(2) { border-right: 0; }
+    .message:nth-child(-n+2) { border-bottom: 1px solid #e2e8f0; }
+    .specs { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .metric { padding: 20px 16px; }
+    .metric strong { font-size: 22px; }
+    .copy-name { font-size: 28px; }
+    .copy-claim { font-size: 22px; }
+    .proof-grid, .message-map, .risk-list, .specs { grid-template-columns: 1fr; }
+    .message { border-right: 0; border-bottom: 1px solid #e2e8f0; }
+    .message:last-child { border-bottom: 0; }
+    .risk-panel { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+<header class="site-bar">
+  <a class="brand" href="../index.html">
+    <span class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7s6.5 7 6.5 11.3a6.5 6.5 0 1 1-13 0C5.5 9.7 12 2.7 12 2.7z"/></svg></span>
+    <span><span class="name">亚都 YADU</span><br><span class="slogan">健康加湿 · 净润生活</span></span>
+  </a>
+  <a class="back" href="../index.html#/articles">← 返回文章列表</a>
+</header>
+<main class="article">
+
+  <div class="hero">
+    <span class="tag">YADU · 产品商业分析</span>
+    <h1>090P 产品卖点与销售建议</h1>
+    <p>SC280-QL090P 落地式超声波净化加湿器。基于现有 78 张主图、详情页与参数素材，按消费者购买决策的重要程度重新梳理。</p>
+    <div class="meta">亚都 YADU · 文章中心</div>
+  </div>
+
+  <div class="verdict">核心判断：真正形成竞争力的是“加湿效率 + 水路除菌 + 9L长续航 + 智能恒湿”的组合，而不是单独强调“大雾量”。</div>
+
+  <div class="metrics" aria-label="核心参数">
+    <div class="metric"><strong>350mL/h</strong><span>额定加湿量</span></div>
+    <div class="metric"><strong>9L</strong><span>大容量水箱</span></div>
+    <div class="metric"><strong>约26小时</strong><span>理论连续加湿</span></div>
+    <div class="metric"><strong>≤38dB</strong><span>标称运行噪声</span></div>
+  </div>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">01 / 卖点优先级</div>
+      <div>
+        <h2>消费者最关心什么</h2>
+        <p class="section-intro">排序依据是购买影响力，而不是素材中出现的先后顺序。先回答“有没有效果、雾是否干净、使用麻不麻烦”，再补充体验功能。</p>
+      </div>
+    </div>
+
+    <table class="selling-points">
+      <colgroup><col style="width:8%"><col style="width:37%"><col style="width:55%"></colgroup>
+      <thead><tr><th>顺序</th><th>卖点与证据</th><th>消费者价值</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="rank">01</td>
+          <td><span class="point-title">加湿效率与覆盖能力</span><span class="evidence">350mL/h、约70cm高位出雾、三档雾量；部分主图标注360°双出雾。</span></td>
+          <td class="consumer-value">先解决“加湿慢、只湿机器周围、容易打湿地面”的核心顾虑。高位出雾和档位调节比单纯展示浓雾更有说服力。</td>
+        </tr>
+        <tr>
+          <td class="rank">02</td>
+          <td><span class="point-title">水路卫生体系</span><span class="evidence">麦饭石初滤 + 活水循环 + UV-C；素材宣称99.9%除菌率，报告编号 JD20230142。</span></td>
+          <td class="consumer-value">回应超声波加湿器最敏感的“水箱久放、雾气是否干净”问题，是区别于普通大水箱机型的主要价值。</td>
+        </tr>
+        <tr>
+          <td class="rank">03</td>
+          <td><span class="point-title">9L水箱与长续航</span><span class="evidence">按350mL/h理论计算，满水约可连续运行26小时。</span></td>
+          <td class="consumer-value">减少频繁加水，一次补水覆盖全天或整晚，适合持续开空调、暖气的家庭。</td>
+        </tr>
+        <tr>
+          <td class="rank">04</td>
+          <td><span class="point-title">智能恒湿</span><span class="evidence">湿度传感器、湿度数显、自动调节输出。</span></td>
+          <td class="consumer-value">避免一直喷雾造成过湿，让卧室、老人房和育儿家庭用得更省心。具体设定范围需统一后再对外标注。</td>
+        </tr>
+        <tr>
+          <td class="rank">05</td>
+          <td><span class="point-title">加水与清洁便利</span><span class="evidence">揭盖上加水、大口径水箱、提手、过滤结构。</span></td>
+          <td class="consumer-value">不用弯腰搬动整机，手可以伸入水箱清洁。对9L产品而言，“好不好洗”直接决定长期使用率。</td>
+        </tr>
+        <tr>
+          <td class="rank">06</td>
+          <td><span class="point-title">睡眠体验与安全</span><span class="evidence">≤38dB、睡眠熄屏、缺水提醒与自动停机。</span></td>
+          <td class="consumer-value">满足卧室夜间使用，并降低缺水干烧风险。销售表述应为“低噪运行”，不能称为“无声”。</td>
+        </tr>
+        <tr>
+          <td class="rank">07</td>
+          <td><span class="point-title">控制与场景适配</span><span class="evidence">三档雾量、1–14小时定时、红外遥控、上置触控屏。</span></td>
+          <td class="consumer-value">睡眠、日常和快速加湿三种场景容易理解，用户可以在床上或沙发上完成操作。</td>
+        </tr>
+        <tr>
+          <td class="rank">08</td>
+          <td><span class="point-title">窄占地与低功率</span><span class="evidence">216×216×699mm、2.2kg、26W。</span></td>
+          <td class="consumer-value">落地摆放不占桌面，连续运行24小时理论耗电约0.624度；带提手便于室内移动。</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">02 / 高级文案体系</div>
+      <div>
+        <h2>用一个名字占领产品认知</h2>
+        <p class="section-intro">将塔式形态和“先净水、再加湿”的核心能力合并成可记忆的品类名。文案统一采用“概念名 + 消费利益 + 参数证据”，不依赖空洞的程度词。</p>
+      </div>
+    </div>
+
+    <div class="copy-lockup">
+      <div>
+        <span class="copy-label">推荐产品昵称</span>
+        <strong class="copy-name">亚都净润塔</strong>
+        <span class="copy-model">SC280-QL090P</span>
+      </div>
+      <div>
+        <div class="copy-claim">水先净，润才安心</div>
+        <p class="copy-support">9L昼夜长润｜UV-C水路除菌｜智能感湿恒润</p>
+      </div>
+    </div>
+
+    <table class="copy-matrix">
+      <colgroup><col style="width:18%"><col style="width:23%"><col style="width:59%"></colgroup>
+      <thead><tr><th>产品卖点</th><th>概念名</th><th>主文案与证据</th></tr></thead>
+      <tbody>
+        <tr><td>塔式外形</td><td class="copy-concept">纤巧净润塔</td><td><span class="copy-line">纤巧立于一隅，高位润泽空间</span><span class="copy-proof">21.6cm窄占地，约70cm高位出雾，不占桌面空间。</span></td></tr>
+        <tr><td>水路净化</td><td class="copy-concept">活水净润</td><td><span class="copy-line">水先净，润才安心</span><span class="copy-proof">麦饭石初滤、活水循环、UV-C除菌，雾化前完成三重水路处理。</span></td></tr>
+        <tr><td>加湿效率</td><td class="copy-concept">高位匀润</td><td><span class="copy-line">不只看得见雾，更让湿度散得开</span><span class="copy-proof">350mL/h额定加湿量，高位出雾配合三档调节。</span></td></tr>
+        <tr><td>智能恒湿</td><td class="copy-concept">恒润有度</td><td><span class="copy-line">湿度有数，舒适有度</span><span class="copy-proof">实时感知室内湿度，按环境变化自动调节加湿。</span></td></tr>
+        <tr><td>9L水箱</td><td class="copy-concept">昼夜长润</td><td><span class="copy-line">一箱水，润过昼夜</span><span class="copy-proof">9L充沛容量，理论连续加湿约26小时。</span></td></tr>
+        <tr><td>睡眠模式</td><td class="copy-concept">静夜轻润</td><td><span class="copy-line">润着，也安静着</span><span class="copy-proof">运行噪声≤38dB，睡眠模式自动熄屏。</span></td></tr>
+        <tr><td>上加水</td><td class="copy-concept">揭盖续润</td><td><span class="copy-line">加水不弯腰，清洗不费手</span><span class="copy-proof">揭盖即可加水，大口径水箱可伸手清洁。</span></td></tr>
+        <tr><td>三档调节</td><td class="copy-concept">分场景润泽</td><td><span class="copy-line">想轻润，还是快润，由你决定</span><span class="copy-proof">睡眠、均衡、强湿三档，适配不同空间和时段。</span></td></tr>
+        <tr><td>遥控与触控</td><td class="copy-concept">双控随润</td><td><span class="copy-line">近在指尖，远在手边</span><span class="copy-proof">上置触控大屏与红外遥控，两种操控方式。</span></td></tr>
+        <tr><td>安全与防漏</td><td class="copy-concept">安心守润</td><td><span class="copy-line">水尽即停，水留箱内</span><span class="copy-proof">缺水提醒、自动停机，配合下置水箱和防漏结构。</span></td></tr>
+        <tr><td>26W功率</td><td class="copy-concept">低耗长润</td><td><span class="copy-line">长时滋润，也把能耗放轻</span><span class="copy-proof">额定功率26W，连续运行24小时理论耗电约0.624度。</span></td></tr>
+        <tr><td>独立香薰盒</td><td class="copy-concept">润香相伴</td><td><span class="copy-line">空气有润意，空间有淡香</span><span class="copy-proof">独立香薰盒设计，精油无需加入水箱。</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="copy-use-grid">
+      <article class="copy-use">
+        <h3>首屏推荐</h3>
+        <strong>亚都净润塔<br>水先净，润才安心</strong>
+        <p>活水循环净化水路，UV-C除菌后再雾化。9L一箱润过昼夜，智能感湿保持舒适。</p>
+      </article>
+      <article class="copy-use">
+        <h3>短视频开场</h3>
+        <strong>普通加湿器，只负责把水变成雾。</strong>
+        <p>亚都净润塔，先过滤、再循环、再除菌，最后才雾化。水先净，润才安心。</p>
+      </article>
+      <article class="copy-use">
+        <h3>直播核心话术</h3>
+        <strong>不只追求雾有多大，更在意雾从哪里来。</strong>
+        <p>先讲过滤、循环和UV-C水路，再落到9L长续航与智能恒湿，解决卫生、加水和过湿三个实际问题。</p>
+      </article>
+    </div>
+
+    <div class="copy-note"><strong>建议减少使用：</strong>“超大雾量、巨雾澎湃、母婴级柔雾、健康黑科技”。前两者缺少差异，后两者存在证据与合规风险。</div>
+  </section>
+
+  <section class="feature-band">
+    <div class="section-head">
+      <div class="section-kicker">03 / 价值证据</div>
+      <div>
+        <h2>把抽象卖点变成可见证据</h2>
+        <p class="section-intro">销售内容应优先展示产品如何解决问题，而不是重复“黑科技、健康、巨雾”等泛化词。</p>
+      </div>
+    </div>
+    <div class="proof-grid">
+      <article class="proof">
+        <div class="proof-copy"><h3>把“净化”限定在加湿水路</h3><p>过滤、循环、UV-C和雾化形成清晰路径。注意：这不是空气净化器，不能延伸宣传PM2.5去除或整屋空气净化。</p></div>
+      </article>
+      <article class="proof">
+        <div class="proof-copy"><h3>用真实操作降低购买顾虑</h3><p>展示揭盖加水、水箱内壁清洗和遥控操作，比单纯写“便捷”更能说明日常使用成本。</p></div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">04 / 销售打法</div>
+      <div>
+        <h2>从功能清单转向问题解决</h2>
+        <p class="section-intro">推荐定位：“适合客厅和卧室长时间使用的大容量除菌恒湿加湿器”。</p>
+      </div>
+    </div>
+    <div class="strategy-grid">
+      <article class="strategy"><h3>首屏只保留四件事</h3><p>9L、UV-C、350mL/h、智能恒湿。让用户在三秒内判断产品档位和主要差异。</p></article>
+      <article class="strategy"><h3>把详情页改成决策顺序</h3><p>先讲效果和水路卫生，再讲续航、恒湿、静音、加水、遥控；香薰盒和提手放在后段。</p></article>
+      <article class="strategy"><h3>视频重点展示操作</h3><p>拍高位出雾、三档切换、湿度变化、揭盖加水、水箱清洗、遥控和睡眠熄屏。</p></article>
+      <article class="strategy"><h3>建立维护预期</h3><p>主动说明定期清洗水箱、雾化片和更换滤芯。硬水地区建议纯净水或软化水，减少白粉与水垢差评。</p></article>
+      <article class="strategy"><h3>用证据支持强主张</h3><p>99.9%除菌率必须带检测对象、条件和报告编号；26小时标注为理论值，避免绝对承诺。</p></article>
+      <article class="strategy"><h3>避免医疗化表达</h3><p>可说“适合关注用水卫生的家庭”，不直接使用“防过敏、保护呼吸道、母婴级”等缺少标准依据的描述。</p></article>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">05 / 顾虑转译</div>
+      <div><h2>消费者问题与对应话术</h2><p class="section-intro">每个卖点都要落到一个明确顾虑，避免功能堆砌。</p></div>
+    </div>
+    <div class="message-map">
+      <article class="message"><span class="concern">怕加湿过头</span><strong>智能感湿，按需调节</strong><p>实时显示湿度并自动调节输出，减少过干或过湿。</p></article>
+      <article class="message"><span class="concern">怕水箱不卫生</span><strong>过滤、循环、UV-C三段处理</strong><p>把水路结构和检测依据讲清楚，不泛化为空气净化。</p></article>
+      <article class="message"><span class="concern">怕天天加水</span><strong>9L容量，理论约26小时</strong><p>一次补水覆盖全天或整晚，具体续航随档位和环境变化。</p></article>
+      <article class="message"><span class="concern">怕夜里打扰</span><strong>≤38dB，睡眠熄屏</strong><p>低噪运行、缺水自动停机；不用“零噪音”或“绝对静音”。</p></article>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="section-kicker">06 / 上线前校验</div>
+      <div><h2>素材口径必须统一</h2><p class="section-intro">当前文件夹混有新旧版及不同配置素材，若直接组合使用，容易造成参数投诉。</p></div>
+    </div>
+    <div class="risk-panel">
+      <h3>需优先处理的冲突与风险</h3>
+      <ul class="risk-list">
+        <li>恒湿参数同时出现固定55%、40%–70%和40%–75%。</li>
+        <li>触控版加湿量同时出现280mL/h和300mL/h。</li>
+        <li>360°双出雾只在部分主图出现，应核对量产结构。</li>
+        <li>“80㎡、30分钟从40%升至55%”需完整测试条件，不宜直接作为推荐面积。</li>
+        <li>“直加自来水”应补充地区水质差异和水垢提示。</li>
+        <li>99.9%除菌率需绑定具体检测报告、菌种和测试条件。</li>
+        <li>“静音”只能作为搜索或低噪描述，参数口径为≤38dB。</li>
+        <li>独立香薰盒应明确精油不可直接加入水箱。</li>
+      </ul>
+    </div>
+    <div class="specs" aria-label="090P统一基础参数">
+      <div class="spec"><small>产品型号</small><strong>SC280-QL090P</strong></div>
+      <div class="spec"><small>额定功率</small><strong>26W</strong></div>
+      <div class="spec"><small>水箱容量</small><strong>9L</strong></div>
+      <div class="spec"><small>额定加湿量</small><strong>350mL/h</strong></div>
+      <div class="spec"><small>加湿档位</small><strong>3档</strong></div>
+      <div class="spec"><small>运行噪声</small><strong>≤38dB</strong></div>
+      <div class="spec"><small>产品净重</small><strong>2.2kg</strong></div>
+      <div class="spec"><small>产品尺寸</small><strong>216×216×699mm</strong></div>
+    </div>
+  </section>
+
+  <div class="doc-source">
+    <p>分析对象：/Users/zane/亚都/亚都产品资料/090P/dump</p>
+    <p>依据现有产品物料整理；最终销售口径应以量产说明书、检测报告及平台合规要求为准。</p>
+  </div>
+
+</main>
+<footer class="site-footer">亚都 YADU · 文章中心</footer>
+</body>
+</html>

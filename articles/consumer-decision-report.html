@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>加湿器消费决策模型调研报告 · 亚都 YADU</title>
+<link rel="stylesheet" href="article.css">
+<style>
+  /* 本文档专属样式：仅放共享 article.css 没有的组件样式，且颜色必须已按站点色系调整 */
+
+  /* 小节导语（h2 下方的说明文字） */
+  .section-desc { color: var(--text-sub); font-size: 14px; margin-bottom: 18px; padding-left: 18px; }
+
+  /* 表格中的数字列（等宽数字 + 主色强调） */
+  .num { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--accent); white-space: nowrap; }
+
+  /* 条形图：主色用 cyan→blue 渐变；teal 变体用 cyan 系；warm 变体映射为琥珀语义色 */
+  .bar-row { display: flex; align-items: center; margin-bottom: 12px; font-size: 14px; }
+  .bar-label { width: 130px; flex-shrink: 0; }
+  .bar-track { flex: 1; background: #f1f5f9; border-radius: 6px; height: 22px; overflow: hidden; }
+  .bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    background: linear-gradient(90deg, var(--grad-from), var(--grad-to));
+    display: flex; align-items: center; justify-content: flex-end;
+    color: #fff; font-size: 12px; font-weight: 600;
+    padding-right: 8px;
+    min-width: 40px;
+  }
+  .bar-fill.teal { background: linear-gradient(90deg, var(--accent-strong), #06b6d4); }
+  .bar-fill.warm { background: linear-gradient(90deg, #b45309, #92400e); }
+
+  /* 人群卡片：p-rank 原橙色映射为琥珀色 */
+  .persona-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+  .persona {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .persona .p-title { font-weight: 700; font-size: 15px; margin-bottom: 6px; }
+  .persona .p-rank { font-size: 12px; color: #b45309; font-weight: 600; margin-bottom: 6px; display: block; }
+  .persona p { font-size: 13.5px; color: var(--text-sub); }
+
+  /* 决策路径（漏斗步骤条）：主色改为 cyan */
+  .funnel { display: flex; flex-wrap: wrap; gap: 8px; align-items: stretch; }
+  .funnel .step {
+    flex: 1;
+    min-width: 140px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 13px;
+  }
+  .funnel .step b { display: block; font-size: 14px; margin-bottom: 4px; color: var(--accent); }
+  .funnel .arrow { align-self: center; color: var(--text-sub); font-size: 18px; }
+
+  /* 启示层：l1 红 → 语义错误红，l2 橙 → 琥珀，l3 青绿 → cyan */
+  .layer {
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
+    background: var(--card);
+  }
+  .layer.l1 { border-left: 5px solid #b91c1c; }
+  .layer.l2 { border-left: 5px solid #b45309; }
+  .layer.l3 { border-left: 5px solid var(--accent); }
+  .layer b.layer-name { font-size: 15px; }
+  .layer .layer-tag { font-size: 12px; color: var(--text-sub); margin-left: 8px; }
+  .layer p { font-size: 14px; margin-top: 6px; color: var(--text); }
+</style>
+</head>
+<body>
+<header class="site-bar">
+  <a class="brand" href="../index.html">
+    <span class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7s6.5 7 6.5 11.3a6.5 6.5 0 1 1-13 0C5.5 9.7 12 2.7 12 2.7z"/></svg></span>
+    <span><span class="name">亚都 YADU</span><br><span class="slogan">健康加湿 · 净润生活</span></span>
+  </a>
+  <a class="back" href="../index.html#/articles">← 返回文章列表</a>
+</header>
+<main class="article">
+
+  <div class="hero">
+    <span class="tag">市场调研 · 品类洞察</span>
+    <h1>加湿器消费决策模型调研报告</h1>
+    <p>谁在购买加湿器？TA 们根据哪些要素做决策？哪些卖点真正驱动下单？本报告整合多份行业研究与消费者定量调研，还原加湿器品类的完整决策链路。</p>
+    <div class="meta">整理日期：2026 年 7 月 ｜ 核心数据来源：华信人咨询 N=1449 定量调研（2025.08）、奥维云网 AVC（2025 年报）、头豹研究院</div>
+  </div>
+
+  <!-- 一、核心人群画像 -->
+  <section>
+    <h2>一、核心人群画像：谁在买</h2>
+    <p class="section-desc">中青年女性主导消费，自主决策为主，中等收入人群是基本盘。</p>
+
+    <div class="card">
+      <table>
+        <tr><th style="width:110px">维度</th><th>结论</th><th style="width:280px">数据支撑</th></tr>
+        <tr><td><b>性别</b></td><td><b>女性主导</b>，占比约 53%–61%（女性更关注皮肤干燥、家居环境）</td><td class="num">华信人 2025：53%<br>头豹研究院：60.6%</td></tr>
+        <tr><td><b>年龄</b></td><td><b>26–45 岁中青年</b>为绝对主力（约 60%）</td><td class="num">26–35 岁占 32%<br>36–45 岁占 28%</td></tr>
+        <tr><td><b>收入</b></td><td>中等收入人群（月入 5–12 万）占比过半，消费能力稳定</td><td class="num">华信人 2025</td></tr>
+        <tr><td><b>城市/渠道</b></td><td>一线/新一线为主，<b>线上电商集中</b>，抖音承接低价入门款</td><td class="num">奥维云网 2025</td></tr>
+        <tr><td><b>决策方式</b></td><td><b>个人自主决策 42% + 家庭共同决策 35%</b>，促销驱动仅 4%</td><td class="num">华信人 2025</td></tr>
+      </table>
+    </div>
+
+    <h3>五大关键细分人群（按需求强度排序）</h3>
+    <div class="persona-grid">
+      <div class="persona">
+        <span class="p-rank">① 需求最强 · 付费意愿最高</span>
+        <div class="p-title">母婴家庭（宝妈为主）</div>
+        <p>核心焦虑：宝宝呼吸道脆弱、湿疹加重、夜醒哭闹。「无雾/冷蒸发」是该人群的准入门槛；为「安心」付费的容忍度最高，客单价可达 400–800 元+。</p>
+      </div>
+      <div class="persona">
+        <span class="p-rank">② 规模主力</span>
+        <div class="p-title">年轻女性（悦己 + 美容场景）</div>
+        <p>原始动机是皮肤干燥、补水护发。「颜值即正义」，桌面迷你款、香薰、氛围灯等功能对该人群有效；小红书种草是主要触点。</p>
+      </div>
+      <div class="persona">
+        <span class="p-rank">③ 性价比敏感</span>
+        <div class="p-title">白领 / 租房人群</div>
+        <p>办公室、卧室小场景使用，看重便携、静音、性价比，是 100–300 元超声波入门款的主力买家。</p>
+      </div>
+      <div class="persona">
+        <span class="p-rank">④ 健康刚需</span>
+        <div class="p-title">敏感肌 / 鼻炎 / 呼吸道敏感人群</div>
+        <p>与母婴逻辑同源，关注水质洁净、抑菌、无白粉残留，是无雾品类的天然用户。</p>
+      </div>
+      <div class="persona">
+        <span class="p-rank">⑤ 待教育市场</span>
+        <div class="p-title">银发 / 有老人的家庭</div>
+        <p>多由子女代购（家庭共同决策场景），对加湿器认知度低是主要障碍，操作简便是核心诉求。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 二、决策要素 -->
+  <section>
+    <h2>二、决策要素排序：根据什么买</h2>
+    <p class="section-desc">加湿效果是第一考量，但「有雾 vs 无雾」已成为新的第一筛选器。</p>
+
+    <h3>2.1 购买动机</h3>
+    <div class="card">
+      <div class="bar-row"><div class="bar-label">改善干燥环境</div><div class="bar-track"><div class="bar-fill" style="width:76%">38%</div></div></div>
+      <div class="bar-row"><div class="bar-label">健康防护（呼吸道）</div><div class="bar-track"><div class="bar-fill teal" style="width:52%">~26%</div></div></div>
+      <div class="bar-row"><div class="bar-label">皮肤护理 / 美容</div><div class="bar-track"><div class="bar-fill teal" style="width:40%">~20%</div></div></div>
+      <div class="bar-row"><div class="bar-label">母婴需求</div><div class="bar-track"><div class="bar-fill warm" style="width:32%">~16%</div></div></div>
+      <p style="font-size:12.5px;color:var(--text-sub);margin-top:8px">注：38% 为华信人 2025 定量数据（N=1449）；其余为综合多源估算的相对量级。</p>
+    </div>
+
+    <h3>2.2 决策因素矩阵（重要性排序）</h3>
+    <div class="card">
+      <table>
+        <tr><th style="width:52px">排名</th><th style="width:170px">因素</th><th>表现与说明</th><th style="width:150px">数据</th></tr>
+        <tr><td class="num">1</td><td><b>加湿效果</b></td><td>加湿量（mL/h）、覆盖面积，是核心性能的硬指标</td><td class="num">29%–38% 列为前三</td></tr>
+        <tr><td class="num">2</td><td><b>价格合理性</b></td><td>主流价格带 200–500 元（41%）；101–400 元关注度 58%（头豹）</td><td class="num">18%</td></tr>
+        <tr><td class="num">3</td><td><b>品牌信誉</b></td><td>42% 用户面对 10% 涨价仍忠诚原品牌</td><td class="num">15%–19%</td></tr>
+        <tr><td class="num">4</td><td><b>静音运行</b></td><td>功能偏好第一位；母婴场景要求 ≤30–35dB（睡眠档）</td><td class="num">功能偏好 27%</td></tr>
+        <tr><td class="num">5</td><td><b>智能恒湿</b></td><td>自动维持 45%–55%RH 舒适区间，免去手动调节</td><td class="num">功能偏好 19%</td></tr>
+        <tr><td class="num">6</td><td><b>除菌 / 抑菌</b></td><td>银离子、UV、电解水、多重过滤正成为标配</td><td class="num">功能偏好 16%</td></tr>
+        <tr><td class="num">7</td><td><b>大容量水箱</b></td><td>主流偏好 2–4L（38%）；母婴人群要 5L+ 整夜续航</td><td class="num">功能偏好 13%</td></tr>
+        <tr><td class="num">8</td><td>远程控制 / 香薰 / 负离子</td><td>附加功能需求偏弱，属锦上添花</td><td class="num">各 5%–9%</td></tr>
+      </table>
+      <p style="font-size:12.5px;color:var(--text-sub);margin-top:10px">来源：华信人咨询《2025 年中国加湿器消费者洞察报告》（N=1449）、头豹研究院。</p>
+    </div>
+
+    <h3>2.3 品类技术路线：新的「第一筛选器」</h3>
+    <div class="card">
+      <p style="font-size:14px;margin-bottom:14px">纯净型（无雾/冷蒸发）加湿器线上销量占比三年跨越式增长，是行业增长引擎，并拉动均价上行（2025 年线上均价 265 元，同比 +14.4%）：</p>
+      <div class="bar-row"><div class="bar-label">2022 年</div><div class="bar-track"><div class="bar-fill teal" style="width:18%">9%</div></div></div>
+      <div class="bar-row"><div class="bar-label">2025 年</div><div class="bar-track"><div class="bar-fill" style="width:60%">30%</div></div></div>
+      <p style="font-size:14px;margin-top:14px">消费者决策链路正在变成：<b>先选「有雾 vs 无雾」→ 再比参数（加湿量 / 噪音 / 抑菌）→ 再看品牌与价格</b>。超声波款退守「基础加湿 + 高性价比」定位。</p>
+      <p style="font-size:12.5px;color:var(--text-sub);margin-top:6px">来源：奥维云网（AVC）2025 年净化器 &amp; 加湿器市场年报。</p>
+    </div>
+
+    <h3>2.4 价格与促销心理</h3>
+    <div class="card">
+      <ul>
+        <li><b>促销依赖：</b>40% 消费者对促销有强依赖；38% 遇到涨价会等促销再买——「怕买贵」是普遍心态，大促节点（618 / 双 11 / 入冬）成交高度集中。</li>
+        <li><b>品牌忠诚：</b>42% 用户面对 10% 涨价仍愿意原地买单，多为 26–35 岁、年入 5–12 万的中等收入群体——产品「够安静、够健康、够省心」即可获得溢价空间。</li>
+        <li><b>母婴例外：</b>母婴人群为「安心」付费的容忍度显著更高，对滤网耗材成本（「低价购机、高价养机」）也越来越敏感。</li>
+      </ul>
+    </div>
+
+    <h3>2.5 决策路径与信息渠道</h3>
+    <div class="funnel">
+      <div class="step"><b>① 场景触发</b>暖气 / 空调房干燥、皮肤起皮、宝宝咳嗽夜醒</div>
+      <div class="arrow">→</div>
+      <div class="step"><b>② 社交种草</b>小红书测评（分贝实测、白粉对比类内容转化力强）</div>
+      <div class="arrow">→</div>
+      <div class="step"><b>③ 深度横评</b>知乎 / 什么值得买长文：技术原理 + 参数对比</div>
+      <div class="arrow">→</div>
+      <div class="step"><b>④ 信任校验</b>品牌信誉、认证（SGS / 3C / 母婴级）、口碑评价</div>
+      <div class="arrow">→</div>
+      <div class="step"><b>⑤ 节点下单</b>促销节点成交，线上电商为主</div>
+    </div>
+  </section>
+
+  <!-- 三、卖点策略启示 -->
+  <section>
+    <h2>三、卖点策略启示</h2>
+    <p class="section-desc">三层卖点结构：必答题、加分题、差异化。</p>
+
+    <div class="layer l1">
+      <b class="layer-name">第一层：必答题</b><span class="layer-tag">做不到就出局</span>
+      <p>加湿量实测值 · 无雾/纯净技术 · 静音分贝实测 · 抑菌链路。<b>参数必须可验证</b>——虚标会被测评内容反噬。</p>
+    </div>
+    <div class="layer l2">
+      <b class="layer-name">第二层：加分题</b><span class="layer-tag">影响最终选择</span>
+      <p>智能恒湿 · 顶部上加水 · 整机可拆洗 · 滤网寿命与耗材成本透明（用户已熟知「低价购机、高价养机」的坑）。</p>
+    </div>
+    <div class="layer l3">
+      <b class="layer-name">第三层：差异化</b><span class="layer-tag">建立品牌溢价</span>
+      <p>母婴级权威认证（SGS / 3C / 0 臭氧）· 全屋大加湿量 · 加湿净化一体。</p>
+    </div>
+
+    <h3>人群分层沟通策略</h3>
+    <div class="card">
+      <table>
+        <tr><th style="width:180px">目标人群</th><th>核心沟通点</th></tr>
+        <tr><td><b>宝妈 / 母婴家庭</b></td><td>安全认证 + 夜间静音（≤30dB 实测）+ 整夜续航大水箱 + 全水路抑菌</td></tr>
+        <tr><td><b>年轻女性</b></td><td>颜值设计 + 皮肤补水 / 美容场景 + 小巧便携 + 香薰氛围</td></tr>
+        <tr><td><b>家庭采购者</b></td><td>性价比 + 省心（恒湿 / 易清洗 / 耗材成本透明）</td></tr>
+        <tr><td><b>敏感人群</b></td><td>无雾无白粉 + 水质净化 + 抑菌率实测数据</td></tr>
+      </table>
+    </div>
+
+    <h3>定价与节奏建议</h3>
+    <div class="card">
+      <ul>
+        <li>中端 <b>200–500 元</b>是走量基本盘；品牌忠诚用户愿为信任付溢价——关键是价格体系稳定，避免「买贵后看到降价」伤害 42% 的死忠用户。</li>
+        <li>销售节奏跟随<b>入冬暖气季 + 大促节点</b>，内容种草需提前 1–2 个月铺设。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 数据说明 -->
+  <section>
+    <h2>数据说明与局限</h2>
+    <div class="note">
+      ① 华信人咨询样本（N=1449）聚焦家庭月收入 3–8 万的中等收入人群，且限定「近 1 年内购买过加湿器」的决策者，结论对入门低价市场的代表性有限；<br>
+      ② 头豹研究院画像数据为 2018–2019 年，年龄结构结论仍然有效，但价格带已整体上移；<br>
+      ③ 购买动机中除 38%（改善干燥环境）外，其余为综合多源资料的相对量级估算，仅供优先级参考。
+    </div>
+  </section>
+
+  <!-- 主要资料来源（原文档页脚内容，改为正文小节） -->
+  <section>
+    <h2>主要资料来源</h2>
+    <ul>
+      <li>华信人咨询《2025 年中国加湿器消费者洞察报告》《2025 年中国加湿器市场洞察报告》（2025.08 调研，N=1449）</li>
+      <li>奥维云网（AVC）《2025 年净化器 &amp; 加湿器市场总结》（2026.02 发布）</li>
+      <li>头豹研究院《2020 年中国加湿器行业概览》</li>
+      <li>QYResearch《2025 年无雾加湿器市场调研》</li>
+      <li>亚马逊 × Euromonitor《日本机会品类动向调查》</li>
+      <li>知乎 / 什么值得买 / 新京报等母婴无雾加湿器选购研究内容</li>
+    </ul>
+  </section>
+
+</main>
+<footer class="site-footer">亚都 YADU · 文章中心</footer>
+</body>
+</html>
