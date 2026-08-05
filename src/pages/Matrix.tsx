@@ -37,7 +37,7 @@ function CellContent({ cell }: { cell: MatrixCell }) {
         href={cell.link.url}
         target="_blank"
         rel="noreferrer"
-        className="font-medium text-cyan-600 hover:underline"
+        className="font-medium text-primary hover:underline"
       >
         {cell.link.text}
       </a>
@@ -52,29 +52,29 @@ export default function Matrix() {
 
   return (
     <div className="flex h-screen flex-col bg-white">
-      <header className="flex h-14 shrink-0 items-center justify-between border-b border-slate-200 px-4 sm:px-6">
+      <header className="flex h-14 shrink-0 items-center justify-between border-b border-border px-4 sm:px-6">
         <div className="flex items-center gap-4">
           <Link
             to="/"
-            className="flex items-center gap-1.5 text-sm text-slate-500 transition hover:text-cyan-600"
+            className="flex items-center gap-1.5 text-sm text-muted-foreground transition hover:text-primary"
           >
             <ArrowLeft className="h-4 w-4" />
             返回首页
           </Link>
           <span className="hidden items-center gap-2 sm:flex">
-            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 text-white">
+            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-brand-gradient text-white">
               <Droplets className="h-4 w-4" />
             </span>
-            <span className="text-base font-bold text-slate-900">{matrix.docTitle}</span>
+            <span className="text-base font-bold text-foreground">{matrix.docTitle}</span>
           </span>
         </div>
-        <div className="flex items-center gap-4 text-xs text-slate-400">
+        <div className="flex items-center gap-4 text-xs text-muted-foreground">
           <span className="hidden md:inline">数据同步于 {syncedAt}</span>
           <a
             href={matrix.source}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-1 transition hover:text-cyan-600"
+            className="flex items-center gap-1 transition hover:text-primary"
           >
             语雀源表
             <ExternalLink className="h-3.5 w-3.5" />
@@ -99,13 +99,13 @@ export default function Matrix() {
                       rowSpan={span?.rowSpan}
                       colSpan={span?.colSpan}
                       className={cn(
-                        'border-b border-r border-slate-200 px-3 py-2 align-middle text-slate-700',
+                        'border-b border-r border-border px-3 py-2 align-middle text-foreground',
                         isFirstCol &&
-                          'sticky left-0 z-10 min-w-28 bg-slate-50 font-medium whitespace-nowrap text-slate-900',
+                          'sticky left-0 z-10 min-w-28 bg-muted font-medium whitespace-nowrap text-foreground',
                         isFirstRow &&
                           'sticky top-0 z-20 bg-slate-900 text-center font-semibold text-white',
                         isFirstCol && isFirstRow && 'z-30 bg-slate-900',
-                        !isFirstCol && !isFirstRow && 'min-w-28 text-center group-hover:bg-cyan-50/40',
+                        !isFirstCol && !isFirstRow && 'min-w-28 text-center group-hover:bg-primary-50/60',
                       )}
                     >
                       <CellContent cell={cell} />

@@ -39,8 +39,8 @@ export default function ProductSection() {
     <section id="products" className="bg-white py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="text-center">
-          <h2 className="text-3xl font-extrabold tracking-tight text-slate-900">按系列选购</h2>
-          <p className="mt-3 text-sm text-slate-500">
+          <h2 className="text-3xl font-extrabold tracking-tight text-foreground">按系列选购</h2>
+          <p className="mt-3 text-sm text-muted-foreground">
             无雾 / 超声波落地 / 超声波桌面 / 滤网配件，几秒钟看完；每个系列都告诉你"适合谁、怎么选"
           </p>
         </div>
@@ -57,16 +57,16 @@ export default function ProductSection() {
                   e.preventDefault()
                   scrollToId(q.href.slice(1))
                 }}
-                className={`group flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:shadow-md ${theme?.quickHover ?? ''}`}
+                className={`group flex items-start gap-4 rounded-2xl border border-border bg-white p-5 shadow-sm transition hover:shadow-md ${theme?.quickHover ?? ''}`}
               >
                 <span className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${theme?.quickIcon ?? ''}`}>
                   <q.icon className="h-5 w-5" />
                 </span>
                 <span>
-                  <span className={`block font-bold text-slate-900 ${titleHover[q.href.slice(1)] ?? ''}`}>
+                  <span className={`block font-bold text-foreground ${titleHover[q.href.slice(1)] ?? ''}`}>
                     {q.title}
                   </span>
-                  <span className="mt-1 block text-xs leading-relaxed text-slate-500">{q.desc}</span>
+                  <span className="mt-1 block text-xs leading-relaxed text-muted-foreground">{q.desc}</span>
                 </span>
               </a>
             )

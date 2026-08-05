@@ -9,8 +9,8 @@ const badgeColor: Record<string, string> = {
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
-    <article className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-      <div className="relative aspect-square overflow-hidden bg-slate-50">
+    <article className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+      <div className="relative aspect-square overflow-hidden bg-muted">
         <img
           src={product.image}
           alt={product.name}
@@ -19,41 +19,41 @@ export default function ProductCard({ product }: { product: Product }) {
         />
         {product.badge && (
           <span
-            className={`absolute left-3 top-3 rounded-full px-3 py-1 text-xs font-bold ${badgeColor[product.badge] ?? 'bg-cyan-100 text-cyan-700'}`}
+            className={`absolute left-3 top-3 rounded-full px-3 py-1 text-xs font-bold ${badgeColor[product.badge] ?? 'bg-primary-100 text-primary-700'}`}
           >
             {product.badge}
           </span>
         )}
       </div>
       <div className="flex flex-1 flex-col p-5">
-        <div className="text-[11px] font-medium uppercase tracking-wide text-slate-400">{product.model}</div>
-        <h3 className="mt-1 line-clamp-2 text-base font-bold leading-snug text-slate-900" title={product.tmallTitle}>
+        <div className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">{product.model}</div>
+        <h3 className="mt-1 line-clamp-2 text-base font-bold leading-snug text-foreground" title={product.tmallTitle}>
           {product.tmallTitle}
         </h3>
-        <p className="mt-1 text-xs text-slate-500">{product.name}</p>
-        <p className="mt-0.5 text-xs font-medium text-cyan-600">{product.tagline}</p>
+        <p className="mt-1 text-xs text-muted-foreground">{product.name}</p>
+        <p className="mt-0.5 text-xs font-medium text-primary">{product.tagline}</p>
 
         <ul className="mt-3 space-y-1.5">
           {product.highlights.map((h) => (
-            <li key={h} className="flex items-start gap-1.5 text-xs leading-relaxed text-slate-600">
-              <BadgeCheck className="mt-0.5 h-3.5 w-3.5 shrink-0 text-cyan-500" />
+            <li key={h} className="flex items-start gap-1.5 text-xs leading-relaxed text-muted-foreground">
+              <BadgeCheck className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" />
               <span>{h}</span>
             </li>
           ))}
         </ul>
 
-        <div className="mt-4 grid grid-cols-3 gap-2 border-t border-slate-100 pt-4">
+        <div className="mt-4 grid grid-cols-3 gap-2 border-t border-border pt-4">
           {product.specs.slice(0, 3).map((s) => (
-            <div key={s.label} className="rounded-lg bg-slate-50 px-2 py-1.5 text-center">
-              <div className="text-[10px] text-slate-400">{s.label}</div>
-              <div className="text-xs font-bold text-slate-800">{s.value}</div>
+            <div key={s.label} className="rounded-lg bg-muted px-2 py-1.5 text-center">
+              <div className="text-[10px] text-muted-foreground">{s.label}</div>
+              <div className="text-xs font-bold tabular-nums text-foreground">{s.value}</div>
             </div>
           ))}
         </div>
 
         <div className="mt-3 flex flex-wrap gap-1.5">
           {product.variants.map((v) => (
-            <span key={v} className="rounded-full border border-slate-200 px-2.5 py-0.5 text-[10px] text-slate-500">
+            <span key={v} className="rounded-full border border-border px-2.5 py-0.5 text-[10px] text-muted-foreground">
               {v}
             </span>
           ))}

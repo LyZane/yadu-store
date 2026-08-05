@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="bg-slate-900 py-10 text-slate-400">
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-4 px-4 text-center sm:px-6">
         <div className="flex items-center gap-2 text-white">
-          <Droplets className="h-5 w-5 text-cyan-400" />
+          <Droplets className="h-5 w-5 text-primary" />
           <span className="text-lg font-bold">亚都 YADU</span>
         </div>
         <p className="max-w-xl text-xs leading-relaxed">

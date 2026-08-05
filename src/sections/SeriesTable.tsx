@@ -15,30 +15,30 @@ const filterRows: { label: string; get: (p: Product) => string }[] = [
   { label: '清洁方式', get: () => '可水洗反复使用' },
 ]
 
-export default function SeriesTable({ items, headClass = 'bg-slate-50' }: { items: Product[]; headClass?: string }) {
+export default function SeriesTable({ items, headClass = 'bg-muted' }: { items: Product[]; headClass?: string }) {
   const isFilter = items[0]?.category === '滤网配件'
   const rows = isFilter ? filterRows : machineRows
 
   return (
-    <div className="mt-6 overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">
+    <div className="mt-6 overflow-x-auto rounded-2xl border border-border bg-white shadow-sm">
       <table className="w-full min-w-[640px] border-collapse text-sm">
         <thead>
           <tr className={headClass}>
-            <th className="w-28 px-4 py-3 text-left text-xs font-semibold text-slate-400">快速对比</th>
+            <th className="w-28 px-4 py-3 text-left text-xs font-semibold text-muted-foreground">快速对比</th>
             {items.map((p) => (
               <th key={p.id} className="min-w-[150px] px-4 py-3 text-center align-bottom">
-                <img src={p.image} alt={p.name} className="mx-auto h-16 w-16 rounded-xl object-cover" />
-                <div className="mt-2 line-clamp-2 text-xs font-bold leading-snug text-slate-800">{p.name}</div>
+                <img src={p.image} alt={p.name} className="mx-auto h-16 w-16 rounded-xl object-cover ring-1 ring-border" />
+                <div className="mt-2 line-clamp-2 text-xs font-bold leading-snug text-foreground">{p.name}</div>
               </th>
             ))}
           </tr>
         </thead>
         <tbody>
           {rows.map((row, i) => (
-            <tr key={row.label} className={i % 2 === 0 ? 'bg-white' : 'bg-slate-50/60'}>
-              <td className="px-4 py-2.5 text-xs font-semibold text-slate-400">{row.label}</td>
+            <tr key={row.label} className={i % 2 === 0 ? 'bg-card' : 'bg-muted/60'}>
+              <td className="px-4 py-2.5 text-xs font-semibold text-muted-foreground">{row.label}</td>
               {items.map((p) => (
-                <td key={p.id} className="px-4 py-2.5 text-center text-xs font-medium text-slate-700">
+                <td key={p.id} className="px-4 py-2.5 text-center text-xs font-medium tabular-nums text-foreground">
                   {row.get(p)}
                 </td>
               ))}

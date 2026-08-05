@@ -9,17 +9,17 @@ const items = [
 
 export default function ServiceBar() {
   return (
-    <section id="service" className="border-t border-slate-100 bg-slate-50 py-14">
+    <section id="service" className="border-t border-border bg-muted py-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {items.map((it) => (
             <div key={it.title} className="flex items-start gap-3.5">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white text-cyan-600 shadow-sm">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white text-primary shadow-sm">
                 <it.icon className="h-5 w-5" />
               </span>
               <div>
-                <div className="font-bold text-slate-900">{it.title}</div>
-                <div className="mt-1 text-xs leading-relaxed text-slate-500">{it.desc}</div>
+                <div className="font-bold text-foreground">{it.title}</div>
+                <div className="mt-1 text-xs leading-relaxed text-muted-foreground">{it.desc}</div>
               </div>
             </div>
           ))}
