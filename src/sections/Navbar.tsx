@@ -33,10 +33,7 @@ export default function Navbar() {
           </span>
         </a>
         <nav className="hidden items-center gap-7 text-sm font-medium text-muted-foreground md:flex">
-          <a href="#mist-free" onClick={anchorScroll('mist-free')} className="transition hover:text-primary">无雾加湿器</a>
-          <a href="#ultrasonic" onClick={anchorScroll('ultrasonic')} className="transition hover:text-primary">超声波加湿器</a>
-          <a href="#filters" onClick={anchorScroll('filters')} className="transition hover:text-primary">滤网配件</a>
-          <a href="#service" onClick={anchorScroll('service')} className="transition hover:text-primary">服务保障</a>
+          <a href="#top" onClick={anchorScroll('top')} className="transition hover:text-primary">首页</a>
           <Link to="/matrix" className="transition hover:text-primary">产品矩阵</Link>
           <Link to="/articles" className="transition hover:text-primary">文章中心</Link>
         </nav>
